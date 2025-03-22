@@ -1,0 +1,5 @@
+[wrap-git]
+url = https://github.com/llvm/llvm-project
+depth = 1
+revision = llvmorg-20.1.1
+diff_files = llvm-meson-compat.patch

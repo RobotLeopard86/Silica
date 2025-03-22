@@ -1,9 +1,9 @@
 #include "{{file_name}}.er.h"
 
 // clang-format off
-#include "er/reflection/the_great_table.h"
-#include "er/types/common_actions.h"
-#include "er/types/type_actions.h"
+#include "silica/reflection/the_great_table.h"
+#include "silica/types/common_actions.h"
+#include "silica/types/type_actions.h"
 
 namespace er {
 

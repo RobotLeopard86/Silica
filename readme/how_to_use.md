@@ -120,7 +120,7 @@ Then you only need include the header and have fun with desired reflection in C+
 
 ```cpp
 #include "generated/reflection.h"
-#include "er/serialization/simd_json.h"
+#include "silica/serialization/simd_json.h"
 
 ...
 auto employee = serialization::simd_json::from_string<Employee>(str_from_mongo).unwrap();
