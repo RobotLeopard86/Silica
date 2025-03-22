@@ -1,10 +1,10 @@
-#include "silica/variable/box.h"
+#include "silica/variable/box.hpp"
 
 #include <cstdint>
 
-#include "silica/alloc/alloc.h"
-#include "silica/reflection/reflection.h"
-#include "silica/types/all_types.h"
+#include "silica/alloc/alloc.hpp"
+#include "silica/reflection/reflection.hpp"
+#include "silica/types/all_types.hpp"
 
 using namespace silica;
 

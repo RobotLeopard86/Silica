@@ -1,4 +1,4 @@
-#include "parser_json.h"
+#include "parser_json.hpp"
 
 #include <cmath>
 #include <cstddef>
@@ -11,10 +11,10 @@
 #include <utility>
 #include <vector>
 
-#include "../define_retry.h"
-#include "silica/reflection/reflection.h"
-#include "silica/types/all_types.h"
-#include "silica/variable/box.h"
+#include "../define_retry.hpp"
+#include "silica/reflection/reflection.hpp"
+#include "silica/types/all_types.hpp"
+#include "silica/variable/box.hpp"
 
 using namespace silica;
 

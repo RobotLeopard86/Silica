@@ -1,17 +1,17 @@
-#include "silica/serialization/json.h"
+#include "silica/serialization/json.hpp"
 
 #include <cmath>
 #include <string_view>
 
-#include "../writers/iwriter.h"
-#include "../writers/stream_writer.h"
-#include "../writers/string_writer.h"
-#include "silica/error/error.h"
-#include "silica/reflection/reflection.h"
-#include "silica/tools/stringify.h"
-#include "silica/type_info/type_info.h"
-#include "silica/types/all_types.h"
-#include "parser_json.h"
+#include "../writers/iwriter.hpp"
+#include "../writers/stream_writer.hpp"
+#include "../writers/string_writer.hpp"
+#include "silica/error/error.hpp"
+#include "silica/reflection/reflection.hpp"
+#include "silica/tools/stringify.hpp"
+#include "silica/type_info/type_info.hpp"
+#include "silica/types/all_types.hpp"
+#include "parser_json.hpp"
 
 using namespace silica::serialization;
 

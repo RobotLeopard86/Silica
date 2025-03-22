@@ -3,7 +3,7 @@
 #include <cstddef>
 #include <ostream>
 
-#include "iwriter.h"
+#include "iwriter.hpp"
 
 namespace silica {
 

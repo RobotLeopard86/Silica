@@ -11,7 +11,7 @@
 #include <string_view>
 #include <vector>
 
-#include "../readers/ireader.h"
+#include "../readers/ireader.hpp"
 
 namespace silica {
 

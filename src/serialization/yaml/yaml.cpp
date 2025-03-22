@@ -1,13 +1,13 @@
-#include "silica/serialization/yaml.h"
+#include "silica/serialization/yaml.hpp"
 
 #include <ostream>
 
-#include "../writers/stream_writer.h"
-#include "../writers/string_writer.h"
-#include "silica/reflection/reflection.h"
-#include "silica/types/all_types.h"
-#include "parser_yaml.h"
-#include "serializer.h"
+#include "../writers/stream_writer.hpp"
+#include "../writers/string_writer.hpp"
+#include "silica/reflection/reflection.hpp"
+#include "silica/types/all_types.hpp"
+#include "parser_yaml.hpp"
+#include "serializer.hpp"
 
 using namespace silica::serialization;
 

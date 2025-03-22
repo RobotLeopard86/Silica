@@ -2,10 +2,10 @@
 
 #include <istream>
 
-#include "silica/expected.h"
-#include "silica/type_info/variants/array/array.h"
-#include "silica/type_info/variants/map/map.h"
-#include "silica/variable/var.h"
+#include "silica/expected.hpp"
+#include "silica/type_info/variants/array/array.hpp"
+#include "silica/type_info/variants/map/map.hpp"
+#include "silica/variable/var.hpp"
 #include "lexer_json.yy.h"
 
 namespace silica {

@@ -1,6 +1,6 @@
 //#pragma once is deliberately missed
 
-#include "silica/tools/traits.h"
+#include "silica/tools/traits.hpp"
 
 //return | macro similar to behavior of 'try' keyword but without 'catch'
 //  try  | if some error occurred, it will be returned on upper level

@@ -1,8 +1,8 @@
-#include "silica/variable/var.h"
+#include "silica/variable/var.hpp"
 
-#include "silica/reflection/reflection.h"
-#include "silica/tools/format.h"
-#include "silica/types/all_types.h"
+#include "silica/reflection/reflection.hpp"
+#include "silica/tools/format.hpp"
+#include "silica/types/all_types.hpp"
 
 using namespace silica;
 

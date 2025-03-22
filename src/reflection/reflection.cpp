@@ -1,12 +1,12 @@
-#include "silica/reflection/reflection.h"
+#include "silica/reflection/reflection.hpp"
 
 #include <cstddef>
 #include <iostream>
 #include <memory_resource>
 
-#include "silica/reflection/the_great_table.h"
-#include "silica/types/all_types.h"
-#include "sprint.h"
+#include "silica/reflection/the_great_table.hpp"
+#include "silica/types/all_types.hpp"
+#include "sprint.hpp"
 
 using namespace silica;
 

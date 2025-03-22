@@ -8,7 +8,7 @@
 #include <cstring>
 #include <string_view>
 
-#include "../writers/iwriter.h"
+#include "../writers/iwriter.hpp"
 
 namespace silica {
 

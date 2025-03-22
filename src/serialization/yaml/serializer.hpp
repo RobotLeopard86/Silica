@@ -3,12 +3,12 @@
 #include <cmath>
 #include <string_view>
 
-#include "../writers/iwriter.h"
-#include "silica/error/error.h"
-#include "silica/reflection/reflection.h"
-#include "silica/tools/stringify.h"
-#include "silica/type_info/type_info.h"
-#include "silica/type_info/variants/integer/integer.h"
+#include "../writers/iwriter.hpp"
+#include "silica/error/error.hpp"
+#include "silica/reflection/reflection.hpp"
+#include "silica/tools/stringify.hpp"
+#include "silica/type_info/type_info.hpp"
+#include "silica/type_info/variants/integer/integer.hpp"
 
 namespace silica {
 

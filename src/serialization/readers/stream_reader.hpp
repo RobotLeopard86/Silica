@@ -2,7 +2,7 @@
 
 #include <istream>
 
-#include "ireader.h"
+#include "ireader.hpp"
 
 namespace silica {
 

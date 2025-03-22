@@ -3,7 +3,7 @@
 #include <cstddef>
 #include <string>
 
-#include "silica/tools/format.h"
+#include "silica/tools/format.hpp"
 
 namespace silica {
 

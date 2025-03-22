@@ -1,9 +1,9 @@
-#include "silica/type_info/variants/sequence/err_helper.h"
+#include "silica/type_info/variants/sequence/err_helper.hpp"
 
-#include "silica/error/error.h"
-#include "silica/reflection/reflection.h"
-#include "silica/tools/format.h"
-#include "silica/types/all_types.h"
+#include "silica/error/error.hpp"
+#include "silica/reflection/reflection.hpp"
+#include "silica/tools/format.hpp"
+#include "silica/types/all_types.hpp"
 
 using namespace silica;
 using namespace silica::sequence;

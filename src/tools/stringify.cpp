@@ -1,4 +1,4 @@
-#include "silica/tools/stringify.h"
+#include "silica/tools/stringify.hpp"
 
 #include <iomanip>
 #include <sstream>

@@ -38,7 +38,7 @@
   #include <iomanip>  // std::setw
   #include <vector>   // to store YAML containers
 
-  #include "../position.h"
+  #include "position.hpp"
 }
 
 %class{
@@ -46,8 +46,8 @@
   LexerYaml(const char* input, size_t input_size) : LexerYaml(reflex::Input(input, input_size)){
   }
 
-  er::Position get_position() {
-    return er::Position{columno(), lineno()};
+  silica::Position get_position() {
+    return silica::Position{columno(), lineno()};
   }
 
   size_t get_border() {

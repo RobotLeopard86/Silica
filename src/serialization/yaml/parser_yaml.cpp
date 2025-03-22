@@ -1,4 +1,4 @@
-#include "parser_yaml.h"
+#include "parser_yaml.hpp"
 
 #include <cctype>
 #include <cmath>
@@ -6,11 +6,11 @@
 #include <memory>
 #include <string>
 
-#include "../define_retry.h"
-#include "silica/expected.h"
-#include "silica/reflection/reflection.h"
-#include "silica/types/all_types.h"
-#include "silica/variable/box.h"
+#include "../define_retry.hpp"
+#include "silica/expected.hpp"
+#include "silica/reflection/reflection.hpp"
+#include "silica/types/all_types.hpp"
+#include "silica/variable/box.hpp"
 
 using namespace silica;
 

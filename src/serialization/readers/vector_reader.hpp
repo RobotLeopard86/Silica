@@ -4,7 +4,7 @@
 #include <cstring>
 #include <vector>
 
-#include "ireader.h"
+#include "ireader.hpp"
 
 namespace silica {
 	struct VectorReader final : IReader {

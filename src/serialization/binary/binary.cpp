@@ -1,16 +1,16 @@
-#include "silica/serialization/binary.h"
+#include "silica/serialization/binary.hpp"
 
 #include <iostream>
 
-#include "../readers/stream_reader.h"
-#include "../readers/vector_reader.h"
-#include "../writers/stream_writer.h"
-#include "../writers/vector_writer.h"
-#include "silica/reflection/reflection.h"
-#include "silica/types/all_types.h"
-#include "silica/variable/box.h"
-#include "group_reader.h"
-#include "group_writer.h"
+#include "../readers/stream_reader.hpp"
+#include "../readers/vector_reader.hpp"
+#include "../writers/stream_writer.hpp"
+#include "../writers/vector_writer.hpp"
+#include "silica/reflection/reflection.hpp"
+#include "silica/types/all_types.hpp"
+#include "silica/variable/box.hpp"
+#include "group_reader.hpp"
+#include "group_writer.hpp"
 
 using namespace silica::serialization;
 

@@ -4,7 +4,7 @@
 #include <cstring>
 #include <vector>
 
-#include "iwriter.h"
+#include "iwriter.hpp"
 
 namespace silica {
 

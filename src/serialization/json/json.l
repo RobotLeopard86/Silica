@@ -15,7 +15,7 @@
   #include <iostream> // std::cout etc.
   #include <iomanip>  // std::setw
 
-  #include "../position.h"
+  #include "position.hpp"
 }
 
 %class{
@@ -23,8 +23,8 @@
   LexerJson(const char* input, size_t input_size) : LexerJson(reflex::Input(input, input_size)){
   }
 
-  er::Position get_position() {
-    return er::Position{columno(), lineno()};
+  silica::Position get_position() {
+    return silica::Position{columno(), lineno()};
   }
 
   inline std::string& get_word() {
