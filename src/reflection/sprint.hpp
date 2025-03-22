@@ -103,4 +103,4 @@ namespace silica {
 		*result += "]";
 	}
 
-}//namespace silica
+}

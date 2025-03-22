@@ -23,4 +23,4 @@ namespace silica {
 		return id;
 	}
 
-}//namespace silica
+}

@@ -86,4 +86,4 @@ namespace silica {
 		return result;
 	}
 
-}//namespace silica
+}

@@ -24,4 +24,4 @@ namespace silica {
 		return stream.str();
 	}
 
-}//namespace silica
+}

@@ -16,4 +16,4 @@ namespace silica {
 		virtual Expected<Var> operator[](size_t idx) = 0;
 	};
 
-}//namespace silica
+}

@@ -21,7 +21,7 @@ namespace {
 		}
 		return compdb;
 	}
-}//namespace
+}
 
 ParserCpp::ParserCpp(std::string_view compdb_dir,//
 	std::string_view output_dir)				 //

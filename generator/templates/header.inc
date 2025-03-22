@@ -1,3 +1,4 @@
+R"(
 #pragma once
 
 #include "silica/type_id.h"
@@ -14,4 +15,5 @@ struct TypeActions<{{name}}>;
 template <>
 TypeId TypeId::get({{name}}* /*unused*/);
 
-}  // namespace silica
+}
+)"

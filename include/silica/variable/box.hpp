@@ -33,4 +33,4 @@ namespace silica {
 		//std::array<uint8_t, kMemSize> _buff;
 	};
 
-}//namespace silica
+}

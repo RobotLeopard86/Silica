@@ -80,4 +80,4 @@ namespace silica {
 		const std::map<std::string_view, MethodDesc>* _methods;
 	};
 
-}//namespace silica
+}

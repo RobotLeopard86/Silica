@@ -26,4 +26,4 @@ namespace silica {
 		std::string* _buf;
 	};
 
-}//namespace silica
+}

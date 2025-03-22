@@ -20,4 +20,4 @@ namespace silica {
 		virtual Expected<None> push(Var value) = 0;
 	};
 
-}//namespace silica
+}

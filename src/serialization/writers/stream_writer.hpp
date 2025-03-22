@@ -36,4 +36,4 @@ namespace silica {
 		std::ostream& _stream;
 	};
 
-}//namespace silica
+}

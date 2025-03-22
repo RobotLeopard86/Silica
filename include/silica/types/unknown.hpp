@@ -40,4 +40,4 @@ namespace silica {
 		//The Great Table put references to HelperUnknown methods itself
 	};
 
-}//namespace silica
+}

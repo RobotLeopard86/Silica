@@ -34,4 +34,4 @@ namespace silica {
 		std::string* _string;
 	};
 
-}//namespace silica
+}

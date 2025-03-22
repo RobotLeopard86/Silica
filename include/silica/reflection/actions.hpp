@@ -36,4 +36,4 @@ namespace silica {
 		void (*move)(void*, void*);
 	};
 
-}//namespace silica
+}

@@ -32,4 +32,4 @@ namespace silica {
 		mutable size_t _i;
 	};
 
-}//namespace silica
+}

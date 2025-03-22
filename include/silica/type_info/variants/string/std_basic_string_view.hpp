@@ -53,4 +53,4 @@ namespace silica {
 		Var _var;
 	};
 
-}//namespace silica
+}

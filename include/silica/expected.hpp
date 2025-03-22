@@ -52,4 +52,4 @@ namespace silica {
 
 #undef BASE
 
-}//namespace silica
+}

@@ -15,4 +15,4 @@ namespace silica::sequence {
 		static Error error(std::string_view message, TypeId type, TypeId nested_type);
 	};
 
-}//namespace silica::sequence
+}

@@ -72,4 +72,4 @@ namespace silica {
 		std::variant<T...> _content;
 	};
 
-}//namespace silica
+}

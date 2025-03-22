@@ -30,4 +30,4 @@ namespace silica {
 		std::istream& _stream;
 	};
 
-}//namespace silica
+}

@@ -1,4 +1,5 @@
-#include "{{file_name}}.er.h"
+R"(
+#include "{{file_name}}.silica.h"
 
 // clang-format off
 #include "silica/reflection/the_great_table.h"
@@ -68,6 +69,7 @@ TypeId TypeId::get({{name}}* /*unused*/) {
   return id;
 }
 
-}  // namespace silica
+}
 
 // clang-format on
+)"

@@ -31,4 +31,4 @@ namespace silica {
 		const bool _include_readonly;
 	};
 
-}//namespace silica
+}

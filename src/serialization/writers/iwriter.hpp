@@ -12,4 +12,4 @@ namespace silica {
 		virtual void step_back(size_t bytes) = 0;
 	};
 
-}//namespace silica
+}

@@ -30,4 +30,4 @@ namespace silica {
 		const Access _acc;
 	};
 
-}//namespace silica
+}

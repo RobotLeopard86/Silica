@@ -1,5 +1,5 @@
 diff --git a/clang/cmake/modules/AddClang.cmake b/clang/cmake/modules/AddClang.cmake
-index cdc8bd5cd503..14af7860e25a 100644
+index cdc8bd5cd..14af7860e 100644
 --- a/clang/cmake/modules/AddClang.cmake
 +++ b/clang/cmake/modules/AddClang.cmake
 @@ -96,14 +96,6 @@ macro(add_clang_library name)
@@ -18,7 +18,7 @@ index cdc8bd5cd503..14af7860e25a 100644
    endif()
    llvm_add_library(${name} ${LIBTYPE} ${ARG_UNPARSED_ARGUMENTS} ${srcs})
 diff --git a/clang/include/clang/AST/ASTFwd.h b/clang/include/clang/AST/ASTFwd.h
-index 8823663386ea..6dc1be56ff8d 100644
+index 882366338..6dc1be56f 100644
 --- a/clang/include/clang/AST/ASTFwd.h
 +++ b/clang/include/clang/AST/ASTFwd.h
 @@ -18,13 +18,13 @@ namespace clang {
@@ -48,7 +48,7 @@ index 8823663386ea..6dc1be56ff8d 100644
  class ConceptReference;
  
 diff --git a/clang/include/clang/AST/ASTNodeTraverser.h b/clang/include/clang/AST/ASTNodeTraverser.h
-index 3bc0bdff2bdd..24e361c2e773 100644
+index 3bc0bdff2..24e361c2e 100644
 --- a/clang/include/clang/AST/ASTNodeTraverser.h
 +++ b/clang/include/clang/AST/ASTNodeTraverser.h
 @@ -988,7 +988,7 @@ public:
@@ -61,7 +61,7 @@ index 3bc0bdff2bdd..24e361c2e773 100644
  
  } // namespace clang
 diff --git a/clang/include/clang/AST/ASTTypeTraits.h b/clang/include/clang/AST/ASTTypeTraits.h
-index 3988a15971db..ed44419087f0 100644
+index 3988a1597..ed4441908 100644
 --- a/clang/include/clang/AST/ASTTypeTraits.h
 +++ b/clang/include/clang/AST/ASTTypeTraits.h
 @@ -148,20 +148,20 @@ private:
@@ -111,7 +111,7 @@ index 3988a15971db..ed44419087f0 100644
  
  inline raw_ostream &operator<<(raw_ostream &OS, ASTNodeKind K) {
 diff --git a/clang/include/clang/AST/AbstractBasicReader.h b/clang/include/clang/AST/AbstractBasicReader.h
-index 4b627c65e276..c56c32c211a9 100644
+index 4b627c65e..c56c32c21 100644
 --- a/clang/include/clang/AST/AbstractBasicReader.h
 +++ b/clang/include/clang/AST/AbstractBasicReader.h
 @@ -98,7 +98,7 @@ template <class T> inline T *makePointerFromOptional(std::optional<T *> value) {
@@ -124,7 +124,7 @@ index 4b627c65e276..c56c32c211a9 100644
  /// DataStreamBasicReader provides convenience implementations for many
  /// BasicReader methods based on the assumption that the
 diff --git a/clang/include/clang/AST/AbstractBasicWriter.h b/clang/include/clang/AST/AbstractBasicWriter.h
-index b941add8bde8..da7114c11d50 100644
+index b941add8b..da7114c11 100644
 --- a/clang/include/clang/AST/AbstractBasicWriter.h
 +++ b/clang/include/clang/AST/AbstractBasicWriter.h
 @@ -95,7 +95,7 @@ template <class T> inline std::optional<T *> makeOptionalFromPointer(T *value) {
@@ -137,7 +137,7 @@ index b941add8bde8..da7114c11d50 100644
  /// DataStreamBasicWriter provides convenience implementations for many
  /// BasicWriter methods based on the assumption that the
 diff --git a/clang/include/clang/AST/AbstractTypeReader.h b/clang/include/clang/AST/AbstractTypeReader.h
-index e44bbf61c0ed..d61eef738e33 100644
+index e44bbf61c..d61eef738 100644
 --- a/clang/include/clang/AST/AbstractTypeReader.h
 +++ b/clang/include/clang/AST/AbstractTypeReader.h
 @@ -24,7 +24,7 @@ namespace serialization {
@@ -150,7 +150,7 @@ index e44bbf61c0ed..d61eef738e33 100644
  } // end namespace serialization
  } // end namespace clang
 diff --git a/clang/include/clang/AST/AbstractTypeWriter.h b/clang/include/clang/AST/AbstractTypeWriter.h
-index 62006ef0f26e..1aa9eb8f6976 100644
+index 62006ef0f..1aa9eb8f6 100644
 --- a/clang/include/clang/AST/AbstractTypeWriter.h
 +++ b/clang/include/clang/AST/AbstractTypeWriter.h
 @@ -24,7 +24,7 @@ namespace serialization {
@@ -163,7 +163,7 @@ index 62006ef0f26e..1aa9eb8f6976 100644
  } // end namespace serialization
  } // end namespace clang
 diff --git a/clang/include/clang/AST/Attr.h b/clang/include/clang/AST/Attr.h
-index 3365ebe4d901..1fcea18134fc 100644
+index 3365ebe4d..1fcea1813 100644
 --- a/clang/include/clang/AST/Attr.h
 +++ b/clang/include/clang/AST/Attr.h
 @@ -247,7 +247,7 @@ public:
@@ -203,7 +203,7 @@ index 3365ebe4d901..1fcea18134fc 100644
  
  #endif
 diff --git a/clang/include/clang/AST/AttrVisitor.h b/clang/include/clang/AST/AttrVisitor.h
-index d271db010ed1..89ae72fc05f0 100644
+index d271db010..89ae72fc0 100644
 --- a/clang/include/clang/AST/AttrVisitor.h
 +++ b/clang/include/clang/AST/AttrVisitor.h
 @@ -34,7 +34,7 @@ public:
@@ -225,7 +225,7 @@ index d271db010ed1..89ae72fc05f0 100644
    RetTy VisitAttr(PTR(Attr)) { return RetTy(); }
  
 diff --git a/clang/include/clang/AST/Comment.h b/clang/include/clang/AST/Comment.h
-index dd9906727293..0a60bbc76bbd 100644
+index dd9906727..0a60bbc76 100644
 --- a/clang/include/clang/AST/Comment.h
 +++ b/clang/include/clang/AST/Comment.h
 @@ -57,7 +57,7 @@ enum class CommentKind {
@@ -238,7 +238,7 @@ index dd9906727293..0a60bbc76bbd 100644
  
  /// Any part of the comment.
 diff --git a/clang/include/clang/AST/CommentCommandTraits.h b/clang/include/clang/AST/CommentCommandTraits.h
-index 78c484fff3ae..fbf6c7b5b34a 100644
+index 78c484fff..fbf6c7b5b 100644
 --- a/clang/include/clang/AST/CommentCommandTraits.h
 +++ b/clang/include/clang/AST/CommentCommandTraits.h
 @@ -150,7 +150,7 @@ class CommandTraits {
@@ -251,7 +251,7 @@ index 78c484fff3ae..fbf6c7b5b34a 100644
      KCI_Last
    };
 diff --git a/clang/include/clang/AST/CommentVisitor.h b/clang/include/clang/AST/CommentVisitor.h
-index bbb624a23e68..c09a569a06c7 100644
+index bbb624a23..c09a569a0 100644
 --- a/clang/include/clang/AST/CommentVisitor.h
 +++ b/clang/include/clang/AST/CommentVisitor.h
 @@ -34,7 +34,7 @@ public:
@@ -273,7 +273,7 @@ index bbb624a23e68..c09a569a06c7 100644
  #undef COMMENT
  
 diff --git a/clang/include/clang/AST/DeclBase.h b/clang/include/clang/AST/DeclBase.h
-index 648dae2838e0..088e8b20ca91 100644
+index 648dae283..088e8b20c 100644
 --- a/clang/include/clang/AST/DeclBase.h
 +++ b/clang/include/clang/AST/DeclBase.h
 @@ -93,7 +93,7 @@ public:
@@ -286,7 +286,7 @@ index 648dae2838e0..088e8b20ca91 100644
  
    /// A placeholder type used to construct an empty shell of a
 diff --git a/clang/include/clang/AST/DeclVisitor.h b/clang/include/clang/AST/DeclVisitor.h
-index 8690cdda4bb7..80b293b0137c 100644
+index 8690cdda4..80b293b01 100644
 --- a/clang/include/clang/AST/DeclVisitor.h
 +++ b/clang/include/clang/AST/DeclVisitor.h
 @@ -39,7 +39,7 @@ public:
@@ -308,7 +308,7 @@ index 8690cdda4bb7..80b293b0137c 100644
    RetTy VisitDecl(PTR(Decl) D) { return RetTy(); }
  
 diff --git a/clang/include/clang/AST/DynamicRecursiveASTVisitor.h b/clang/include/clang/AST/DynamicRecursiveASTVisitor.h
-index 4382d2099082..3676d590738a 100644
+index 4382d2099..3676d5907 100644
 --- a/clang/include/clang/AST/DynamicRecursiveASTVisitor.h
 +++ b/clang/include/clang/AST/DynamicRecursiveASTVisitor.h
 @@ -233,32 +233,32 @@ public:
@@ -351,7 +351,7 @@ index 4382d2099082..3676d590738a 100644
    // TypeLocs.
  #define ABSTRACT_TYPELOC(CLASS, BASE)
 diff --git a/clang/include/clang/AST/Expr.h b/clang/include/clang/AST/Expr.h
-index 7be402264932..698b52c204d4 100644
+index 7be402264..698b52c20 100644
 --- a/clang/include/clang/AST/Expr.h
 +++ b/clang/include/clang/AST/Expr.h
 @@ -6680,7 +6680,7 @@ public:
@@ -373,7 +373,7 @@ index 7be402264932..698b52c204d4 100644
      llvm_unreachable("not an atomic operator?");
    }
 diff --git a/clang/include/clang/AST/RecursiveASTVisitor.h b/clang/include/clang/AST/RecursiveASTVisitor.h
-index c4a1d03f1b3d..573650413c85 100644
+index c4a1d03f1..573650413 100644
 --- a/clang/include/clang/AST/RecursiveASTVisitor.h
 +++ b/clang/include/clang/AST/RecursiveASTVisitor.h
 @@ -329,7 +329,7 @@ public:
@@ -493,7 +493,7 @@ index c4a1d03f1b3d..573650413c85 100644
    return true;
  }
 diff --git a/clang/include/clang/AST/Stmt.h b/clang/include/clang/AST/Stmt.h
-index 405c6166adb1..f9fa7205df58 100644
+index 405c6166a..f9fa7205d 100644
 --- a/clang/include/clang/AST/Stmt.h
 +++ b/clang/include/clang/AST/Stmt.h
 @@ -91,7 +91,7 @@ public:
@@ -506,7 +506,7 @@ index 405c6166adb1..f9fa7205df58 100644
  
    // Make vanilla 'new' and 'delete' illegal for Stmts.
 diff --git a/clang/include/clang/AST/StmtVisitor.h b/clang/include/clang/AST/StmtVisitor.h
-index 8b7b728deaff..ea2a3fe33de9 100644
+index 8b7b728de..ea2a3fe33 100644
 --- a/clang/include/clang/AST/StmtVisitor.h
 +++ b/clang/include/clang/AST/StmtVisitor.h
 @@ -109,7 +109,7 @@ public:
@@ -528,7 +528,7 @@ index 8b7b728deaff..ea2a3fe33de9 100644
    // If the implementation doesn't implement binary operator methods, fall back
    // on VisitBinaryOperator.
 diff --git a/clang/include/clang/AST/TextNodeDumper.h b/clang/include/clang/AST/TextNodeDumper.h
-index 4aaae48ba8b4..3a913771115d 100644
+index 4aaae48ba..3a9137711 100644
 --- a/clang/include/clang/AST/TextNodeDumper.h
 +++ b/clang/include/clang/AST/TextNodeDumper.h
 @@ -242,7 +242,7 @@ public:
@@ -541,7 +541,7 @@ index 4aaae48ba8b4..3a913771115d 100644
    void VisitNullTemplateArgument(const TemplateArgument &TA);
    void VisitTypeTemplateArgument(const TemplateArgument &TA);
 diff --git a/clang/include/clang/AST/Type.h b/clang/include/clang/AST/Type.h
-index 1d9743520654..2c4b1c71bf7a 100644
+index 1d9743520..2c4b1c71b 100644
 --- a/clang/include/clang/AST/Type.h
 +++ b/clang/include/clang/AST/Type.h
 @@ -71,43 +71,37 @@ class TemplateParameterList;
@@ -2199,7 +2199,7 @@ index 1d9743520654..2c4b1c71bf7a 100644
  }
  
 diff --git a/clang/include/clang/AST/TypeLoc.h b/clang/include/clang/AST/TypeLoc.h
-index a55a38335ef6..04a2cb140b29 100644
+index a55a38335..04a2cb140 100644
 --- a/clang/include/clang/AST/TypeLoc.h
 +++ b/clang/include/clang/AST/TypeLoc.h
 @@ -109,7 +109,7 @@ public:
@@ -2212,7 +2212,7 @@ index a55a38335ef6..04a2cb140b29 100644
    };
  
 diff --git a/clang/include/clang/AST/TypeLocNodes.def b/clang/include/clang/AST/TypeLocNodes.def
-index 81448c7e7ce5..69a48df0b2c3 100644
+index 81448c7e7..69a48df0b 100644
 --- a/clang/include/clang/AST/TypeLocNodes.def
 +++ b/clang/include/clang/AST/TypeLocNodes.def
 @@ -31,7 +31,7 @@
@@ -2225,7 +2225,7 @@ index 81448c7e7ce5..69a48df0b2c3 100644
  #undef DECLARATOR_TYPELOC
  #undef TYPESPEC_TYPELOC
 diff --git a/clang/include/clang/AST/TypeVisitor.h b/clang/include/clang/AST/TypeVisitor.h
-index 17301835fb18..e0aea24b7693 100644
+index 17301835f..e0aea24b7 100644
 --- a/clang/include/clang/AST/TypeVisitor.h
 +++ b/clang/include/clang/AST/TypeVisitor.h
 @@ -70,7 +70,7 @@ public:
@@ -2247,7 +2247,7 @@ index 17301835fb18..e0aea24b7693 100644
    /// Method called if \c ImpClass doesn't provide specific handler
    /// for some type class.
 diff --git a/clang/include/clang/Basic/Attr.td b/clang/include/clang/Basic/Attr.td
-index 2a3a29bd2ee1..02a58bed25e6 100644
+index 2a3a29bd2..2fbdd8d83 100644
 --- a/clang/include/clang/Basic/Attr.td
 +++ b/clang/include/clang/Basic/Attr.td
 @@ -4972,3 +4972,25 @@ def NoTrivialAutoVarInit: InheritableAttr {
@@ -2277,7 +2277,7 @@ index 2a3a29bd2ee1..02a58bed25e6 100644
 +  let Documentation = [SilicaIgnoreDocs];
 +}
 diff --git a/clang/include/clang/Basic/AttrDocs.td b/clang/include/clang/Basic/AttrDocs.td
-index a8b588169725..ca9b181a695e 100644
+index a8b588169..a547ec8a5 100644
 --- a/clang/include/clang/Basic/AttrDocs.td
 +++ b/clang/include/clang/Basic/AttrDocs.td
 @@ -9026,3 +9026,31 @@ Declares that a function potentially allocates heap memory, and prevents any pot
@@ -2313,7 +2313,7 @@ index a8b588169725..ca9b181a695e 100644
 +  }];
 +}
 diff --git a/clang/include/clang/Basic/AttrKinds.h b/clang/include/clang/Basic/AttrKinds.h
-index ec0052dfea35..023f4ded5d47 100644
+index ec0052dfe..023f4ded5 100644
 --- a/clang/include/clang/Basic/AttrKinds.h
 +++ b/clang/include/clang/Basic/AttrKinds.h
 @@ -24,7 +24,7 @@ enum Kind {
@@ -2326,7 +2326,7 @@ index ec0052dfea35..023f4ded5d47 100644
  
  } // end namespace attr
 diff --git a/clang/include/clang/Basic/AttrSubjectMatchRules.h b/clang/include/clang/Basic/AttrSubjectMatchRules.h
-index bec8122ea930..3cd778346869 100644
+index bec8122ea..3cd778346 100644
 --- a/clang/include/clang/Basic/AttrSubjectMatchRules.h
 +++ b/clang/include/clang/Basic/AttrSubjectMatchRules.h
 @@ -20,10 +20,10 @@ namespace attr {
@@ -2343,7 +2343,7 @@ index bec8122ea930..3cd778346869 100644
  
  const char *getSubjectMatchRuleSpelling(SubjectMatchRule Rule);
 diff --git a/clang/include/clang/Basic/AttributeCommonInfo.h b/clang/include/clang/Basic/AttributeCommonInfo.h
-index 4af5a8fd1852..8bb70523c741 100644
+index 4af5a8fd1..8bb70523c 100644
 --- a/clang/include/clang/Basic/AttributeCommonInfo.h
 +++ b/clang/include/clang/Basic/AttributeCommonInfo.h
 @@ -61,7 +61,7 @@ public:
@@ -2365,7 +2365,7 @@ index 4af5a8fd1852..8bb70523c741 100644
    }
  }
 diff --git a/clang/include/clang/Basic/Builtins.h b/clang/include/clang/Basic/Builtins.h
-index 63559d977ce6..aac490f03f56 100644
+index 63559d977..aac490f03 100644
 --- a/clang/include/clang/Basic/Builtins.h
 +++ b/clang/include/clang/Basic/Builtins.h
 @@ -64,7 +64,7 @@ namespace Builtin {
@@ -2378,7 +2378,7 @@ index 63559d977ce6..aac490f03f56 100644
  };
  
 diff --git a/clang/include/clang/Basic/DiagnosticAST.h b/clang/include/clang/Basic/DiagnosticAST.h
-index 4f82114b7406..2b198cf1e0a5 100644
+index 4f82114b7..2b198cf1e 100644
 --- a/clang/include/clang/Basic/DiagnosticAST.h
 +++ b/clang/include/clang/Basic/DiagnosticAST.h
 @@ -18,7 +18,7 @@ enum {
@@ -2400,7 +2400,7 @@ index 4f82114b7406..2b198cf1e0a5 100644
  #undef DIAG_ENUM_ITEM
  #undef DIAG_ENUM
 diff --git a/clang/include/clang/Basic/DiagnosticAnalysis.h b/clang/include/clang/Basic/DiagnosticAnalysis.h
-index 1a49461bcd17..1e2c7c02cca4 100644
+index 1a49461bc..1e2c7c02c 100644
 --- a/clang/include/clang/Basic/DiagnosticAnalysis.h
 +++ b/clang/include/clang/Basic/DiagnosticAnalysis.h
 @@ -18,7 +18,7 @@ enum {
@@ -2422,7 +2422,7 @@ index 1a49461bcd17..1e2c7c02cca4 100644
  #undef DIAG_ENUM_ITEM
  #undef DIAG_ENUM
 diff --git a/clang/include/clang/Basic/DiagnosticCategories.h b/clang/include/clang/Basic/DiagnosticCategories.h
-index 839f8dee3ca8..2e5925f36b61 100644
+index 839f8dee3..2e5925f36 100644
 --- a/clang/include/clang/Basic/DiagnosticCategories.h
 +++ b/clang/include/clang/Basic/DiagnosticCategories.h
 @@ -14,7 +14,7 @@ namespace clang {
@@ -2444,7 +2444,7 @@ index 839f8dee3ca8..2e5925f36b61 100644
  #undef DIAG_ENTRY
        NUM_GROUPS
 diff --git a/clang/include/clang/Basic/DiagnosticComment.h b/clang/include/clang/Basic/DiagnosticComment.h
-index 53143ef132e4..73dba2a39ef1 100644
+index 53143ef13..73dba2a39 100644
 --- a/clang/include/clang/Basic/DiagnosticComment.h
 +++ b/clang/include/clang/Basic/DiagnosticComment.h
 @@ -18,7 +18,7 @@ enum {
@@ -2466,7 +2466,7 @@ index 53143ef132e4..73dba2a39ef1 100644
  #undef DIAG_ENUM_ITEM
  #undef DIAG_ENUM
 diff --git a/clang/include/clang/Basic/DiagnosticCrossTU.h b/clang/include/clang/Basic/DiagnosticCrossTU.h
-index 428da9501102..549fe98ce60e 100644
+index 428da9501..549fe98ce 100644
 --- a/clang/include/clang/Basic/DiagnosticCrossTU.h
 +++ b/clang/include/clang/Basic/DiagnosticCrossTU.h
 @@ -18,7 +18,7 @@ enum {
@@ -2488,7 +2488,7 @@ index 428da9501102..549fe98ce60e 100644
  #undef DIAG_ENUM_ITEM
  #undef DIAG_ENUM
 diff --git a/clang/include/clang/Basic/DiagnosticDriver.h b/clang/include/clang/Basic/DiagnosticDriver.h
-index c472afa3f6e9..e3d2108d02de 100644
+index c472afa3f..e3d2108d0 100644
 --- a/clang/include/clang/Basic/DiagnosticDriver.h
 +++ b/clang/include/clang/Basic/DiagnosticDriver.h
 @@ -18,7 +18,7 @@ enum {
@@ -2510,7 +2510,7 @@ index c472afa3f6e9..e3d2108d02de 100644
  #undef DIAG_ENUM_ITEM
  #undef DIAG_ENUM
 diff --git a/clang/include/clang/Basic/DiagnosticFrontend.h b/clang/include/clang/Basic/DiagnosticFrontend.h
-index 766cac3d655b..4697ad04658b 100644
+index 766cac3d6..4697ad046 100644
 --- a/clang/include/clang/Basic/DiagnosticFrontend.h
 +++ b/clang/include/clang/Basic/DiagnosticFrontend.h
 @@ -18,7 +18,7 @@ enum {
@@ -2532,7 +2532,7 @@ index 766cac3d655b..4697ad04658b 100644
  #undef DIAG_ENUM_ITEM
  #undef DIAG_ENUM
 diff --git a/clang/include/clang/Basic/DiagnosticIDs.h b/clang/include/clang/Basic/DiagnosticIDs.h
-index b49185c3335d..8eed800c7edf 100644
+index b49185c33..8eed800c7 100644
 --- a/clang/include/clang/Basic/DiagnosticIDs.h
 +++ b/clang/include/clang/Basic/DiagnosticIDs.h
 @@ -76,7 +76,7 @@ namespace clang {
@@ -2545,7 +2545,7 @@ index b49185c3335d..8eed800c7edf 100644
  #undef DIAG
      };
 diff --git a/clang/include/clang/Basic/DiagnosticInstallAPI.h b/clang/include/clang/Basic/DiagnosticInstallAPI.h
-index cbdb00362624..9b6c449bde1c 100644
+index cbdb00362..9b6c449bd 100644
 --- a/clang/include/clang/Basic/DiagnosticInstallAPI.h
 +++ b/clang/include/clang/Basic/DiagnosticInstallAPI.h
 @@ -17,7 +17,7 @@ enum {
@@ -2567,7 +2567,7 @@ index cbdb00362624..9b6c449bde1c 100644
  #undef DIAG_ENUM_ITEM
  #undef DIAG_ENUM
 diff --git a/clang/include/clang/Basic/DiagnosticLex.h b/clang/include/clang/Basic/DiagnosticLex.h
-index d14bf97e8642..77b6a1902d94 100644
+index d14bf97e8..77b6a1902 100644
 --- a/clang/include/clang/Basic/DiagnosticLex.h
 +++ b/clang/include/clang/Basic/DiagnosticLex.h
 @@ -18,7 +18,7 @@ enum {
@@ -2589,7 +2589,7 @@ index d14bf97e8642..77b6a1902d94 100644
  #undef DIAG_ENUM_ITEM
  #undef DIAG_ENUM
 diff --git a/clang/include/clang/Basic/DiagnosticParse.h b/clang/include/clang/Basic/DiagnosticParse.h
-index 275e1a4c39b3..a79ab2a0c849 100644
+index 275e1a4c3..a79ab2a0c 100644
 --- a/clang/include/clang/Basic/DiagnosticParse.h
 +++ b/clang/include/clang/Basic/DiagnosticParse.h
 @@ -18,7 +18,7 @@ enum {
@@ -2611,7 +2611,7 @@ index 275e1a4c39b3..a79ab2a0c849 100644
  #undef DIAG_ENUM_ITEM
  #undef DIAG_ENUM
 diff --git a/clang/include/clang/Basic/DiagnosticRefactoring.h b/clang/include/clang/Basic/DiagnosticRefactoring.h
-index 59d4bc912733..56b9cb0fd729 100644
+index 59d4bc912..56b9cb0fd 100644
 --- a/clang/include/clang/Basic/DiagnosticRefactoring.h
 +++ b/clang/include/clang/Basic/DiagnosticRefactoring.h
 @@ -18,7 +18,7 @@ enum {
@@ -2633,7 +2633,7 @@ index 59d4bc912733..56b9cb0fd729 100644
  #undef DIAG_ENUM_ITEM
  #undef DIAG_ENUM
 diff --git a/clang/include/clang/Basic/DiagnosticSema.h b/clang/include/clang/Basic/DiagnosticSema.h
-index 84986c7bccf7..518f9cc3fe9e 100644
+index 84986c7bc..518f9cc3f 100644
 --- a/clang/include/clang/Basic/DiagnosticSema.h
 +++ b/clang/include/clang/Basic/DiagnosticSema.h
 @@ -18,7 +18,7 @@ enum {
@@ -2655,7 +2655,7 @@ index 84986c7bccf7..518f9cc3fe9e 100644
  #undef DIAG_ENUM_ITEM
  #undef DIAG_ENUM
 diff --git a/clang/include/clang/Basic/DiagnosticSerialization.h b/clang/include/clang/Basic/DiagnosticSerialization.h
-index 6fb836dca1b0..2307ac630d0c 100644
+index 6fb836dca..2307ac630 100644
 --- a/clang/include/clang/Basic/DiagnosticSerialization.h
 +++ b/clang/include/clang/Basic/DiagnosticSerialization.h
 @@ -18,7 +18,7 @@ enum {
@@ -2677,7 +2677,7 @@ index 6fb836dca1b0..2307ac630d0c 100644
  #undef DIAG_ENUM_ITEM
  #undef DIAG_ENUM
 diff --git a/clang/include/clang/Basic/IdentifierTable.h b/clang/include/clang/Basic/IdentifierTable.h
-index e5e6be3c9660..504e38222c6b 100644
+index e5e6be3c9..504e38222 100644
 --- a/clang/include/clang/Basic/IdentifierTable.h
 +++ b/clang/include/clang/Basic/IdentifierTable.h
 @@ -102,7 +102,7 @@ enum class InterestingIdentifier {
@@ -2690,7 +2690,7 @@ index e5e6be3c9660..504e38222c6b 100644
  
    NotInterestingIdentifier = 65534
 diff --git a/clang/include/clang/Basic/TargetBuiltins.h b/clang/include/clang/Basic/TargetBuiltins.h
-index 95eb110bb9c2..c595082aeeaf 100644
+index 95eb110bb..c595082ae 100644
 --- a/clang/include/clang/Basic/TargetBuiltins.h
 +++ b/clang/include/clang/Basic/TargetBuiltins.h
 @@ -84,7 +84,7 @@ namespace clang {
@@ -2791,7 +2791,7 @@ index 95eb110bb9c2..c595082aeeaf 100644
    };
    }
 diff --git a/clang/include/clang/Basic/TokenKinds.def b/clang/include/clang/Basic/TokenKinds.def
-index 8902a20b07ff..8f61a5e42a8c 100644
+index 8902a20b0..8f61a5e42 100644
 --- a/clang/include/clang/Basic/TokenKinds.def
 +++ b/clang/include/clang/Basic/TokenKinds.def
 @@ -798,7 +798,7 @@ KEYWORD(__builtin_sycl_unique_stable_name, KEYSYCL)
@@ -2804,7 +2804,7 @@ index 8902a20b07ff..8f61a5e42a8c 100644
  // Clang-specific keywords enabled only in testing.
  TESTING_KEYWORD(__unknown_anytype , KEYALL)
 diff --git a/clang/include/clang/Basic/TokenKinds.h b/clang/include/clang/Basic/TokenKinds.h
-index 1b133dde8958..c8e00e303526 100644
+index 1b133dde8..c8e00e303 100644
 --- a/clang/include/clang/Basic/TokenKinds.h
 +++ b/clang/include/clang/Basic/TokenKinds.h
 @@ -110,7 +110,7 @@ bool isPragmaAnnotation(TokenKind K);
@@ -2817,7 +2817,7 @@ index 1b133dde8958..c8e00e303526 100644
  }
  
 diff --git a/clang/include/clang/CIR/Dialect/IR/CIRAttrs.h b/clang/include/clang/CIR/Dialect/IR/CIRAttrs.h
-index 438fb7d09608..fdde67ee7f72 100644
+index 438fb7d09..fdde67ee7 100644
 --- a/clang/include/clang/CIR/Dialect/IR/CIRAttrs.h
 +++ b/clang/include/clang/CIR/Dialect/IR/CIRAttrs.h
 @@ -31,6 +31,6 @@ class RecordDecl;
@@ -2829,7 +2829,7 @@ index 438fb7d09608..fdde67ee7f72 100644
  
  #endif // LLVM_CLANG_CIR_DIALECT_IR_CIRATTRS_H
 diff --git a/clang/include/clang/CIR/Dialect/IR/CIRDialect.h b/clang/include/clang/CIR/Dialect/IR/CIRDialect.h
-index 683176b139ca..ab9afc515911 100644
+index 683176b13..ab9afc515 100644
 --- a/clang/include/clang/CIR/Dialect/IR/CIRDialect.h
 +++ b/clang/include/clang/CIR/Dialect/IR/CIRDialect.h
 @@ -27,12 +27,12 @@
@@ -2848,7 +2848,7 @@ index 683176b139ca..ab9afc515911 100644
  
  #endif // LLVM_CLANG_CIR_DIALECT_IR_CIRDIALECT_H
 diff --git a/clang/include/clang/CIR/Dialect/IR/CIRTypes.h b/clang/include/clang/CIR/Dialect/IR/CIRTypes.h
-index 5d1eb17e146d..075948d62b05 100644
+index 5d1eb17e1..075948d62 100644
 --- a/clang/include/clang/CIR/Dialect/IR/CIRTypes.h
 +++ b/clang/include/clang/CIR/Dialect/IR/CIRTypes.h
 @@ -29,6 +29,6 @@ bool isAnyFloatingPointType(mlir::Type t);
@@ -2860,7 +2860,7 @@ index 5d1eb17e146d..075948d62b05 100644
  
  #endif // MLIR_DIALECT_CIR_IR_CIRTYPES_H_
 diff --git a/clang/include/clang/CIR/Interfaces/CIRFPTypeInterface.h b/clang/include/clang/CIR/Interfaces/CIRFPTypeInterface.h
-index 40b85ef6cfb6..665db58c6bc0 100644
+index 40b85ef6c..665db58c6 100644
 --- a/clang/include/clang/CIR/Interfaces/CIRFPTypeInterface.h
 +++ b/clang/include/clang/CIR/Interfaces/CIRFPTypeInterface.h
 @@ -17,6 +17,6 @@
@@ -2872,7 +2872,7 @@ index 40b85ef6cfb6..665db58c6bc0 100644
  
  #endif // LLVM_CLANG_INCLUDE_CLANG_CIR_INTERFACES_CIRFPTYPEINTERFACE_H
 diff --git a/clang/include/clang/Driver/Options.h b/clang/include/clang/Driver/Options.h
-index 0797410e9940..d14417d2452b 100644
+index 0797410e9..d14417d24 100644
 --- a/clang/include/clang/Driver/Options.h
 +++ b/clang/include/clang/Driver/Options.h
 @@ -44,7 +44,7 @@ enum ClangVisibility {
@@ -2885,7 +2885,7 @@ index 0797410e9940..d14417d2452b 100644
  #undef OPTION
    };
 diff --git a/clang/include/clang/Sema/Template.h b/clang/include/clang/Sema/Template.h
-index 4206bd50b13d..9ec19dc0496b 100644
+index 4206bd50b..9ec19dc04 100644
 --- a/clang/include/clang/Sema/Template.h
 +++ b/clang/include/clang/Sema/Template.h
 @@ -635,7 +635,7 @@ enum class TemplateSubstitutionKind : char {
@@ -2898,7 +2898,7 @@ index 4206bd50b13d..9ec19dc0496b 100644
      enum class RewriteKind { None, RewriteSpaceshipAsEqualEqual };
  
 diff --git a/clang/include/clang/StaticAnalyzer/Checkers/BuiltinCheckerRegistration.h b/clang/include/clang/StaticAnalyzer/Checkers/BuiltinCheckerRegistration.h
-index bdfe3901c5b8..0dbe56b9163b 100644
+index bdfe3901c..0dbe56b91 100644
 --- a/clang/include/clang/StaticAnalyzer/Checkers/BuiltinCheckerRegistration.h
 +++ b/clang/include/clang/StaticAnalyzer/Checkers/BuiltinCheckerRegistration.h
 @@ -25,7 +25,7 @@ class CheckerManager;
@@ -2911,7 +2911,7 @@ index bdfe3901c5b8..0dbe56b9163b 100644
  #undef GET_CHECKERS
  
 diff --git a/clang/include/clang/StaticAnalyzer/Core/AnalyzerOptions.h b/clang/include/clang/StaticAnalyzer/Core/AnalyzerOptions.h
-index 2c970301879d..90d55952af40 100644
+index 2c9703018..90d55952a 100644
 --- a/clang/include/clang/StaticAnalyzer/Core/AnalyzerOptions.h
 +++ b/clang/include/clang/StaticAnalyzer/Core/AnalyzerOptions.h
 @@ -432,7 +432,7 @@ AnalyzerOptions::getRegisteredCheckers(bool IncludeExperimental) {
@@ -2933,7 +2933,7 @@ index 2c970301879d..90d55952af40 100644
  #undef GET_PACKAGES
    };
 diff --git a/clang/include/clang/Tooling/Syntax/Nodes.h b/clang/include/clang/Tooling/Syntax/Nodes.h
-index c4f31900d0ce..15c2b98ab2de 100644
+index c4f31900d..15c2b98ab 100644
 --- a/clang/include/clang/Tooling/Syntax/Nodes.h
 +++ b/clang/include/clang/Tooling/Syntax/Nodes.h
 @@ -31,7 +31,7 @@ namespace syntax {
@@ -2964,7 +2964,7 @@ index c4f31900d0ce..15c2b98ab2de 100644
  } // namespace syntax
  } // namespace clang
 diff --git a/clang/lib/Basic/CMakeLists.txt b/clang/lib/Basic/CMakeLists.txt
-index 331dfbb3f4b6..83e85f90373b 100644
+index 331dfbb3f..83e85f903 100644
 --- a/clang/lib/Basic/CMakeLists.txt
 +++ b/clang/lib/Basic/CMakeLists.txt
 @@ -47,7 +47,7 @@ add_custom_command(OUTPUT "${version_inc}"
@@ -2985,7 +2985,7 @@ index 331dfbb3f4b6..83e85f90373b 100644
    ARMTargetParserTableGen
    AArch64TargetParserTableGen
 diff --git a/clang/lib/Basic/Targets/BPF.cpp b/clang/lib/Basic/Targets/BPF.cpp
-index f4684765b7ff..0eb5825e0e31 100644
+index f4684765b..0eb5825e0 100644
 --- a/clang/lib/Basic/Targets/BPF.cpp
 +++ b/clang/lib/Basic/Targets/BPF.cpp
 @@ -11,7 +11,7 @@
@@ -3009,7 +3009,7 @@ index f4684765b7ff..0eb5825e0e31 100644
  bool BPFTargetInfo::isValidCPUName(StringRef Name) const {
    return llvm::is_contained(ValidCPUNames, Name);
 diff --git a/clang/lib/Basic/Targets/DirectX.cpp b/clang/lib/Basic/Targets/DirectX.cpp
-index 0dd27e6e93b3..479fd865fdb3 100644
+index 0dd27e6e9..479fd865f 100644
 --- a/clang/lib/Basic/Targets/DirectX.cpp
 +++ b/clang/lib/Basic/Targets/DirectX.cpp
 @@ -11,7 +11,7 @@
@@ -3022,7 +3022,7 @@ index 0dd27e6e93b3..479fd865fdb3 100644
  using namespace clang;
  using namespace clang::targets;
 diff --git a/clang/lib/Basic/Targets/Hexagon.cpp b/clang/lib/Basic/Targets/Hexagon.cpp
-index 2e173e01ed8e..5e9431b58ffc 100644
+index 2e173e01e..5e9431b58 100644
 --- a/clang/lib/Basic/Targets/Hexagon.cpp
 +++ b/clang/lib/Basic/Targets/Hexagon.cpp
 @@ -11,7 +11,7 @@
@@ -3253,7 +3253,7 @@ index 2e173e01ed8e..5e9431b58ffc 100644
  
  ArrayRef<const char *> HexagonTargetInfo::getGCCRegNames() const {
 diff --git a/clang/lib/Basic/Targets/Mips.cpp b/clang/lib/Basic/Targets/Mips.cpp
-index d56995e3ccc4..9b6697290965 100644
+index d56995e3c..9b6697290 100644
 --- a/clang/lib/Basic/Targets/Mips.cpp
 +++ b/clang/lib/Basic/Targets/Mips.cpp
 @@ -11,7 +11,7 @@
@@ -3322,7 +3322,7 @@ index d56995e3ccc4..9b6697290965 100644
      return false;
    }
 diff --git a/clang/lib/Basic/Targets/NVPTX.cpp b/clang/lib/Basic/Targets/NVPTX.cpp
-index 9be12cbe7ac1..67a6519a2792 100644
+index 9be12cbe7..67a6519a2 100644
 --- a/clang/lib/Basic/Targets/NVPTX.cpp
 +++ b/clang/lib/Basic/Targets/NVPTX.cpp
 @@ -11,7 +11,7 @@
@@ -3373,7 +3373,7 @@ index 9be12cbe7ac1..67a6519a2792 100644
    }
  }
 diff --git a/clang/lib/Basic/Targets/OSTargets.h b/clang/lib/Basic/Targets/OSTargets.h
-index 991efd2bde01..1e0e03596c4a 100644
+index 991efd2bd..1e0e03596 100644
 --- a/clang/lib/Basic/Targets/OSTargets.h
 +++ b/clang/lib/Basic/Targets/OSTargets.h
 @@ -12,7 +12,7 @@
@@ -3413,7 +3413,7 @@ index 991efd2bde01..1e0e03596c4a 100644
    void getOSDefines(const LangOptions &Opts, const llvm::Triple &Triple,
                      MacroBuilder &Builder) const override {
 diff --git a/clang/lib/Basic/Targets/SPIR.cpp b/clang/lib/Basic/Targets/SPIR.cpp
-index f242fedc1ad6..e223b90a54a8 100644
+index f242fedc1..e223b90a5 100644
 --- a/clang/lib/Basic/Targets/SPIR.cpp
 +++ b/clang/lib/Basic/Targets/SPIR.cpp
 @@ -11,8 +11,8 @@
@@ -3427,7 +3427,7 @@ index f242fedc1ad6..e223b90a54a8 100644
  #include "clang/Basic/TargetBuiltins.h"
  #include "llvm/TargetParser/TargetParser.h"
 diff --git a/clang/lib/Basic/Targets/SPIR.h b/clang/lib/Basic/Targets/SPIR.h
-index c0849b69dcdb..2d99b2e55a71 100644
+index c0849b69d..2d99b2e55 100644
 --- a/clang/lib/Basic/Targets/SPIR.h
 +++ b/clang/lib/Basic/Targets/SPIR.h
 @@ -13,7 +13,7 @@
@@ -3451,7 +3451,7 @@ index c0849b69dcdb..2d99b2e55a71 100644
    void setAddressSpaceMap(bool DefaultIsGeneric) {
      AddrSpaceMap = DefaultIsGeneric ? &SPIRDefIsGenMap : &SPIRDefIsPrivMap;
 diff --git a/clang/lib/Basic/Targets/Sparc.cpp b/clang/lib/Basic/Targets/Sparc.cpp
-index d1a891092b0f..b62e12a4a98f 100644
+index d1a891092..b62e12a4a 100644
 --- a/clang/lib/Basic/Targets/Sparc.cpp
 +++ b/clang/lib/Basic/Targets/Sparc.cpp
 @@ -11,7 +11,7 @@
@@ -3561,7 +3561,7 @@ index d1a891092b0f..b62e12a4a98f 100644
  
  ArrayRef<const char *> SparcTargetInfo::getGCCRegNames() const {
 diff --git a/clang/lib/Basic/Targets/TCE.cpp b/clang/lib/Basic/Targets/TCE.cpp
-index 91194b568a09..a9be4d16a578 100644
+index 91194b568..a9be4d16a 100644
 --- a/clang/lib/Basic/Targets/TCE.cpp
 +++ b/clang/lib/Basic/Targets/TCE.cpp
 @@ -11,7 +11,7 @@
@@ -3574,7 +3574,7 @@ index 91194b568a09..a9be4d16a578 100644
  
  using namespace clang;
 diff --git a/clang/lib/Basic/Targets/WebAssembly.cpp b/clang/lib/Basic/Targets/WebAssembly.cpp
-index 7b0fd0c841ba..8851d75e4a7b 100644
+index 7b0fd0c84..8851d75e4 100644
 --- a/clang/lib/Basic/Targets/WebAssembly.cpp
 +++ b/clang/lib/Basic/Targets/WebAssembly.cpp
 @@ -11,7 +11,7 @@
@@ -3587,7 +3587,7 @@ index 7b0fd0c841ba..8851d75e4a7b 100644
  #include "clang/Basic/Diagnostic.h"
  #include "clang/Basic/TargetBuiltins.h"
 diff --git a/clang/lib/CodeGen/CMakeLists.txt b/clang/lib/CodeGen/CMakeLists.txt
-index 868ec847b963..ea3f1ae2d9f0 100644
+index 868ec847b..ea3f1ae2d 100644
 --- a/clang/lib/CodeGen/CMakeLists.txt
 +++ b/clang/lib/CodeGen/CMakeLists.txt
 @@ -147,6 +147,7 @@ add_clang_library(clangCodeGen
@@ -3599,7 +3599,7 @@ index 868ec847b963..ea3f1ae2d9f0 100644
    ARMTargetParserTableGen
    AArch64TargetParserTableGen
 diff --git a/clang/lib/CodeGen/Targets/AArch64.cpp b/clang/lib/CodeGen/Targets/AArch64.cpp
-index 170ce1640367..36856e3ba9e5 100644
+index 170ce1640..36856e3ba 100644
 --- a/clang/lib/CodeGen/Targets/AArch64.cpp
 +++ b/clang/lib/CodeGen/Targets/AArch64.cpp
 @@ -6,8 +6,8 @@
@@ -3662,7 +3662,7 @@ index 170ce1640367..36856e3ba9e5 100644
        BaseAddr = CGF.Builder.CreateConstInBoundsByteGEP(BaseAddr, Offset);
      }
 diff --git a/clang/lib/CodeGen/Targets/AMDGPU.cpp b/clang/lib/CodeGen/Targets/AMDGPU.cpp
-index 788eac5f2823..faca92533ef2 100644
+index 788eac5f2..faca92533 100644
 --- a/clang/lib/CodeGen/Targets/AMDGPU.cpp
 +++ b/clang/lib/CodeGen/Targets/AMDGPU.cpp
 @@ -6,8 +6,8 @@
@@ -3756,7 +3756,7 @@ index 788eac5f2823..faca92533ef2 100644
    switch (Scope) {
    case SyncScope::HIPSingleThread:
 diff --git a/clang/lib/CodeGen/Targets/ARC.cpp b/clang/lib/CodeGen/Targets/ARC.cpp
-index 1904e8fdb388..59d48cc9b9a1 100644
+index 1904e8fdb..59d48cc9b 100644
 --- a/clang/lib/CodeGen/Targets/ARC.cpp
 +++ b/clang/lib/CodeGen/Targets/ARC.cpp
 @@ -6,8 +6,8 @@
@@ -3797,7 +3797,7 @@ index 1904e8fdb388..59d48cc9b9a1 100644
  
    if (const auto *EIT = Ty->getAs<BitIntType>())
 diff --git a/clang/lib/CodeGen/Targets/ARM.cpp b/clang/lib/CodeGen/Targets/ARM.cpp
-index 77641ce10e3d..057486c0cb84 100644
+index 77641ce10..057486c0c 100644
 --- a/clang/lib/CodeGen/Targets/ARM.cpp
 +++ b/clang/lib/CodeGen/Targets/ARM.cpp
 @@ -6,8 +6,8 @@
@@ -3990,7 +3990,7 @@ index 77641ce10e3d..057486c0cb84 100644
               getABIKind() == ARMABIKind::AAPCS) {
      TyAlignForABI = std::max(TyAlignForABI, CharUnits::fromQuantity(4));
 diff --git a/clang/lib/CodeGen/Targets/AVR.cpp b/clang/lib/CodeGen/Targets/AVR.cpp
-index 50547dd6dec5..80c759d51b17 100644
+index 50547dd6d..80c759d51 100644
 --- a/clang/lib/CodeGen/Targets/AVR.cpp
 +++ b/clang/lib/CodeGen/Targets/AVR.cpp
 @@ -6,8 +6,8 @@
@@ -4024,7 +4024,7 @@ index 50547dd6dec5..80c759d51b17 100644
  std::unique_ptr<TargetCodeGenInfo>
  CodeGen::createAVRTargetCodeGenInfo(CodeGenModule &CGM, unsigned NPR,
 diff --git a/clang/lib/CodeGen/Targets/BPF.cpp b/clang/lib/CodeGen/Targets/BPF.cpp
-index 2849222f7a18..21fc99f7c5bd 100644
+index 2849222f7..21fc99f7c 100644
 --- a/clang/lib/CodeGen/Targets/BPF.cpp
 +++ b/clang/lib/CodeGen/Targets/BPF.cpp
 @@ -6,8 +6,8 @@
@@ -4056,7 +4056,7 @@ index 2849222f7a18..21fc99f7c5bd 100644
  std::unique_ptr<TargetCodeGenInfo>
  CodeGen::createBPFTargetCodeGenInfo(CodeGenModule &CGM) {
 diff --git a/clang/lib/CodeGen/Targets/CSKY.cpp b/clang/lib/CodeGen/Targets/CSKY.cpp
-index d8720afd1a71..456cb21b7b7b 100644
+index d8720afd1..456cb21b7 100644
 --- a/clang/lib/CodeGen/Targets/CSKY.cpp
 +++ b/clang/lib/CodeGen/Targets/CSKY.cpp
 @@ -6,8 +6,8 @@
@@ -4071,7 +4071,7 @@ index d8720afd1a71..456cb21b7b7b 100644
  using namespace clang;
  using namespace clang::CodeGen;
 diff --git a/clang/lib/CodeGen/Targets/DirectX.cpp b/clang/lib/CodeGen/Targets/DirectX.cpp
-index 7935f7ae3700..42fb46cf0a98 100644
+index 7935f7ae3..42fb46cf0 100644
 --- a/clang/lib/CodeGen/Targets/DirectX.cpp
 +++ b/clang/lib/CodeGen/Targets/DirectX.cpp
 @@ -6,8 +6,8 @@
@@ -4086,7 +4086,7 @@ index 7935f7ae3700..42fb46cf0a98 100644
  
  using namespace clang;
 diff --git a/clang/lib/CodeGen/Targets/Hexagon.cpp b/clang/lib/CodeGen/Targets/Hexagon.cpp
-index 8fd2a81494d9..62158280dc2a 100644
+index 8fd2a8149..62158280d 100644
 --- a/clang/lib/CodeGen/Targets/Hexagon.cpp
 +++ b/clang/lib/CodeGen/Targets/Hexagon.cpp
 @@ -6,8 +6,8 @@
@@ -4142,7 +4142,7 @@ index 8fd2a81494d9..62158280dc2a 100644
    CGF.Builder.CreateStore(__new_overflow_area_pointer,
                            __overflow_area_pointer_p);
 diff --git a/clang/lib/CodeGen/Targets/Lanai.cpp b/clang/lib/CodeGen/Targets/Lanai.cpp
-index 2578fc0291e7..cecd48140477 100644
+index 2578fc029..cecd48140 100644
 --- a/clang/lib/CodeGen/Targets/Lanai.cpp
 +++ b/clang/lib/CodeGen/Targets/Lanai.cpp
 @@ -6,8 +6,8 @@
@@ -4166,7 +4166,7 @@ index 2578fc0291e7..cecd48140477 100644
  std::unique_ptr<TargetCodeGenInfo>
  CodeGen::createLanaiTargetCodeGenInfo(CodeGenModule &CGM) {
 diff --git a/clang/lib/CodeGen/Targets/LoongArch.cpp b/clang/lib/CodeGen/Targets/LoongArch.cpp
-index 6c90e48a5ea4..f15d9bf24fdf 100644
+index 6c90e48a5..f15d9bf24 100644
 --- a/clang/lib/CodeGen/Targets/LoongArch.cpp
 +++ b/clang/lib/CodeGen/Targets/LoongArch.cpp
 @@ -6,8 +6,8 @@
@@ -4181,7 +4181,7 @@ index 6c90e48a5ea4..f15d9bf24fdf 100644
  using namespace clang;
  using namespace clang::CodeGen;
 diff --git a/clang/lib/CodeGen/Targets/M68k.cpp b/clang/lib/CodeGen/Targets/M68k.cpp
-index 120022105f34..e2ddac9799d8 100644
+index 120022105..e2ddac979 100644
 --- a/clang/lib/CodeGen/Targets/M68k.cpp
 +++ b/clang/lib/CodeGen/Targets/M68k.cpp
 @@ -6,8 +6,8 @@
@@ -4196,7 +4196,7 @@ index 120022105f34..e2ddac9799d8 100644
  using namespace clang;
  using namespace clang::CodeGen;
 diff --git a/clang/lib/CodeGen/Targets/MSP430.cpp b/clang/lib/CodeGen/Targets/MSP430.cpp
-index 8ce70e2111cc..11578a39b9a2 100644
+index 8ce70e211..11578a39b 100644
 --- a/clang/lib/CodeGen/Targets/MSP430.cpp
 +++ b/clang/lib/CodeGen/Targets/MSP430.cpp
 @@ -6,8 +6,8 @@
@@ -4220,7 +4220,7 @@ index 8ce70e2111cc..11578a39b9a2 100644
  void MSP430TargetCodeGenInfo::setTargetAttributes(
      const Decl *D, llvm::GlobalValue *GV, CodeGen::CodeGenModule &M) const {
 diff --git a/clang/lib/CodeGen/Targets/Mips.cpp b/clang/lib/CodeGen/Targets/Mips.cpp
-index 771a85c84b35..03632e83db31 100644
+index 771a85c84..03632e83d 100644
 --- a/clang/lib/CodeGen/Targets/Mips.cpp
 +++ b/clang/lib/CodeGen/Targets/Mips.cpp
 @@ -6,8 +6,8 @@
@@ -4423,7 +4423,7 @@ index 771a85c84b35..03632e83db31 100644
    // as canonical as it gets.
  
 diff --git a/clang/lib/CodeGen/Targets/NVPTX.cpp b/clang/lib/CodeGen/Targets/NVPTX.cpp
-index b82e4ddb9f3f..99edcc3bf205 100644
+index b82e4ddb9..99edcc3bf 100644
 --- a/clang/lib/CodeGen/Targets/NVPTX.cpp
 +++ b/clang/lib/CodeGen/Targets/NVPTX.cpp
 @@ -6,8 +6,8 @@
@@ -4438,7 +4438,7 @@ index b82e4ddb9f3f..99edcc3bf205 100644
  #include "llvm/IR/CallingConv.h"
  #include "llvm/IR/IntrinsicsNVPTX.h"
 diff --git a/clang/lib/CodeGen/Targets/PNaCl.cpp b/clang/lib/CodeGen/Targets/PNaCl.cpp
-index 9b7d757df3a3..5fe099417460 100644
+index 9b7d757df..5fe099417 100644
 --- a/clang/lib/CodeGen/Targets/PNaCl.cpp
 +++ b/clang/lib/CodeGen/Targets/PNaCl.cpp
 @@ -6,8 +6,8 @@
@@ -4475,7 +4475,7 @@ index 9b7d757df3a3..5fe099417460 100644
  
  void PNaClABIInfo::computeInfo(CGFunctionInfo &FI) const {
 diff --git a/clang/lib/CodeGen/Targets/PPC.cpp b/clang/lib/CodeGen/Targets/PPC.cpp
-index 989e46f4b66a..4ce0ad2e41b5 100644
+index 989e46f4b..4ce0ad2e4 100644
 --- a/clang/lib/CodeGen/Targets/PPC.cpp
 +++ b/clang/lib/CodeGen/Targets/PPC.cpp
 @@ -6,8 +6,8 @@
@@ -4636,7 +4636,7 @@ index 989e46f4b66a..4ce0ad2e41b5 100644
                                       /*IsAIX*/ false);
  }
 diff --git a/clang/lib/CodeGen/Targets/RISCV.cpp b/clang/lib/CodeGen/Targets/RISCV.cpp
-index 2c48ba37fd20..5e9a90a9d55d 100644
+index 2c48ba37f..5e9a90a9d 100644
 --- a/clang/lib/CodeGen/Targets/RISCV.cpp
 +++ b/clang/lib/CodeGen/Targets/RISCV.cpp
 @@ -6,8 +6,8 @@
@@ -4697,7 +4697,7 @@ index 2c48ba37fd20..5e9a90a9d55d 100644
  
      Fn->addFnAttr("interrupt", Kind);
 diff --git a/clang/lib/CodeGen/Targets/SPIR.cpp b/clang/lib/CodeGen/Targets/SPIR.cpp
-index 5c75e985e953..b5edeef07bed 100644
+index 5c75e985e..b5edeef07 100644
 --- a/clang/lib/CodeGen/Targets/SPIR.cpp
 +++ b/clang/lib/CodeGen/Targets/SPIR.cpp
 @@ -6,8 +6,8 @@
@@ -4745,7 +4745,7 @@ index 5c75e985e953..b5edeef07bed 100644
      default:
        return nullptr;
 diff --git a/clang/lib/CodeGen/Targets/Sparc.cpp b/clang/lib/CodeGen/Targets/Sparc.cpp
-index da8c7219be26..5b663eb831d2 100644
+index da8c7219b..5b663eb83 100644
 --- a/clang/lib/CodeGen/Targets/Sparc.cpp
 +++ b/clang/lib/CodeGen/Targets/Sparc.cpp
 @@ -6,8 +6,8 @@
@@ -4813,7 +4813,7 @@ index da8c7219be26..5b663eb831d2 100644
    // against gcc output.  AFAIK all ABIs use the same encoding.
  
 diff --git a/clang/lib/CodeGen/Targets/SystemZ.cpp b/clang/lib/CodeGen/Targets/SystemZ.cpp
-index 23c96fa5cf98..26bdd2bfa8e6 100644
+index 23c96fa5c..26bdd2bfa 100644
 --- a/clang/lib/CodeGen/Targets/SystemZ.cpp
 +++ b/clang/lib/CodeGen/Targets/SystemZ.cpp
 @@ -6,8 +6,8 @@
@@ -5009,7 +5009,7 @@ index 23c96fa5cf98..26bdd2bfa8e6 100644
  
    return false;
 diff --git a/clang/lib/CodeGen/Targets/TCE.cpp b/clang/lib/CodeGen/Targets/TCE.cpp
-index d7178b4b8a94..a994a8fda2a8 100644
+index d7178b4b8..a994a8fda 100644
 --- a/clang/lib/CodeGen/Targets/TCE.cpp
 +++ b/clang/lib/CodeGen/Targets/TCE.cpp
 @@ -6,8 +6,8 @@
@@ -5043,7 +5043,7 @@ index d7178b4b8a94..a994a8fda2a8 100644
  std::unique_ptr<TargetCodeGenInfo>
  CodeGen::createTCETargetCodeGenInfo(CodeGenModule &CGM) {
 diff --git a/clang/lib/CodeGen/Targets/VE.cpp b/clang/lib/CodeGen/Targets/VE.cpp
-index a7acc249cc2b..558fee3ee942 100644
+index a7acc249c..558fee3ee 100644
 --- a/clang/lib/CodeGen/Targets/VE.cpp
 +++ b/clang/lib/CodeGen/Targets/VE.cpp
 @@ -6,8 +6,8 @@
@@ -5058,7 +5058,7 @@ index a7acc249cc2b..558fee3ee942 100644
  using namespace clang;
  using namespace clang::CodeGen;
 diff --git a/clang/lib/CodeGen/Targets/WebAssembly.cpp b/clang/lib/CodeGen/Targets/WebAssembly.cpp
-index 70a968fe93ca..71d13dde724e 100644
+index 70a968fe9..71d13dde7 100644
 --- a/clang/lib/CodeGen/Targets/WebAssembly.cpp
 +++ b/clang/lib/CodeGen/Targets/WebAssembly.cpp
 @@ -6,8 +6,8 @@
@@ -5073,7 +5073,7 @@ index 70a968fe93ca..71d13dde724e 100644
  using namespace clang;
  using namespace clang::CodeGen;
 diff --git a/clang/lib/CodeGen/Targets/X86.cpp b/clang/lib/CodeGen/Targets/X86.cpp
-index 5ee5179dd0f3..0ba5b344912a 100644
+index 5ee5179dd..0ba5b3449 100644
 --- a/clang/lib/CodeGen/Targets/X86.cpp
 +++ b/clang/lib/CodeGen/Targets/X86.cpp
 @@ -6,8 +6,8 @@
@@ -5830,7 +5830,7 @@ index 5ee5179dd0f3..0ba5b344912a 100644
  
    const Type *Base = nullptr;
 diff --git a/clang/lib/CodeGen/Targets/XCore.cpp b/clang/lib/CodeGen/Targets/XCore.cpp
-index ced4981fd124..76a383fdea81 100644
+index ced4981fd..76a383fde 100644
 --- a/clang/lib/CodeGen/Targets/XCore.cpp
 +++ b/clang/lib/CodeGen/Targets/XCore.cpp
 @@ -6,8 +6,8 @@
@@ -6122,7 +6122,7 @@ index ced4981fd124..76a383fdea81 100644
    if (!appendType(Enc, FT->getReturnType(), CGM, TSC))
      return false;
 diff --git a/clang/lib/DirectoryWatcher/linux/DirectoryWatcher-linux.cpp b/clang/lib/DirectoryWatcher/linux/DirectoryWatcher-linux.cpp
-index 2ffbc1a22695..0e06d21cc56f 100644
+index 2ffbc1a22..0e06d21cc 100644
 --- a/clang/lib/DirectoryWatcher/linux/DirectoryWatcher-linux.cpp
 +++ b/clang/lib/DirectoryWatcher/linux/DirectoryWatcher-linux.cpp
 @@ -6,7 +6,7 @@
@@ -6135,7 +6135,7 @@ index 2ffbc1a22695..0e06d21cc56f 100644
  
  #include "llvm/ADT/STLExtras.h"
 diff --git a/clang/lib/DirectoryWatcher/mac/DirectoryWatcher-mac.cpp b/clang/lib/DirectoryWatcher/mac/DirectoryWatcher-mac.cpp
-index b8788bae8171..07e9ecbe5c65 100644
+index b8788bae8..07e9ecbe5 100644
 --- a/clang/lib/DirectoryWatcher/mac/DirectoryWatcher-mac.cpp
 +++ b/clang/lib/DirectoryWatcher/mac/DirectoryWatcher-mac.cpp
 @@ -6,7 +6,7 @@
@@ -6148,7 +6148,7 @@ index b8788bae8171..07e9ecbe5c65 100644
  
  #include "llvm/ADT/STLExtras.h"
 diff --git a/clang/lib/DirectoryWatcher/windows/DirectoryWatcher-windows.cpp b/clang/lib/DirectoryWatcher/windows/DirectoryWatcher-windows.cpp
-index 110d402436ee..1b6a3e54d95c 100644
+index 110d40243..1b6a3e54d 100644
 --- a/clang/lib/DirectoryWatcher/windows/DirectoryWatcher-windows.cpp
 +++ b/clang/lib/DirectoryWatcher/windows/DirectoryWatcher-windows.cpp
 @@ -6,7 +6,7 @@
@@ -6161,7 +6161,7 @@ index 110d402436ee..1b6a3e54d95c 100644
  #include "llvm/ADT/STLExtras.h"
  #include "llvm/Support/ConvertUTF.h"
 diff --git a/clang/lib/Driver/ToolChains/AMDGPUOpenMP.cpp b/clang/lib/Driver/ToolChains/AMDGPUOpenMP.cpp
-index 3f0b3f2d86b3..37625b9d6b1a 100644
+index 3f0b3f2d8..37625b9d6 100644
 --- a/clang/lib/Driver/ToolChains/AMDGPUOpenMP.cpp
 +++ b/clang/lib/Driver/ToolChains/AMDGPUOpenMP.cpp
 @@ -9,7 +9,7 @@
@@ -6174,7 +6174,7 @@ index 3f0b3f2d86b3..37625b9d6b1a 100644
  #include "clang/Driver/Compilation.h"
  #include "clang/Driver/Driver.h"
 diff --git a/clang/lib/Driver/ToolChains/Arch/CSKY.cpp b/clang/lib/Driver/ToolChains/Arch/CSKY.cpp
-index e94ea12f46dc..2b318305a4eb 100644
+index e94ea12f4..2b318305a 100644
 --- a/clang/lib/Driver/ToolChains/Arch/CSKY.cpp
 +++ b/clang/lib/Driver/ToolChains/Arch/CSKY.cpp
 @@ -7,7 +7,7 @@
@@ -6187,7 +6187,7 @@ index e94ea12f46dc..2b318305a4eb 100644
  #include "clang/Driver/Driver.h"
  #include "clang/Driver/DriverDiagnostic.h"
 diff --git a/clang/lib/Driver/ToolChains/Arch/LoongArch.cpp b/clang/lib/Driver/ToolChains/Arch/LoongArch.cpp
-index 0575a1ebef3a..d558db3e5039 100644
+index 0575a1ebe..d558db3e5 100644
 --- a/clang/lib/Driver/ToolChains/Arch/LoongArch.cpp
 +++ b/clang/lib/Driver/ToolChains/Arch/LoongArch.cpp
 @@ -8,7 +8,7 @@
@@ -6211,7 +6211,7 @@ index 0575a1ebef3a..d558db3e5039 100644
                     "scq");
  }
 diff --git a/clang/lib/Driver/ToolChains/Arch/M68k.cpp b/clang/lib/Driver/ToolChains/Arch/M68k.cpp
-index 963f7a187d63..f71cdbf1cf18 100644
+index 963f7a187..f71cdbf1c 100644
 --- a/clang/lib/Driver/ToolChains/Arch/M68k.cpp
 +++ b/clang/lib/Driver/ToolChains/Arch/M68k.cpp
 @@ -7,7 +7,7 @@
@@ -6224,7 +6224,7 @@ index 963f7a187d63..f71cdbf1cf18 100644
  #include "clang/Driver/DriverDiagnostic.h"
  #include "clang/Driver/Options.h"
 diff --git a/clang/lib/Driver/ToolChains/Arch/Mips.cpp b/clang/lib/Driver/ToolChains/Arch/Mips.cpp
-index ca0745fc2b32..abdf962157df 100644
+index ca0745fc2..abdf96215 100644
 --- a/clang/lib/Driver/ToolChains/Arch/Mips.cpp
 +++ b/clang/lib/Driver/ToolChains/Arch/Mips.cpp
 @@ -7,7 +7,7 @@
@@ -6249,7 +6249,7 @@ index ca0745fc2b32..abdf962157df 100644
  
    bool UseAbiCalls = false;
 diff --git a/clang/lib/Driver/ToolChains/Arch/PPC.cpp b/clang/lib/Driver/ToolChains/Arch/PPC.cpp
-index 57baa186a9eb..ad914d4c96eb 100644
+index 57baa186a..ad914d4c9 100644
 --- a/clang/lib/Driver/ToolChains/Arch/PPC.cpp
 +++ b/clang/lib/Driver/ToolChains/Arch/PPC.cpp
 @@ -7,7 +7,7 @@
@@ -6272,7 +6272,7 @@ index 57baa186a9eb..ad914d4c96eb 100644
    if (Args.getLastArg(options::OPT_msecure_plt))
      return ppc::ReadGOTPtrMode::SecurePlt;
 diff --git a/clang/lib/Driver/ToolChains/Arch/RISCV.cpp b/clang/lib/Driver/ToolChains/Arch/RISCV.cpp
-index 6935904a24ed..344f8f6834c0 100644
+index 6935904a2..344f8f683 100644
 --- a/clang/lib/Driver/ToolChains/Arch/RISCV.cpp
 +++ b/clang/lib/Driver/ToolChains/Arch/RISCV.cpp
 @@ -8,7 +8,7 @@
@@ -6295,7 +6295,7 @@ index 6935904a24ed..344f8f6834c0 100644
    bool Is64Bit = Triple.isRISCV64();
    if (!llvm::RISCV::parseCPU(Mcpu, Is64Bit)) {
 diff --git a/clang/lib/Driver/ToolChains/Arch/X86.cpp b/clang/lib/Driver/ToolChains/Arch/X86.cpp
-index 47c2c3e23f9f..2afff722d01a 100644
+index 47c2c3e23..2afff722d 100644
 --- a/clang/lib/Driver/ToolChains/Arch/X86.cpp
 +++ b/clang/lib/Driver/ToolChains/Arch/X86.cpp
 @@ -7,7 +7,7 @@
@@ -6308,7 +6308,7 @@ index 47c2c3e23f9f..2afff722d01a 100644
  #include "clang/Driver/DriverDiagnostic.h"
  #include "clang/Driver/Options.h"
 diff --git a/clang/lib/Sema/SemaDeclAttr.cpp b/clang/lib/Sema/SemaDeclAttr.cpp
-index f351663c6824..e74ff535aab7 100644
+index f351663c6..1c7ec3cb0 100644
 --- a/clang/lib/Sema/SemaDeclAttr.cpp
 +++ b/clang/lib/Sema/SemaDeclAttr.cpp
 @@ -73,11 +73,7 @@ using namespace clang;
@@ -7282,7 +7282,7 @@ index f351663c6824..e74ff535aab7 100644
          continue;
  
 diff --git a/clang/lib/Support/CMakeLists.txt b/clang/lib/Support/CMakeLists.txt
-index de06271e914a..3d0a7c8614f6 100644
+index de06271e9..3d0a7c861 100644
 --- a/clang/lib/Support/CMakeLists.txt
 +++ b/clang/lib/Support/CMakeLists.txt
 @@ -15,9 +15,7 @@ set(clangSupport_sources
@@ -7297,7 +7297,7 @@ index de06271e914a..3d0a7c8614f6 100644
  else()
    # Build a version of the support library that does not link against
 diff --git a/clang/tools/CMakeLists.txt b/clang/tools/CMakeLists.txt
-index 98c018e96848..917a47588cf0 100644
+index 98c018e96..917a47588 100644
 --- a/clang/tools/CMakeLists.txt
 +++ b/clang/tools/CMakeLists.txt
 @@ -1,45 +1,5 @@
@@ -7347,7 +7347,7 @@ index 98c018e96848..917a47588cf0 100644
  # subdirectory. It contains tools developed as part of the Clang/LLVM project
  # on top of the Clang tooling platform. We keep them in a separate repository
 diff --git a/clang/tools/libclang/CMakeLists.txt b/clang/tools/libclang/CMakeLists.txt
-index 00a1223c0831..b7a02410fe2d 100644
+index 00a1223c0..b7a02410f 100644
 --- a/clang/tools/libclang/CMakeLists.txt
 +++ b/clang/tools/libclang/CMakeLists.txt
 @@ -135,7 +135,7 @@ if (UNIX AND ${CMAKE_SYSTEM_NAME} MATCHES "AIX")
@@ -7369,7 +7369,7 @@ index 00a1223c0831..b7a02410fe2d 100644
        target_compile_definitions(${name} PUBLIC CINDEX_NO_EXPORTS)
      endif()
 diff --git a/llvm/CMakeLists.txt b/llvm/CMakeLists.txt
-index f5293e866324..f54cb5db42c6 100644
+index f5293e866..f54cb5db4 100644
 --- a/llvm/CMakeLists.txt
 +++ b/llvm/CMakeLists.txt
 @@ -512,7 +512,7 @@ set(LLVM_ALL_EXPERIMENTAL_TARGETS
@@ -7382,7 +7382,7 @@ index f5293e866324..f54cb5db42c6 100644
  
  set(LLVM_EXPERIMENTAL_TARGETS_TO_BUILD ""
 diff --git a/llvm/cmake/modules/AddLLVM.cmake b/llvm/cmake/modules/AddLLVM.cmake
-index d3e9377c8d2f..5c2b1ef8b43e 100644
+index d3e9377c8..5c2b1ef8b 100644
 --- a/llvm/cmake/modules/AddLLVM.cmake
 +++ b/llvm/cmake/modules/AddLLVM.cmake
 @@ -850,35 +850,6 @@ function(add_llvm_install_targets target)
@@ -7421,8 +7421,1046 @@ index d3e9377c8d2f..5c2b1ef8b43e 100644
  endfunction()
  
  # Define special targets that behave like a component group. They don't have any
+diff --git a/llvm/include/llvm/CodeGen/CMakeLists.txt b/llvm/include/llvm/CodeGen/CMakeLists.txt
+index 652e1baed..6a5118a0f 100644
+--- a/llvm/include/llvm/CodeGen/CMakeLists.txt
++++ b/llvm/include/llvm/CodeGen/CMakeLists.txt
+@@ -1,3 +1,4 @@
+ set(LLVM_TARGET_DEFINITIONS ${PROJECT_SOURCE_DIR}/include/llvm/CodeGen/ValueTypes.td)
+ tablegen(LLVM GenVT.inc -gen-vt)
++message(STATUS "TABLE ${TABLEGEN_OUTPUT}")
+ add_public_tablegen_target(vt_gen)
+diff --git a/llvm/include/llvm/CodeGenTypes/MachineValueType.h b/llvm/include/llvm/CodeGenTypes/MachineValueType.h
+index c14abca02..87be980f8 100644
+--- a/llvm/include/llvm/CodeGenTypes/MachineValueType.h
++++ b/llvm/include/llvm/CodeGenTypes/MachineValueType.h
+@@ -25,563 +25,560 @@
+ 
+ namespace llvm {
+ 
+-  class Type;
+-  struct fltSemantics;
+-  class raw_ostream;
+-
+-  /// Machine Value Type. Every type that is supported natively by some
+-  /// processor targeted by LLVM occurs here. This means that any legal value
+-  /// type can be represented by an MVT.
+-  class MVT {
+-  public:
+-    enum SimpleValueType : uint16_t {
+-      // Simple value types that aren't explicitly part of this enumeration
+-      // are considered extended value types.
+-      INVALID_SIMPLE_VALUE_TYPE = 0,
+-
+-#define GET_VT_ATTR(Ty, n, sz, Any, Int, FP, Vec, Sc, Tup, NF, NElem, EltTy) \
+-    Ty = n,
++class Type;
++struct fltSemantics;
++class raw_ostream;
++
++/// Machine Value Type. Every type that is supported natively by some
++/// processor targeted by LLVM occurs here. This means that any legal value
++/// type can be represented by an MVT.
++class MVT {
++public:
++  enum SimpleValueType : uint16_t {
++    // Simple value types that aren't explicitly part of this enumeration
++    // are considered extended value types.
++    INVALID_SIMPLE_VALUE_TYPE = 0,
++
++#define GET_VT_ATTR(Ty, n, sz, Any, Int, FP, Vec, Sc, Tup, NF, NElem, EltTy)   \
++  Ty = n,
+ #define GET_VT_RANGES
+-#include "llvm/CodeGen/GenVT.inc"
++#include "GenVT.inc"
+ #undef GET_VT_ATTR
+ #undef GET_VT_RANGES
+ 
+-      VALUETYPE_SIZE = LAST_VALUETYPE + 1,
+-    };
++    VALUETYPE_SIZE = LAST_VALUETYPE + 1,
++  };
+ 
+-    static_assert(FIRST_VALUETYPE > 0);
+-    static_assert(LAST_VALUETYPE < token);
++  static_assert(FIRST_VALUETYPE > 0);
++  static_assert(LAST_VALUETYPE < token);
+ 
+-    SimpleValueType SimpleTy = INVALID_SIMPLE_VALUE_TYPE;
++  SimpleValueType SimpleTy = INVALID_SIMPLE_VALUE_TYPE;
+ 
+-    constexpr MVT() = default;
+-    constexpr MVT(SimpleValueType SVT) : SimpleTy(SVT) {}
++  constexpr MVT() = default;
++  constexpr MVT(SimpleValueType SVT) : SimpleTy(SVT) {}
+ 
+-    bool operator>(const MVT& S)  const { return SimpleTy >  S.SimpleTy; }
+-    bool operator<(const MVT& S)  const { return SimpleTy <  S.SimpleTy; }
+-    bool operator==(const MVT& S) const { return SimpleTy == S.SimpleTy; }
+-    bool operator!=(const MVT& S) const { return SimpleTy != S.SimpleTy; }
+-    bool operator>=(const MVT& S) const { return SimpleTy >= S.SimpleTy; }
+-    bool operator<=(const MVT& S) const { return SimpleTy <= S.SimpleTy; }
++  bool operator>(const MVT &S) const { return SimpleTy > S.SimpleTy; }
++  bool operator<(const MVT &S) const { return SimpleTy < S.SimpleTy; }
++  bool operator==(const MVT &S) const { return SimpleTy == S.SimpleTy; }
++  bool operator!=(const MVT &S) const { return SimpleTy != S.SimpleTy; }
++  bool operator>=(const MVT &S) const { return SimpleTy >= S.SimpleTy; }
++  bool operator<=(const MVT &S) const { return SimpleTy <= S.SimpleTy; }
+ 
+-    /// Support for debugging, callable in GDB: VT.dump()
+-    void dump() const;
++  /// Support for debugging, callable in GDB: VT.dump()
++  void dump() const;
+ 
+-    /// Implement operator<<.
+-    void print(raw_ostream &OS) const;
++  /// Implement operator<<.
++  void print(raw_ostream &OS) const;
+ 
+-    /// Return true if this is a valid simple valuetype.
+-    bool isValid() const {
+-      return (SimpleTy >= MVT::FIRST_VALUETYPE &&
+-              SimpleTy <= MVT::LAST_VALUETYPE);
+-    }
++  /// Return true if this is a valid simple valuetype.
++  bool isValid() const {
++    return (SimpleTy >= MVT::FIRST_VALUETYPE &&
++            SimpleTy <= MVT::LAST_VALUETYPE);
++  }
+ 
+-    /// Return true if this is a FP or a vector FP type.
+-    bool isFloatingPoint() const {
+-      return ((SimpleTy >= MVT::FIRST_FP_VALUETYPE &&
+-               SimpleTy <= MVT::LAST_FP_VALUETYPE) ||
+-              (SimpleTy >= MVT::FIRST_FP_FIXEDLEN_VECTOR_VALUETYPE &&
+-               SimpleTy <= MVT::LAST_FP_FIXEDLEN_VECTOR_VALUETYPE) ||
+-              (SimpleTy >= MVT::FIRST_FP_SCALABLE_VECTOR_VALUETYPE &&
+-               SimpleTy <= MVT::LAST_FP_SCALABLE_VECTOR_VALUETYPE));
+-    }
++  /// Return true if this is a FP or a vector FP type.
++  bool isFloatingPoint() const {
++    return ((SimpleTy >= MVT::FIRST_FP_VALUETYPE &&
++             SimpleTy <= MVT::LAST_FP_VALUETYPE) ||
++            (SimpleTy >= MVT::FIRST_FP_FIXEDLEN_VECTOR_VALUETYPE &&
++             SimpleTy <= MVT::LAST_FP_FIXEDLEN_VECTOR_VALUETYPE) ||
++            (SimpleTy >= MVT::FIRST_FP_SCALABLE_VECTOR_VALUETYPE &&
++             SimpleTy <= MVT::LAST_FP_SCALABLE_VECTOR_VALUETYPE));
++  }
+ 
+-    /// Return true if this is an integer or a vector integer type.
+-    bool isInteger() const {
+-      return ((SimpleTy >= MVT::FIRST_INTEGER_VALUETYPE &&
+-               SimpleTy <= MVT::LAST_INTEGER_VALUETYPE) ||
+-              (SimpleTy >= MVT::FIRST_INTEGER_FIXEDLEN_VECTOR_VALUETYPE &&
+-               SimpleTy <= MVT::LAST_INTEGER_FIXEDLEN_VECTOR_VALUETYPE) ||
+-              (SimpleTy >= MVT::FIRST_INTEGER_SCALABLE_VECTOR_VALUETYPE &&
+-               SimpleTy <= MVT::LAST_INTEGER_SCALABLE_VECTOR_VALUETYPE));
+-    }
++  /// Return true if this is an integer or a vector integer type.
++  bool isInteger() const {
++    return ((SimpleTy >= MVT::FIRST_INTEGER_VALUETYPE &&
++             SimpleTy <= MVT::LAST_INTEGER_VALUETYPE) ||
++            (SimpleTy >= MVT::FIRST_INTEGER_FIXEDLEN_VECTOR_VALUETYPE &&
++             SimpleTy <= MVT::LAST_INTEGER_FIXEDLEN_VECTOR_VALUETYPE) ||
++            (SimpleTy >= MVT::FIRST_INTEGER_SCALABLE_VECTOR_VALUETYPE &&
++             SimpleTy <= MVT::LAST_INTEGER_SCALABLE_VECTOR_VALUETYPE));
++  }
+ 
+-    /// Return true if this is an integer, not including vectors.
+-    bool isScalarInteger() const {
+-      return (SimpleTy >= MVT::FIRST_INTEGER_VALUETYPE &&
+-              SimpleTy <= MVT::LAST_INTEGER_VALUETYPE);
+-    }
++  /// Return true if this is an integer, not including vectors.
++  bool isScalarInteger() const {
++    return (SimpleTy >= MVT::FIRST_INTEGER_VALUETYPE &&
++            SimpleTy <= MVT::LAST_INTEGER_VALUETYPE);
++  }
+ 
+-    /// Return true if this is a vector value type.
+-    bool isVector() const {
+-      return (SimpleTy >= MVT::FIRST_VECTOR_VALUETYPE &&
+-              SimpleTy <= MVT::LAST_VECTOR_VALUETYPE);
+-    }
++  /// Return true if this is a vector value type.
++  bool isVector() const {
++    return (SimpleTy >= MVT::FIRST_VECTOR_VALUETYPE &&
++            SimpleTy <= MVT::LAST_VECTOR_VALUETYPE);
++  }
+ 
+-    /// Return true if this is a vector value type where the
+-    /// runtime length is machine dependent
+-    bool isScalableVector() const {
+-      return (SimpleTy >= MVT::FIRST_SCALABLE_VECTOR_VALUETYPE &&
+-              SimpleTy <= MVT::LAST_SCALABLE_VECTOR_VALUETYPE);
+-    }
++  /// Return true if this is a vector value type where the
++  /// runtime length is machine dependent
++  bool isScalableVector() const {
++    return (SimpleTy >= MVT::FIRST_SCALABLE_VECTOR_VALUETYPE &&
++            SimpleTy <= MVT::LAST_SCALABLE_VECTOR_VALUETYPE);
++  }
+ 
+-    /// Return true if this is a RISCV vector tuple type where the
+-    /// runtime length is machine dependent
+-    bool isRISCVVectorTuple() const {
+-      return (SimpleTy >= MVT::FIRST_RISCV_VECTOR_TUPLE_VALUETYPE &&
+-              SimpleTy <= MVT::LAST_RISCV_VECTOR_TUPLE_VALUETYPE);
+-    }
++  /// Return true if this is a RISCV vector tuple type where the
++  /// runtime length is machine dependent
++  bool isRISCVVectorTuple() const {
++    return (SimpleTy >= MVT::FIRST_RISCV_VECTOR_TUPLE_VALUETYPE &&
++            SimpleTy <= MVT::LAST_RISCV_VECTOR_TUPLE_VALUETYPE);
++  }
+ 
+-    /// Return true if this is a custom target type that has a scalable size.
+-    bool isScalableTargetExtVT() const {
+-      return SimpleTy == MVT::aarch64svcount || isRISCVVectorTuple();
+-    }
++  /// Return true if this is a custom target type that has a scalable size.
++  bool isScalableTargetExtVT() const {
++    return SimpleTy == MVT::aarch64svcount || isRISCVVectorTuple();
++  }
+ 
+-    /// Return true if the type is a scalable type.
+-    bool isScalableVT() const {
+-      return isScalableVector() || isScalableTargetExtVT();
+-    }
++  /// Return true if the type is a scalable type.
++  bool isScalableVT() const {
++    return isScalableVector() || isScalableTargetExtVT();
++  }
+ 
+-    bool isFixedLengthVector() const {
+-      return (SimpleTy >= MVT::FIRST_FIXEDLEN_VECTOR_VALUETYPE &&
+-              SimpleTy <= MVT::LAST_FIXEDLEN_VECTOR_VALUETYPE);
+-    }
++  bool isFixedLengthVector() const {
++    return (SimpleTy >= MVT::FIRST_FIXEDLEN_VECTOR_VALUETYPE &&
++            SimpleTy <= MVT::LAST_FIXEDLEN_VECTOR_VALUETYPE);
++  }
+ 
+-    /// Return true if this is a 16-bit vector type.
+-    bool is16BitVector() const {
+-      return (isFixedLengthVector() && getFixedSizeInBits() == 16);
+-    }
++  /// Return true if this is a 16-bit vector type.
++  bool is16BitVector() const {
++    return (isFixedLengthVector() && getFixedSizeInBits() == 16);
++  }
+ 
+-    /// Return true if this is a 32-bit vector type.
+-    bool is32BitVector() const {
+-      return (isFixedLengthVector() && getFixedSizeInBits() == 32);
+-    }
++  /// Return true if this is a 32-bit vector type.
++  bool is32BitVector() const {
++    return (isFixedLengthVector() && getFixedSizeInBits() == 32);
++  }
+ 
+-    /// Return true if this is a 64-bit vector type.
+-    bool is64BitVector() const {
+-      return (isFixedLengthVector() && getFixedSizeInBits() == 64);
+-    }
++  /// Return true if this is a 64-bit vector type.
++  bool is64BitVector() const {
++    return (isFixedLengthVector() && getFixedSizeInBits() == 64);
++  }
+ 
+-    /// Return true if this is a 128-bit vector type.
+-    bool is128BitVector() const {
+-      return (isFixedLengthVector() && getFixedSizeInBits() == 128);
+-    }
++  /// Return true if this is a 128-bit vector type.
++  bool is128BitVector() const {
++    return (isFixedLengthVector() && getFixedSizeInBits() == 128);
++  }
+ 
+-    /// Return true if this is a 256-bit vector type.
+-    bool is256BitVector() const {
+-      return (isFixedLengthVector() && getFixedSizeInBits() == 256);
+-    }
++  /// Return true if this is a 256-bit vector type.
++  bool is256BitVector() const {
++    return (isFixedLengthVector() && getFixedSizeInBits() == 256);
++  }
+ 
+-    /// Return true if this is a 512-bit vector type.
+-    bool is512BitVector() const {
+-      return (isFixedLengthVector() && getFixedSizeInBits() == 512);
+-    }
++  /// Return true if this is a 512-bit vector type.
++  bool is512BitVector() const {
++    return (isFixedLengthVector() && getFixedSizeInBits() == 512);
++  }
+ 
+-    /// Return true if this is a 1024-bit vector type.
+-    bool is1024BitVector() const {
+-      return (isFixedLengthVector() && getFixedSizeInBits() == 1024);
+-    }
++  /// Return true if this is a 1024-bit vector type.
++  bool is1024BitVector() const {
++    return (isFixedLengthVector() && getFixedSizeInBits() == 1024);
++  }
+ 
+-    /// Return true if this is a 2048-bit vector type.
+-    bool is2048BitVector() const {
+-      return (isFixedLengthVector() && getFixedSizeInBits() == 2048);
+-    }
++  /// Return true if this is a 2048-bit vector type.
++  bool is2048BitVector() const {
++    return (isFixedLengthVector() && getFixedSizeInBits() == 2048);
++  }
+ 
+-    /// Return true if this is an overloaded type for TableGen.
+-    bool isOverloaded() const {
+-      switch (SimpleTy) {
+-#define GET_VT_ATTR(Ty, n, sz, Any, Int, FP, Vec, Sc, Tup, NF, NElem, EltTy) \
+-    case Ty:                                                                   \
+-      return Any;
+-#include "llvm/CodeGen/GenVT.inc"
++  /// Return true if this is an overloaded type for TableGen.
++  bool isOverloaded() const {
++    switch (SimpleTy) {
++#define GET_VT_ATTR(Ty, n, sz, Any, Int, FP, Vec, Sc, Tup, NF, NElem, EltTy)   \
++  case Ty:                                                                     \
++    return Any;
++#include "GenVT.inc"
+ #undef GET_VT_ATTR
+-      default:
+-        return false;
+-      }
++    default:
++      return false;
+     }
++  }
+ 
+-    /// Return a vector with the same number of elements as this vector, but
+-    /// with the element type converted to an integer type with the same
+-    /// bitwidth.
+-    MVT changeVectorElementTypeToInteger() const {
+-      MVT EltTy = getVectorElementType();
+-      MVT IntTy = MVT::getIntegerVT(EltTy.getSizeInBits());
+-      MVT VecTy = MVT::getVectorVT(IntTy, getVectorElementCount());
+-      assert(VecTy.SimpleTy != MVT::INVALID_SIMPLE_VALUE_TYPE &&
+-             "Simple vector VT not representable by simple integer vector VT!");
+-      return VecTy;
+-    }
++  /// Return a vector with the same number of elements as this vector, but
++  /// with the element type converted to an integer type with the same
++  /// bitwidth.
++  MVT changeVectorElementTypeToInteger() const {
++    MVT EltTy = getVectorElementType();
++    MVT IntTy = MVT::getIntegerVT(EltTy.getSizeInBits());
++    MVT VecTy = MVT::getVectorVT(IntTy, getVectorElementCount());
++    assert(VecTy.SimpleTy != MVT::INVALID_SIMPLE_VALUE_TYPE &&
++           "Simple vector VT not representable by simple integer vector VT!");
++    return VecTy;
++  }
+ 
+-    /// Return a VT for a vector type whose attributes match ourselves
+-    /// with the exception of the element type that is chosen by the caller.
+-    MVT changeVectorElementType(MVT EltVT) const {
+-      MVT VecTy = MVT::getVectorVT(EltVT, getVectorElementCount());
+-      assert(VecTy.SimpleTy != MVT::INVALID_SIMPLE_VALUE_TYPE &&
+-             "Simple vector VT not representable by simple integer vector VT!");
+-      return VecTy;
+-    }
++  /// Return a VT for a vector type whose attributes match ourselves
++  /// with the exception of the element type that is chosen by the caller.
++  MVT changeVectorElementType(MVT EltVT) const {
++    MVT VecTy = MVT::getVectorVT(EltVT, getVectorElementCount());
++    assert(VecTy.SimpleTy != MVT::INVALID_SIMPLE_VALUE_TYPE &&
++           "Simple vector VT not representable by simple integer vector VT!");
++    return VecTy;
++  }
+ 
+-    /// Return the type converted to an equivalently sized integer or vector
+-    /// with integer element type. Similar to changeVectorElementTypeToInteger,
+-    /// but also handles scalars.
+-    MVT changeTypeToInteger() {
+-      if (isVector())
+-        return changeVectorElementTypeToInteger();
+-      return MVT::getIntegerVT(getSizeInBits());
+-    }
++  /// Return the type converted to an equivalently sized integer or vector
++  /// with integer element type. Similar to changeVectorElementTypeToInteger,
++  /// but also handles scalars.
++  MVT changeTypeToInteger() {
++    if (isVector())
++      return changeVectorElementTypeToInteger();
++    return MVT::getIntegerVT(getSizeInBits());
++  }
+ 
+-    /// Return a VT for a vector type with the same element type but
+-    /// half the number of elements.
+-    MVT getHalfNumVectorElementsVT() const {
+-      MVT EltVT = getVectorElementType();
+-      auto EltCnt = getVectorElementCount();
+-      assert(EltCnt.isKnownEven() && "Splitting vector, but not in half!");
+-      return getVectorVT(EltVT, EltCnt.divideCoefficientBy(2));
+-    }
++  /// Return a VT for a vector type with the same element type but
++  /// half the number of elements.
++  MVT getHalfNumVectorElementsVT() const {
++    MVT EltVT = getVectorElementType();
++    auto EltCnt = getVectorElementCount();
++    assert(EltCnt.isKnownEven() && "Splitting vector, but not in half!");
++    return getVectorVT(EltVT, EltCnt.divideCoefficientBy(2));
++  }
+ 
+-    // Return a VT for a vector type with the same element type but
+-    // double the number of elements.
+-    MVT getDoubleNumVectorElementsVT() const {
+-      MVT EltVT = getVectorElementType();
+-      auto EltCnt = getVectorElementCount();
+-      return MVT::getVectorVT(EltVT, EltCnt * 2);
+-    }
++  // Return a VT for a vector type with the same element type but
++  // double the number of elements.
++  MVT getDoubleNumVectorElementsVT() const {
++    MVT EltVT = getVectorElementType();
++    auto EltCnt = getVectorElementCount();
++    return MVT::getVectorVT(EltVT, EltCnt * 2);
++  }
+ 
+-    /// Returns true if the given vector is a power of 2.
+-    bool isPow2VectorType() const {
+-      unsigned NElts = getVectorMinNumElements();
+-      return !(NElts & (NElts - 1));
+-    }
++  /// Returns true if the given vector is a power of 2.
++  bool isPow2VectorType() const {
++    unsigned NElts = getVectorMinNumElements();
++    return !(NElts & (NElts - 1));
++  }
+ 
+-    /// Widens the length of the given vector MVT up to the nearest power of 2
+-    /// and returns that type.
+-    MVT getPow2VectorType() const {
+-      if (isPow2VectorType())
+-        return *this;
++  /// Widens the length of the given vector MVT up to the nearest power of 2
++  /// and returns that type.
++  MVT getPow2VectorType() const {
++    if (isPow2VectorType())
++      return *this;
+ 
+-      ElementCount NElts = getVectorElementCount();
+-      unsigned NewMinCount = 1 << Log2_32_Ceil(NElts.getKnownMinValue());
+-      NElts = ElementCount::get(NewMinCount, NElts.isScalable());
+-      return MVT::getVectorVT(getVectorElementType(), NElts);
+-    }
++    ElementCount NElts = getVectorElementCount();
++    unsigned NewMinCount = 1 << Log2_32_Ceil(NElts.getKnownMinValue());
++    NElts = ElementCount::get(NewMinCount, NElts.isScalable());
++    return MVT::getVectorVT(getVectorElementType(), NElts);
++  }
+ 
+-    /// If this is a vector, return the element type, otherwise return this.
+-    MVT getScalarType() const {
+-      return isVector() ? getVectorElementType() : *this;
+-    }
++  /// If this is a vector, return the element type, otherwise return this.
++  MVT getScalarType() const {
++    return isVector() ? getVectorElementType() : *this;
++  }
+ 
+-    MVT getVectorElementType() const {
+-      assert(SimpleTy >= FIRST_VALUETYPE && SimpleTy <= LAST_VALUETYPE);
+-      static constexpr SimpleValueType EltTyTable[] = {
+-#define GET_VT_ATTR(Ty, N, Sz, Any, Int, FP, Vec, Sc, Tup, NF, NElem, EltTy) \
+-    EltTy,
+-#include "llvm/CodeGen/GenVT.inc"
++  MVT getVectorElementType() const {
++    assert(SimpleTy >= FIRST_VALUETYPE && SimpleTy <= LAST_VALUETYPE);
++    static constexpr SimpleValueType EltTyTable[] = {
++#define GET_VT_ATTR(Ty, N, Sz, Any, Int, FP, Vec, Sc, Tup, NF, NElem, EltTy)   \
++  EltTy,
++#include "GenVT.inc"
+ #undef GET_VT_ATTR
+-      };
+-      SimpleValueType VT = EltTyTable[SimpleTy - FIRST_VALUETYPE];
+-      assert(VT != INVALID_SIMPLE_VALUE_TYPE && "Not a vector MVT!");
+-      return VT;
+-    }
++    };
++    SimpleValueType VT = EltTyTable[SimpleTy - FIRST_VALUETYPE];
++    assert(VT != INVALID_SIMPLE_VALUE_TYPE && "Not a vector MVT!");
++    return VT;
++  }
+ 
+-    /// Given a vector type, return the minimum number of elements it contains.
+-    unsigned getVectorMinNumElements() const {
+-      assert(SimpleTy >= FIRST_VALUETYPE && SimpleTy <= LAST_VALUETYPE);
+-      static constexpr uint16_t NElemTable[] = {
+-#define GET_VT_ATTR(Ty, N, Sz, Any, Int, FP, Vec, Sc, Tup, NF, NElem, EltTy) \
+-    NElem,
+-#include "llvm/CodeGen/GenVT.inc"
++  /// Given a vector type, return the minimum number of elements it contains.
++  unsigned getVectorMinNumElements() const {
++    assert(SimpleTy >= FIRST_VALUETYPE && SimpleTy <= LAST_VALUETYPE);
++    static constexpr uint16_t NElemTable[] = {
++#define GET_VT_ATTR(Ty, N, Sz, Any, Int, FP, Vec, Sc, Tup, NF, NElem, EltTy)   \
++  NElem,
++#include "GenVT.inc"
+ #undef GET_VT_ATTR
+-      };
+-      unsigned NElem = NElemTable[SimpleTy - FIRST_VALUETYPE];
+-      assert(NElem != 0 && "Not a vector MVT!");
+-      return NElem;
+-    }
++    };
++    unsigned NElem = NElemTable[SimpleTy - FIRST_VALUETYPE];
++    assert(NElem != 0 && "Not a vector MVT!");
++    return NElem;
++  }
+ 
+-    ElementCount getVectorElementCount() const {
+-      return ElementCount::get(getVectorMinNumElements(), isScalableVector());
+-    }
++  ElementCount getVectorElementCount() const {
++    return ElementCount::get(getVectorMinNumElements(), isScalableVector());
++  }
+ 
+-    unsigned getVectorNumElements() const {
+-      if (isScalableVector())
+-        llvm::reportInvalidSizeRequest(
+-            "Possible incorrect use of MVT::getVectorNumElements() for "
+-            "scalable vector. Scalable flag may be dropped, use "
+-            "MVT::getVectorElementCount() instead");
+-      return getVectorMinNumElements();
+-    }
++  unsigned getVectorNumElements() const {
++    if (isScalableVector())
++      llvm::reportInvalidSizeRequest(
++          "Possible incorrect use of MVT::getVectorNumElements() for "
++          "scalable vector. Scalable flag may be dropped, use "
++          "MVT::getVectorElementCount() instead");
++    return getVectorMinNumElements();
++  }
+ 
+-    /// Returns the size of the specified MVT in bits.
+-    ///
+-    /// If the value type is a scalable vector type, the scalable property will
+-    /// be set and the runtime size will be a positive integer multiple of the
+-    /// base size.
+-    TypeSize getSizeInBits() const {
+-      static constexpr TypeSize SizeTable[] = {
+-#define GET_VT_ATTR(Ty, N, Sz, Any, Int, FP, Vec, Sc, Tup, NF, NElem, EltTy) \
+-    TypeSize(Sz, Sc || Tup || Ty == aarch64svcount /* FIXME: Not in the td.    \
++  /// Returns the size of the specified MVT in bits.
++  ///
++  /// If the value type is a scalable vector type, the scalable property will
++  /// be set and the runtime size will be a positive integer multiple of the
++  /// base size.
++  TypeSize getSizeInBits() const {
++    static constexpr TypeSize SizeTable[] = {
++#define GET_VT_ATTR(Ty, N, Sz, Any, Int, FP, Vec, Sc, Tup, NF, NElem, EltTy)   \
++  TypeSize(Sz, Sc || Tup || Ty == aarch64svcount /* FIXME: Not in the td.    \
+                                                     */),
+-#include "llvm/CodeGen/GenVT.inc"
++#include "GenVT.inc"
+ #undef GET_VT_ATTR
+-      };
+-
+-      switch (SimpleTy) {
+-      case INVALID_SIMPLE_VALUE_TYPE:
+-        llvm_unreachable("getSizeInBits called on extended MVT.");
+-      case Other:
+-        llvm_unreachable("Value type is non-standard value, Other.");
+-      case iPTR:
+-        llvm_unreachable("Value type size is target-dependent. Ask TLI.");
+-      case pAny:
+-      case iAny:
+-      case fAny:
+-      case vAny:
+-      case Any:
+-        llvm_unreachable("Value type is overloaded.");
+-      case token:
+-        llvm_unreachable("Token type is a sentinel that cannot be used "
+-                         "in codegen and has no size");
+-      case Metadata:
+-        llvm_unreachable("Value type is metadata.");
+-      default:
+-        assert(SimpleTy < VALUETYPE_SIZE && "Unexpected value type!");
+-        return SizeTable[SimpleTy - FIRST_VALUETYPE];
+-      }
+-    }
+-
+-    /// Return the size of the specified fixed width value type in bits. The
+-    /// function will assert if the type is scalable.
+-    uint64_t getFixedSizeInBits() const {
+-      return getSizeInBits().getFixedValue();
+-    }
++    };
+ 
+-    uint64_t getScalarSizeInBits() const {
+-      return getScalarType().getSizeInBits().getFixedValue();
++    switch (SimpleTy) {
++    case INVALID_SIMPLE_VALUE_TYPE:
++      llvm_unreachable("getSizeInBits called on extended MVT.");
++    case Other:
++      llvm_unreachable("Value type is non-standard value, Other.");
++    case iPTR:
++      llvm_unreachable("Value type size is target-dependent. Ask TLI.");
++    case pAny:
++    case iAny:
++    case fAny:
++    case vAny:
++    case Any:
++      llvm_unreachable("Value type is overloaded.");
++    case token:
++      llvm_unreachable("Token type is a sentinel that cannot be used "
++                       "in codegen and has no size");
++    case Metadata:
++      llvm_unreachable("Value type is metadata.");
++    default:
++      assert(SimpleTy < VALUETYPE_SIZE && "Unexpected value type!");
++      return SizeTable[SimpleTy - FIRST_VALUETYPE];
+     }
++  }
+ 
+-    /// Return the number of bytes overwritten by a store of the specified value
+-    /// type.
+-    ///
+-    /// If the value type is a scalable vector type, the scalable property will
+-    /// be set and the runtime size will be a positive integer multiple of the
+-    /// base size.
+-    TypeSize getStoreSize() const {
+-      TypeSize BaseSize = getSizeInBits();
+-      return {(BaseSize.getKnownMinValue() + 7) / 8, BaseSize.isScalable()};
+-    }
++  /// Return the size of the specified fixed width value type in bits. The
++  /// function will assert if the type is scalable.
++  uint64_t getFixedSizeInBits() const {
++    return getSizeInBits().getFixedValue();
++  }
+ 
+-    // Return the number of bytes overwritten by a store of this value type or
+-    // this value type's element type in the case of a vector.
+-    uint64_t getScalarStoreSize() const {
+-      return getScalarType().getStoreSize().getFixedValue();
+-    }
++  uint64_t getScalarSizeInBits() const {
++    return getScalarType().getSizeInBits().getFixedValue();
++  }
+ 
+-    /// Return the number of bits overwritten by a store of the specified value
+-    /// type.
+-    ///
+-    /// If the value type is a scalable vector type, the scalable property will
+-    /// be set and the runtime size will be a positive integer multiple of the
+-    /// base size.
+-    TypeSize getStoreSizeInBits() const {
+-      return getStoreSize() * 8;
+-    }
++  /// Return the number of bytes overwritten by a store of the specified value
++  /// type.
++  ///
++  /// If the value type is a scalable vector type, the scalable property will
++  /// be set and the runtime size will be a positive integer multiple of the
++  /// base size.
++  TypeSize getStoreSize() const {
++    TypeSize BaseSize = getSizeInBits();
++    return {(BaseSize.getKnownMinValue() + 7) / 8, BaseSize.isScalable()};
++  }
+ 
+-    /// Returns true if the number of bits for the type is a multiple of an
+-    /// 8-bit byte.
+-    bool isByteSized() const { return getSizeInBits().isKnownMultipleOf(8); }
++  // Return the number of bytes overwritten by a store of this value type or
++  // this value type's element type in the case of a vector.
++  uint64_t getScalarStoreSize() const {
++    return getScalarType().getStoreSize().getFixedValue();
++  }
+ 
+-    /// Return true if we know at compile time this has more bits than VT.
+-    bool knownBitsGT(MVT VT) const {
+-      return TypeSize::isKnownGT(getSizeInBits(), VT.getSizeInBits());
+-    }
++  /// Return the number of bits overwritten by a store of the specified value
++  /// type.
++  ///
++  /// If the value type is a scalable vector type, the scalable property will
++  /// be set and the runtime size will be a positive integer multiple of the
++  /// base size.
++  TypeSize getStoreSizeInBits() const { return getStoreSize() * 8; }
++
++  /// Returns true if the number of bits for the type is a multiple of an
++  /// 8-bit byte.
++  bool isByteSized() const { return getSizeInBits().isKnownMultipleOf(8); }
++
++  /// Return true if we know at compile time this has more bits than VT.
++  bool knownBitsGT(MVT VT) const {
++    return TypeSize::isKnownGT(getSizeInBits(), VT.getSizeInBits());
++  }
+ 
+-    /// Return true if we know at compile time this has more than or the same
+-    /// bits as VT.
+-    bool knownBitsGE(MVT VT) const {
+-      return TypeSize::isKnownGE(getSizeInBits(), VT.getSizeInBits());
+-    }
++  /// Return true if we know at compile time this has more than or the same
++  /// bits as VT.
++  bool knownBitsGE(MVT VT) const {
++    return TypeSize::isKnownGE(getSizeInBits(), VT.getSizeInBits());
++  }
+ 
+-    /// Return true if we know at compile time this has fewer bits than VT.
+-    bool knownBitsLT(MVT VT) const {
+-      return TypeSize::isKnownLT(getSizeInBits(), VT.getSizeInBits());
+-    }
++  /// Return true if we know at compile time this has fewer bits than VT.
++  bool knownBitsLT(MVT VT) const {
++    return TypeSize::isKnownLT(getSizeInBits(), VT.getSizeInBits());
++  }
+ 
+-    /// Return true if we know at compile time this has fewer than or the same
+-    /// bits as VT.
+-    bool knownBitsLE(MVT VT) const {
+-      return TypeSize::isKnownLE(getSizeInBits(), VT.getSizeInBits());
+-    }
++  /// Return true if we know at compile time this has fewer than or the same
++  /// bits as VT.
++  bool knownBitsLE(MVT VT) const {
++    return TypeSize::isKnownLE(getSizeInBits(), VT.getSizeInBits());
++  }
+ 
+-    /// Return true if this has more bits than VT.
+-    bool bitsGT(MVT VT) const {
+-      assert(isScalableVector() == VT.isScalableVector() &&
+-             "Comparison between scalable and fixed types");
+-      return knownBitsGT(VT);
+-    }
++  /// Return true if this has more bits than VT.
++  bool bitsGT(MVT VT) const {
++    assert(isScalableVector() == VT.isScalableVector() &&
++           "Comparison between scalable and fixed types");
++    return knownBitsGT(VT);
++  }
+ 
+-    /// Return true if this has no less bits than VT.
+-    bool bitsGE(MVT VT) const {
+-      assert(isScalableVector() == VT.isScalableVector() &&
+-             "Comparison between scalable and fixed types");
+-      return knownBitsGE(VT);
+-    }
++  /// Return true if this has no less bits than VT.
++  bool bitsGE(MVT VT) const {
++    assert(isScalableVector() == VT.isScalableVector() &&
++           "Comparison between scalable and fixed types");
++    return knownBitsGE(VT);
++  }
+ 
+-    /// Return true if this has less bits than VT.
+-    bool bitsLT(MVT VT) const {
+-      assert(isScalableVector() == VT.isScalableVector() &&
+-             "Comparison between scalable and fixed types");
+-      return knownBitsLT(VT);
+-    }
++  /// Return true if this has less bits than VT.
++  bool bitsLT(MVT VT) const {
++    assert(isScalableVector() == VT.isScalableVector() &&
++           "Comparison between scalable and fixed types");
++    return knownBitsLT(VT);
++  }
+ 
+-    /// Return true if this has no more bits than VT.
+-    bool bitsLE(MVT VT) const {
+-      assert(isScalableVector() == VT.isScalableVector() &&
+-             "Comparison between scalable and fixed types");
+-      return knownBitsLE(VT);
+-    }
++  /// Return true if this has no more bits than VT.
++  bool bitsLE(MVT VT) const {
++    assert(isScalableVector() == VT.isScalableVector() &&
++           "Comparison between scalable and fixed types");
++    return knownBitsLE(VT);
++  }
+ 
+-    static MVT getFloatingPointVT(unsigned BitWidth) {
+-#define GET_VT_ATTR(Ty, n, sz, Any, Int, FP, Vec, Sc, Tup, NF, NElem, EltTy) \
+-    if (FP == 3 && sz == BitWidth)                                             \
+-      return Ty;
+-#include "llvm/CodeGen/GenVT.inc"
++  static MVT getFloatingPointVT(unsigned BitWidth) {
++#define GET_VT_ATTR(Ty, n, sz, Any, Int, FP, Vec, Sc, Tup, NF, NElem, EltTy)   \
++  if (FP == 3 && sz == BitWidth)                                               \
++    return Ty;
++#include "GenVT.inc"
+ #undef GET_VT_ATTR
+ 
+-      llvm_unreachable("Bad bit width!");
+-    }
++    llvm_unreachable("Bad bit width!");
++  }
+ 
+-    static MVT getIntegerVT(unsigned BitWidth) {
+-#define GET_VT_ATTR(Ty, n, sz, Any, Int, FP, Vec, Sc, Tup, NF, NElem, EltTy) \
+-    if (Int == 3 && sz == BitWidth)                                            \
+-      return Ty;
+-#include "llvm/CodeGen/GenVT.inc"
++  static MVT getIntegerVT(unsigned BitWidth) {
++#define GET_VT_ATTR(Ty, n, sz, Any, Int, FP, Vec, Sc, Tup, NF, NElem, EltTy)   \
++  if (Int == 3 && sz == BitWidth)                                              \
++    return Ty;
++#include "GenVT.inc"
+ #undef GET_VT_ATTR
+ 
+-      return (MVT::SimpleValueType)(MVT::INVALID_SIMPLE_VALUE_TYPE);
+-    }
++    return (MVT::SimpleValueType)(MVT::INVALID_SIMPLE_VALUE_TYPE);
++  }
+ 
+-    static MVT getVectorVT(MVT VT, unsigned NumElements) {
+-#define GET_VT_VECATTR(Ty, Sc, Tup, nElem, ElTy)                             \
+-    if (!Sc && !Tup && VT.SimpleTy == ElTy && NumElements == nElem)            \
+-      return Ty;
+-#include "llvm/CodeGen/GenVT.inc"
++  static MVT getVectorVT(MVT VT, unsigned NumElements) {
++#define GET_VT_VECATTR(Ty, Sc, Tup, nElem, ElTy)                               \
++  if (!Sc && !Tup && VT.SimpleTy == ElTy && NumElements == nElem)              \
++    return Ty;
++#include "GenVT.inc"
+ #undef GET_VT_VECATTR
+ 
+-      return (MVT::SimpleValueType)(MVT::INVALID_SIMPLE_VALUE_TYPE);
+-    }
++    return (MVT::SimpleValueType)(MVT::INVALID_SIMPLE_VALUE_TYPE);
++  }
+ 
+-    static MVT getScalableVectorVT(MVT VT, unsigned NumElements) {
+-#define GET_VT_VECATTR(Ty, Sc, Tup, nElem, ElTy)                             \
+-    if (Sc && VT.SimpleTy == ElTy && NumElements == nElem)                     \
+-      return Ty;
+-#include "llvm/CodeGen/GenVT.inc"
++  static MVT getScalableVectorVT(MVT VT, unsigned NumElements) {
++#define GET_VT_VECATTR(Ty, Sc, Tup, nElem, ElTy)                               \
++  if (Sc && VT.SimpleTy == ElTy && NumElements == nElem)                       \
++    return Ty;
++#include "GenVT.inc"
+ #undef GET_VT_VECATTR
+ 
+-      return (MVT::SimpleValueType)(MVT::INVALID_SIMPLE_VALUE_TYPE);
+-    }
++    return (MVT::SimpleValueType)(MVT::INVALID_SIMPLE_VALUE_TYPE);
++  }
+ 
+-    static MVT getRISCVVectorTupleVT(unsigned Sz, unsigned NFields) {
+-#define GET_VT_ATTR(Ty, n, sz, Any, Int, FP, Vec, Sc, Tup, NF, nElem, EltTy) \
+-    if (Tup && sz == Sz && NF == NFields)                                      \
+-      return Ty;
+-#include "llvm/CodeGen/GenVT.inc"
++  static MVT getRISCVVectorTupleVT(unsigned Sz, unsigned NFields) {
++#define GET_VT_ATTR(Ty, n, sz, Any, Int, FP, Vec, Sc, Tup, NF, nElem, EltTy)   \
++  if (Tup && sz == Sz && NF == NFields)                                        \
++    return Ty;
++#include "GenVT.inc"
+ #undef GET_VT_ATTR
+ 
+-      llvm_unreachable("Invalid RISCV vector tuple type");
+-    }
++    llvm_unreachable("Invalid RISCV vector tuple type");
++  }
+ 
+-    /// Given a RISC-V vector tuple type, return the num_fields.
+-    unsigned getRISCVVectorTupleNumFields() const {
+-      assert(isRISCVVectorTuple() && SimpleTy >= FIRST_VALUETYPE &&
+-             SimpleTy <= LAST_VALUETYPE);
+-      static constexpr uint8_t NFTable[] = {
+-#define GET_VT_ATTR(Ty, N, Sz, Any, Int, FP, Vec, Sc, Tup, NF, NElem, EltTy) \
+-    NF,
+-#include "llvm/CodeGen/GenVT.inc"
++  /// Given a RISC-V vector tuple type, return the num_fields.
++  unsigned getRISCVVectorTupleNumFields() const {
++    assert(isRISCVVectorTuple() && SimpleTy >= FIRST_VALUETYPE &&
++           SimpleTy <= LAST_VALUETYPE);
++    static constexpr uint8_t NFTable[] = {
++#define GET_VT_ATTR(Ty, N, Sz, Any, Int, FP, Vec, Sc, Tup, NF, NElem, EltTy) NF,
++#include "GenVT.inc"
+ #undef GET_VT_ATTR
+-      };
+-      return NFTable[SimpleTy - FIRST_VALUETYPE];
+-    }
+-
+-    static MVT getVectorVT(MVT VT, unsigned NumElements, bool IsScalable) {
+-      if (IsScalable)
+-        return getScalableVectorVT(VT, NumElements);
+-      return getVectorVT(VT, NumElements);
+-    }
++    };
++    return NFTable[SimpleTy - FIRST_VALUETYPE];
++  }
+ 
+-    static MVT getVectorVT(MVT VT, ElementCount EC) {
+-      if (EC.isScalable())
+-        return getScalableVectorVT(VT, EC.getKnownMinValue());
+-      return getVectorVT(VT, EC.getKnownMinValue());
+-    }
++  static MVT getVectorVT(MVT VT, unsigned NumElements, bool IsScalable) {
++    if (IsScalable)
++      return getScalableVectorVT(VT, NumElements);
++    return getVectorVT(VT, NumElements);
++  }
+ 
+-    /// Return the value type corresponding to the specified type.
+-    /// If HandleUnknown is true, unknown types are returned as Other,
+-    /// otherwise they are invalid.
+-    /// NB: This includes pointer types, which require a DataLayout to convert
+-    /// to a concrete value type.
+-    static MVT getVT(Type *Ty, bool HandleUnknown = false);
+-
+-    /// Returns an APFloat semantics tag appropriate for the value type. If this
+-    /// is a vector type, the element semantics are returned.
+-    const fltSemantics &getFltSemantics() const;
+-
+-  public:
+-    /// SimpleValueType Iteration
+-    /// @{
+-    static auto all_valuetypes() {
+-      return enum_seq_inclusive(MVT::FIRST_VALUETYPE, MVT::LAST_VALUETYPE,
+-                                force_iteration_on_noniterable_enum);
+-    }
++  static MVT getVectorVT(MVT VT, ElementCount EC) {
++    if (EC.isScalable())
++      return getScalableVectorVT(VT, EC.getKnownMinValue());
++    return getVectorVT(VT, EC.getKnownMinValue());
++  }
+ 
+-    static auto integer_valuetypes() {
+-      return enum_seq_inclusive(MVT::FIRST_INTEGER_VALUETYPE,
+-                                MVT::LAST_INTEGER_VALUETYPE,
+-                                force_iteration_on_noniterable_enum);
+-    }
++  /// Return the value type corresponding to the specified type.
++  /// If HandleUnknown is true, unknown types are returned as Other,
++  /// otherwise they are invalid.
++  /// NB: This includes pointer types, which require a DataLayout to convert
++  /// to a concrete value type.
++  static MVT getVT(Type *Ty, bool HandleUnknown = false);
++
++  /// Returns an APFloat semantics tag appropriate for the value type. If this
++  /// is a vector type, the element semantics are returned.
++  const fltSemantics &getFltSemantics() const;
++
++public:
++  /// SimpleValueType Iteration
++  /// @{
++  static auto all_valuetypes() {
++    return enum_seq_inclusive(MVT::FIRST_VALUETYPE, MVT::LAST_VALUETYPE,
++                              force_iteration_on_noniterable_enum);
++  }
+ 
+-    static auto fp_valuetypes() {
+-      return enum_seq_inclusive(MVT::FIRST_FP_VALUETYPE, MVT::LAST_FP_VALUETYPE,
+-                                force_iteration_on_noniterable_enum);
+-    }
++  static auto integer_valuetypes() {
++    return enum_seq_inclusive(MVT::FIRST_INTEGER_VALUETYPE,
++                              MVT::LAST_INTEGER_VALUETYPE,
++                              force_iteration_on_noniterable_enum);
++  }
+ 
+-    static auto vector_valuetypes() {
+-      return enum_seq_inclusive(MVT::FIRST_VECTOR_VALUETYPE,
+-                                MVT::LAST_VECTOR_VALUETYPE,
+-                                force_iteration_on_noniterable_enum);
+-    }
++  static auto fp_valuetypes() {
++    return enum_seq_inclusive(MVT::FIRST_FP_VALUETYPE, MVT::LAST_FP_VALUETYPE,
++                              force_iteration_on_noniterable_enum);
++  }
+ 
+-    static auto fixedlen_vector_valuetypes() {
+-      return enum_seq_inclusive(MVT::FIRST_FIXEDLEN_VECTOR_VALUETYPE,
+-                                MVT::LAST_FIXEDLEN_VECTOR_VALUETYPE,
+-                                force_iteration_on_noniterable_enum);
+-    }
++  static auto vector_valuetypes() {
++    return enum_seq_inclusive(MVT::FIRST_VECTOR_VALUETYPE,
++                              MVT::LAST_VECTOR_VALUETYPE,
++                              force_iteration_on_noniterable_enum);
++  }
+ 
+-    static auto scalable_vector_valuetypes() {
+-      return enum_seq_inclusive(MVT::FIRST_SCALABLE_VECTOR_VALUETYPE,
+-                                MVT::LAST_SCALABLE_VECTOR_VALUETYPE,
+-                                force_iteration_on_noniterable_enum);
+-    }
++  static auto fixedlen_vector_valuetypes() {
++    return enum_seq_inclusive(MVT::FIRST_FIXEDLEN_VECTOR_VALUETYPE,
++                              MVT::LAST_FIXEDLEN_VECTOR_VALUETYPE,
++                              force_iteration_on_noniterable_enum);
++  }
+ 
+-    static auto integer_fixedlen_vector_valuetypes() {
+-      return enum_seq_inclusive(MVT::FIRST_INTEGER_FIXEDLEN_VECTOR_VALUETYPE,
+-                                MVT::LAST_INTEGER_FIXEDLEN_VECTOR_VALUETYPE,
+-                                force_iteration_on_noniterable_enum);
+-    }
++  static auto scalable_vector_valuetypes() {
++    return enum_seq_inclusive(MVT::FIRST_SCALABLE_VECTOR_VALUETYPE,
++                              MVT::LAST_SCALABLE_VECTOR_VALUETYPE,
++                              force_iteration_on_noniterable_enum);
++  }
+ 
+-    static auto fp_fixedlen_vector_valuetypes() {
+-      return enum_seq_inclusive(MVT::FIRST_FP_FIXEDLEN_VECTOR_VALUETYPE,
+-                                MVT::LAST_FP_FIXEDLEN_VECTOR_VALUETYPE,
+-                                force_iteration_on_noniterable_enum);
+-    }
++  static auto integer_fixedlen_vector_valuetypes() {
++    return enum_seq_inclusive(MVT::FIRST_INTEGER_FIXEDLEN_VECTOR_VALUETYPE,
++                              MVT::LAST_INTEGER_FIXEDLEN_VECTOR_VALUETYPE,
++                              force_iteration_on_noniterable_enum);
++  }
+ 
+-    static auto integer_scalable_vector_valuetypes() {
+-      return enum_seq_inclusive(MVT::FIRST_INTEGER_SCALABLE_VECTOR_VALUETYPE,
+-                                MVT::LAST_INTEGER_SCALABLE_VECTOR_VALUETYPE,
+-                                force_iteration_on_noniterable_enum);
+-    }
++  static auto fp_fixedlen_vector_valuetypes() {
++    return enum_seq_inclusive(MVT::FIRST_FP_FIXEDLEN_VECTOR_VALUETYPE,
++                              MVT::LAST_FP_FIXEDLEN_VECTOR_VALUETYPE,
++                              force_iteration_on_noniterable_enum);
++  }
+ 
+-    static auto fp_scalable_vector_valuetypes() {
+-      return enum_seq_inclusive(MVT::FIRST_FP_SCALABLE_VECTOR_VALUETYPE,
+-                                MVT::LAST_FP_SCALABLE_VECTOR_VALUETYPE,
+-                                force_iteration_on_noniterable_enum);
+-    }
+-    /// @}
+-  };
++  static auto integer_scalable_vector_valuetypes() {
++    return enum_seq_inclusive(MVT::FIRST_INTEGER_SCALABLE_VECTOR_VALUETYPE,
++                              MVT::LAST_INTEGER_SCALABLE_VECTOR_VALUETYPE,
++                              force_iteration_on_noniterable_enum);
++  }
+ 
+-  inline raw_ostream &operator<<(raw_ostream &OS, const MVT &VT) {
+-    VT.print(OS);
+-    return OS;
++  static auto fp_scalable_vector_valuetypes() {
++    return enum_seq_inclusive(MVT::FIRST_FP_SCALABLE_VECTOR_VALUETYPE,
++                              MVT::LAST_FP_SCALABLE_VECTOR_VALUETYPE,
++                              force_iteration_on_noniterable_enum);
+   }
++  /// @}
++};
++
++inline raw_ostream &operator<<(raw_ostream &OS, const MVT &VT) {
++  VT.print(OS);
++  return OS;
++}
+ 
+ } // end namespace llvm
+ 
 diff --git a/llvm/lib/CMakeLists.txt b/llvm/lib/CMakeLists.txt
-index d0a2bc929438..3ec909d951bb 100644
+index d0a2bc929..3ec909d95 100644
 --- a/llvm/lib/CMakeLists.txt
 +++ b/llvm/lib/CMakeLists.txt
 @@ -24,7 +24,6 @@ add_subdirectory(Analysis)
@@ -7441,8 +8479,172 @@ index d0a2bc929438..3ec909d951bb 100644
  add_subdirectory(XRay)
  if (LLVM_INCLUDE_TESTS)
    add_subdirectory(Testing)
+diff --git a/llvm/lib/CodeGen/ValueTypes.cpp b/llvm/lib/CodeGen/ValueTypes.cpp
+index 2c80eee7c..3e9758ec8 100644
+--- a/llvm/lib/CodeGen/ValueTypes.cpp
++++ b/llvm/lib/CodeGen/ValueTypes.cpp
+@@ -177,19 +177,32 @@ std::string EVT::getEVTString() const {
+     if (isFloatingPoint())
+       return "f" + utostr(getSizeInBits());
+     llvm_unreachable("Invalid EVT!");
+-  case MVT::bf16:      return "bf16";
+-  case MVT::ppcf128:   return "ppcf128";
+-  case MVT::isVoid:    return "isVoid";
+-  case MVT::Other:     return "ch";
+-  case MVT::Glue:      return "glue";
+-  case MVT::x86mmx:    return "x86mmx";
+-  case MVT::x86amx:    return "x86amx";
+-  case MVT::i64x8:     return "i64x8";
+-  case MVT::Metadata:  return "Metadata";
+-  case MVT::Untyped:   return "Untyped";
+-  case MVT::funcref:   return "funcref";
+-  case MVT::exnref:    return "exnref";
+-  case MVT::externref: return "externref";
++  case MVT::bf16:
++    return "bf16";
++  case MVT::ppcf128:
++    return "ppcf128";
++  case MVT::isVoid:
++    return "isVoid";
++  case MVT::Other:
++    return "ch";
++  case MVT::Glue:
++    return "glue";
++  case MVT::x86mmx:
++    return "x86mmx";
++  case MVT::x86amx:
++    return "x86amx";
++  case MVT::i64x8:
++    return "i64x8";
++  case MVT::Metadata:
++    return "Metadata";
++  case MVT::Untyped:
++    return "Untyped";
++  case MVT::funcref:
++    return "funcref";
++  case MVT::exnref:
++    return "exnref";
++  case MVT::externref:
++    return "externref";
+   case MVT::aarch64svcount:
+     return "aarch64svcount";
+   case MVT::spirvbuiltin:
+@@ -223,7 +236,7 @@ Type *EVT::getTypeForEVT(LLVMContext &Context) const {
+   case MVT::funcref: return Type::getWasm_FuncrefTy(Context);
+   case MVT::Metadata: return Type::getMetadataTy(Context);
+ #define GET_VT_EVT(Ty, EVT) case MVT::Ty: return EVT;
+-#include "llvm/CodeGen/GenVT.inc"
++#include "GenVT.inc"
+ #undef GET_VT_EVT
+   }
+   // clang-format on
+@@ -234,20 +247,25 @@ Type *EVT::getTypeForEVT(LLVMContext &Context) const {
+ /// they are invalid.
+ /// NB: This includes pointer types, which require a DataLayout to convert
+ /// to a concrete value type.
+-MVT MVT::getVT(Type *Ty, bool HandleUnknown){
++MVT MVT::getVT(Type *Ty, bool HandleUnknown) {
+   assert(Ty != nullptr && "Invalid type");
+   switch (Ty->getTypeID()) {
+   default:
+-    if (HandleUnknown) return MVT(MVT::Other);
++    if (HandleUnknown)
++      return MVT(MVT::Other);
+     llvm_unreachable("Unknown type!");
+   case Type::VoidTyID:
+     return MVT::isVoid;
+   case Type::IntegerTyID:
+     return getIntegerVT(cast<IntegerType>(Ty)->getBitWidth());
+-  case Type::HalfTyID:      return MVT(MVT::f16);
+-  case Type::BFloatTyID:    return MVT(MVT::bf16);
+-  case Type::FloatTyID:     return MVT(MVT::f32);
+-  case Type::DoubleTyID:    return MVT(MVT::f64);
++  case Type::HalfTyID:
++    return MVT(MVT::f16);
++  case Type::BFloatTyID:
++    return MVT(MVT::bf16);
++  case Type::FloatTyID:
++    return MVT(MVT::f32);
++  case Type::DoubleTyID:
++    return MVT(MVT::f64);
+   case Type::X86_FP80TyID:
+     return MVT(MVT::f80);
+   case Type::TargetExtTyID: {
+@@ -268,15 +286,17 @@ MVT MVT::getVT(Type *Ty, bool HandleUnknown){
+       return MVT(MVT::Other);
+     llvm_unreachable("Unknown target ext type!");
+   }
+-  case Type::X86_AMXTyID:   return MVT(MVT::x86amx);
+-  case Type::FP128TyID:     return MVT(MVT::f128);
+-  case Type::PPC_FP128TyID: return MVT(MVT::ppcf128);
++  case Type::X86_AMXTyID:
++    return MVT(MVT::x86amx);
++  case Type::FP128TyID:
++    return MVT(MVT::f128);
++  case Type::PPC_FP128TyID:
++    return MVT(MVT::ppcf128);
+   case Type::FixedVectorTyID:
+   case Type::ScalableVectorTyID: {
+     VectorType *VTy = cast<VectorType>(Ty);
+-    return getVectorVT(
+-      getVT(VTy->getElementType(), /*HandleUnknown=*/ false),
+-            VTy->getElementCount());
++    return getVectorVT(getVT(VTy->getElementType(), /*HandleUnknown=*/false),
++                       VTy->getElementCount());
+   }
+   }
+ }
+@@ -286,7 +306,7 @@ MVT MVT::getVT(Type *Ty, bool HandleUnknown){
+ /// they are invalid.
+ /// NB: This includes pointer types, which require a DataLayout to convert
+ /// to a concrete value type.
+-EVT EVT::getEVT(Type *Ty, bool HandleUnknown){
++EVT EVT::getEVT(Type *Ty, bool HandleUnknown) {
+   switch (Ty->getTypeID()) {
+   default:
+     return MVT::getVT(Ty, HandleUnknown);
+@@ -298,7 +318,7 @@ EVT EVT::getEVT(Type *Ty, bool HandleUnknown){
+   case Type::ScalableVectorTyID: {
+     VectorType *VTy = cast<VectorType>(Ty);
+     return getVectorVT(Ty->getContext(),
+-                       getEVT(VTy->getElementType(), /*HandleUnknown=*/ false),
++                       getEVT(VTy->getElementType(), /*HandleUnknown=*/false),
+                        VTy->getElementCount());
+   }
+   }
+@@ -306,14 +326,22 @@ EVT EVT::getEVT(Type *Ty, bool HandleUnknown){
+ 
+ const fltSemantics &MVT::getFltSemantics() const {
+   switch (getScalarType().SimpleTy) {
+-  default: llvm_unreachable("Unknown FP format");
+-  case MVT::f16:     return APFloat::IEEEhalf();
+-  case MVT::bf16:    return APFloat::BFloat();
+-  case MVT::f32:     return APFloat::IEEEsingle();
+-  case MVT::f64:     return APFloat::IEEEdouble();
+-  case MVT::f80:     return APFloat::x87DoubleExtended();
+-  case MVT::f128:    return APFloat::IEEEquad();
+-  case MVT::ppcf128: return APFloat::PPCDoubleDouble();
++  default:
++    llvm_unreachable("Unknown FP format");
++  case MVT::f16:
++    return APFloat::IEEEhalf();
++  case MVT::bf16:
++    return APFloat::BFloat();
++  case MVT::f32:
++    return APFloat::IEEEsingle();
++  case MVT::f64:
++    return APFloat::IEEEdouble();
++  case MVT::f80:
++    return APFloat::x87DoubleExtended();
++  case MVT::f128:
++    return APFloat::IEEEquad();
++  case MVT::ppcf128:
++    return APFloat::PPCDoubleDouble();
+   }
+ }
+ 
 diff --git a/llvm/lib/Support/BLAKE3/CMakeLists.txt b/llvm/lib/Support/BLAKE3/CMakeLists.txt
-index 99cb78881ec4..d5916bd587dc 100644
+index 99cb78881..d5916bd58 100644
 --- a/llvm/lib/Support/BLAKE3/CMakeLists.txt
 +++ b/llvm/lib/Support/BLAKE3/CMakeLists.txt
 @@ -82,6 +82,6 @@ else()
@@ -7454,7 +8656,7 @@ index 99cb78881ec4..d5916bd587dc 100644
  set_target_properties(LLVMSupportBlake3 PROPERTIES FOLDER "LLVM/Libraries")
  llvm_update_compile_flags(LLVMSupportBlake3)
 diff --git a/llvm/projects/CMakeLists.txt b/llvm/projects/CMakeLists.txt
-index 08f2fa522420..8b3e38b187e2 100644
+index 08f2fa522..8b3e38b18 100644
 --- a/llvm/projects/CMakeLists.txt
 +++ b/llvm/projects/CMakeLists.txt
 @@ -41,6 +41,7 @@ endif()
@@ -7466,7 +8668,7 @@ index 08f2fa522420..8b3e38b187e2 100644
  if(LLVM_INCLUDE_TESTS)
    add_llvm_external_project(cross-project-tests)
 diff --git a/llvm/utils/TableGen/Basic/CMakeLists.txt b/llvm/utils/TableGen/Basic/CMakeLists.txt
-index b058fba78eb0..a7541d4ee972 100644
+index b058fba78..a7541d4ee 100644
 --- a/llvm/utils/TableGen/Basic/CMakeLists.txt
 +++ b/llvm/utils/TableGen/Basic/CMakeLists.txt
 @@ -8,7 +8,7 @@ set(LLVM_LINK_COMPONENTS
@@ -7479,7 +8681,7 @@ index b058fba78eb0..a7541d4ee972 100644
    Attributes.cpp
    CodeGenIntrinsics.cpp
 diff --git a/llvm/utils/TableGen/CMakeLists.txt b/llvm/utils/TableGen/CMakeLists.txt
-index 67291214c14e..2d4f664897e9 100644
+index 67291214c..2d4f66489 100644
 --- a/llvm/utils/TableGen/CMakeLists.txt
 +++ b/llvm/utils/TableGen/CMakeLists.txt
 @@ -18,7 +18,15 @@ set(LLVM_LINK_COMPONENTS Support)
@@ -7545,7 +8747,7 @@ index 67291214c14e..2d4f664897e9 100644
    intrinsics_gen # via llvm-min-tablegen
    )
 diff --git a/llvm/utils/TableGen/Common/CMakeLists.txt b/llvm/utils/TableGen/Common/CMakeLists.txt
-index 7342156980f3..604627587a06 100644
+index 734215698..604627587 100644
 --- a/llvm/utils/TableGen/Common/CMakeLists.txt
 +++ b/llvm/utils/TableGen/Common/CMakeLists.txt
 @@ -10,7 +10,7 @@ set(LLVM_LINK_COMPONENTS
@@ -7558,7 +8760,7 @@ index 7342156980f3..604627587a06 100644
    GlobalISel/CombinerUtils.cpp
    GlobalISel/CXXPredicates.cpp
 diff --git a/llvm/utils/TableGen/Common/CodeGenDAGPatterns.h b/llvm/utils/TableGen/Common/CodeGenDAGPatterns.h
-index 6a6f1a6ac437..ecdfd189aa43 100644
+index 6a6f1a6ac..ecdfd189a 100644
 --- a/llvm/utils/TableGen/Common/CodeGenDAGPatterns.h
 +++ b/llvm/utils/TableGen/Common/CodeGenDAGPatterns.h
 @@ -14,8 +14,8 @@
@@ -7572,8 +8774,21 @@ index 6a6f1a6ac437..ecdfd189aa43 100644
  #include "CodeGenTarget.h"
  #include "llvm/ADT/IntrusiveRefCntPtr.h"
  #include "llvm/ADT/MapVector.h"
+diff --git a/llvm/utils/TableGen/Common/CodeGenTarget.cpp b/llvm/utils/TableGen/Common/CodeGenTarget.cpp
+index 96829a185..c60f8c198 100644
+--- a/llvm/utils/TableGen/Common/CodeGenTarget.cpp
++++ b/llvm/utils/TableGen/Common/CodeGenTarget.cpp
+@@ -52,7 +52,7 @@ StringRef llvm::getEnumName(MVT::SimpleValueType T) {
+   switch (T) {
+ #define GET_VT_ATTR(Ty, N, Sz, Any, Int, FP, Vec, Sc, Tup, NF, NElem, EltTy)   \
+   case MVT::Ty: return "MVT::" # Ty;
+-#include "llvm/CodeGen/GenVT.inc"
++#include "GenVT.inc"
+   default: llvm_unreachable("ILLEGAL VALUE TYPE!");
+   }
+   // clang-format on
 diff --git a/llvm/utils/TableGen/Common/CodeGenTarget.h b/llvm/utils/TableGen/Common/CodeGenTarget.h
-index 682cc4e2bc9c..2b9c7f772bf8 100644
+index 682cc4e2b..2b9c7f772 100644
 --- a/llvm/utils/TableGen/Common/CodeGenTarget.h
 +++ b/llvm/utils/TableGen/Common/CodeGenTarget.h
 @@ -16,8 +16,8 @@
@@ -7588,7 +8803,7 @@ index 682cc4e2bc9c..2b9c7f772bf8 100644
  #include "CodeGenInstruction.h"
  #include "InfoByHwMode.h"
 diff --git a/llvm/utils/TableGen/Common/GlobalISel/GlobalISelMatchTable.cpp b/llvm/utils/TableGen/Common/GlobalISel/GlobalISelMatchTable.cpp
-index 8564bf8d2d91..fd54fb606b07 100644
+index 8564bf8d2..fd54fb606 100644
 --- a/llvm/utils/TableGen/Common/GlobalISel/GlobalISelMatchTable.cpp
 +++ b/llvm/utils/TableGen/Common/GlobalISel/GlobalISelMatchTable.cpp
 @@ -7,8 +7,8 @@
@@ -7603,7 +8818,7 @@ index 8564bf8d2d91..fd54fb606b07 100644
  #include "llvm/Support/Debug.h"
  #include "llvm/Support/LEB128.h"
 diff --git a/llvm/utils/TableGen/Common/GlobalISel/GlobalISelMatchTable.h b/llvm/utils/TableGen/Common/GlobalISel/GlobalISelMatchTable.h
-index 77c8bc290faa..b786c82819e5 100644
+index 77c8bc290..b786c8281 100644
 --- a/llvm/utils/TableGen/Common/GlobalISel/GlobalISelMatchTable.h
 +++ b/llvm/utils/TableGen/Common/GlobalISel/GlobalISelMatchTable.h
 @@ -16,7 +16,7 @@
@@ -7616,7 +8831,7 @@ index 77c8bc290faa..b786c82819e5 100644
  #include "llvm/ADT/DenseMap.h"
  #include "llvm/ADT/MapVector.h"
 diff --git a/llvm/utils/TableGen/Common/GlobalISel/GlobalISelMatchTableExecutorEmitter.h b/llvm/utils/TableGen/Common/GlobalISel/GlobalISelMatchTableExecutorEmitter.h
-index 862f1e83c169..33ee9171b54a 100644
+index 862f1e83c..33ee9171b 100644
 --- a/llvm/utils/TableGen/Common/GlobalISel/GlobalISelMatchTableExecutorEmitter.h
 +++ b/llvm/utils/TableGen/Common/GlobalISel/GlobalISelMatchTableExecutorEmitter.h
 @@ -15,7 +15,7 @@
@@ -7629,7 +8844,7 @@ index 862f1e83c169..33ee9171b54a 100644
  #include "llvm/ADT/StringRef.h"
  #include "llvm/ADT/Twine.h"
 diff --git a/llvm/utils/TableGen/Common/GlobalISel/PatternParser.cpp b/llvm/utils/TableGen/Common/GlobalISel/PatternParser.cpp
-index cb423ce142fb..602846c2059c 100644
+index cb423ce14..602846c20 100644
 --- a/llvm/utils/TableGen/Common/GlobalISel/PatternParser.cpp
 +++ b/llvm/utils/TableGen/Common/GlobalISel/PatternParser.cpp
 @@ -6,11 +6,11 @@
@@ -7650,7 +8865,7 @@ index cb423ce142fb..602846c2059c 100644
  #include "llvm/Support/PrettyStackTrace.h"
  #include "llvm/Support/SaveAndRestore.h"
 diff --git a/llvm/utils/TableGen/Common/GlobalISel/Patterns.cpp b/llvm/utils/TableGen/Common/GlobalISel/Patterns.cpp
-index 0b84a9bbe634..342c605ba387 100644
+index 0b84a9bbe..342c605ba 100644
 --- a/llvm/utils/TableGen/Common/GlobalISel/Patterns.cpp
 +++ b/llvm/utils/TableGen/Common/GlobalISel/Patterns.cpp
 @@ -7,11 +7,11 @@
@@ -7668,7 +8883,7 @@ index 0b84a9bbe634..342c605ba387 100644
  #include "llvm/Support/Debug.h"
  #include "llvm/Support/raw_ostream.h"
 diff --git a/llvm/utils/TableGen/GlobalISelCombinerEmitter.cpp b/llvm/utils/TableGen/GlobalISelCombinerEmitter.cpp
-index 770494405810..898d03882879 100644
+index 770494405..898d03882 100644
 --- a/llvm/utils/TableGen/GlobalISelCombinerEmitter.cpp
 +++ b/llvm/utils/TableGen/GlobalISelCombinerEmitter.cpp
 @@ -2649,15 +2649,15 @@ GICombinerEmitter::buildMatchTable(MutableArrayRef<RuleMatcher> Rules) {
@@ -7697,10 +8912,10 @@ index 770494405810..898d03882879 100644
    for (Matcher *Rule : InputRules)
      Rule->optimize();
 
-diff --git a/patched b/patched
+diff --git a/CMakeLists.txt b/CMakeLists.txt
 new file mode 100644
 index 000000000000..27ba77ddaf61
 --- /dev/null
-+++ b/patched
++++ b/CMakeLists.txt
 @@ -0,0 +1 @@
-+yup
++add_subdirectory(llvm)

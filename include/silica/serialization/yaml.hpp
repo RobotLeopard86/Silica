@@ -50,4 +50,4 @@ namespace silica::serialization {
 		static Expected<None> deserialize(Var var, std::istream& stream);
 	};
 
-}//namespace silica::serialization
+}

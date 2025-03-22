@@ -1,6 +1,6 @@
 # Simple dependencies
 cli11_dep = subproject('cli11', required: true, default_options: {
-	'use_precompiled': true,
+	'precompiled': true,
 	'tests': false
 }).get_variable('CLI11_dep')
 inja_dep = subproject('inja', required: true, default_options: {
@@ -14,7 +14,6 @@ bt = get_option('buildtype')
 if bt.contains('debug')
 	if bt == 'debug'
 		cmake_build_type = 'Debug'
-		cmake_msvc_lib += 'Debug'
 	else
 		cmake_build_type = 'RelWithDebInfo'
 	endif
@@ -66,10 +65,10 @@ llvm_opts.add_cmake_defines({
 	'LLVM_ENABLE_PROJECTS': 'clang',
 	'CMAKE_POSITION_INDEPENDENT_CODE': 'ON',
 	'CMAKE_POLICY_DEFAULT_CMP0156': 'NEW',
-	'CMAKE_BUILD_TYPE': cmake_build_type,
-	'CMAKE_MSVC_RUNTIME_LIBRARY': cmake_msvc_lib,
+	'CMAKE_BUILD_TYPE': cmake_build_type
 })
-llvm = cmake.subproject('er-cpp', options: llvm_opts, required: true)
+llvm_opts.append_compile_args('cpp', ['-I' + meson.current_source_dir(), '-Wno-unused-command-line-argument'])
+llvm = cmake.subproject('llvm', options: llvm_opts, required: true)
 
 # LLVM/Clang dependencies
 clang_ast_dep = llvm.dependency('clangAST')
@@ -77,8 +76,13 @@ clang_ast_matchers_dep = llvm.dependency('clangASTMatchers')
 clang_frontend_dep = llvm.dependency('clangFrontend')
 clang_lex_dep = llvm.dependency('clangLex')
 clang_tooling_dep = llvm.dependency('clangTooling')
+llvm_blake3_dep = llvm.dependency('LLVMSupportBlake3')
 
-# Define includes
-gen_includes = include_directories('include')
+# Define sources
+generator_sources = [
+	'main.cpp'
+]
 
-# Note: Parser is being updated, so for now the rest of the parser stuff will not be implemented
+# Executable
+silica_exe = executable('silica', generator_sources, dependencies: [
+	cli11_dep, inja_dep, clang_ast_dep, clang_ast_matchers_dep, clang_frontend_dep, clang_lex_dep, clang_tooling_dep, llvm_blake3_dep], pie: true)

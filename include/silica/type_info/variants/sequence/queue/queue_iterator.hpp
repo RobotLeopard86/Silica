@@ -18,4 +18,4 @@ namespace silica {
 		friend struct StdQueue;
 	};
 
-}//namespace silica
+}

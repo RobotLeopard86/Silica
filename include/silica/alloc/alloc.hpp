@@ -8,4 +8,4 @@ namespace silica {
 
 	static inline palloc_t default_alloc;
 
-}//namespace silica
+}

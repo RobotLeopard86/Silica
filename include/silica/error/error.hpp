@@ -58,4 +58,4 @@ namespace silica {
 		TightString _data;
 	};
 
-}//namespace silica
+}

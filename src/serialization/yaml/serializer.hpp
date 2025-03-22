@@ -237,4 +237,4 @@ namespace silica {
 		writer->step_back(1);
 	}
 
-}//namespace silica
+}

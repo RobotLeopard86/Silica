@@ -26,4 +26,4 @@ namespace silica {
 		return static_cast<Access>(static_cast<uint8_t>(lhs) & static_cast<uint8_t>(rhs));
 	}
 
-}//namespace silica
+}

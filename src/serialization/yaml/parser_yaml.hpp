@@ -57,6 +57,6 @@ namespace silica {
 		std::unordered_map<std::string, Box> _anchors;
 	};
 
-}//namespace silica
+}
 
 #undef __retry

@@ -78,7 +78,7 @@ Expected<None> ParserYaml::parse(TypeInfo* info) {
 				auto nested_info = reflection::reflect(p.var());
 				return parse(&nested_info);
 			},
-			[this, info](Var var) -> Expected<None> {
+			[this](Var var) -> Expected<None> {
 				auto nested_info = reflection::reflect(var);
 				return parse(&nested_info);
 			});

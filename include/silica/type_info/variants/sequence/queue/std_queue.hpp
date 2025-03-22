@@ -109,4 +109,4 @@ namespace silica {
 		bool _is_const;
 	};
 
-}//namespace silica
+}

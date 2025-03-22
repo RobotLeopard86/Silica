@@ -23,4 +23,4 @@ namespace silica {
 		virtual Expected<None> remove(Var key) = 0;
 	};
 
-}//namespace silica
+}

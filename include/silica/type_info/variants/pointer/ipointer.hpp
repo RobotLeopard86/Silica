@@ -15,4 +15,4 @@ namespace silica {
 		virtual Expected<Var> get_nested() const = 0;
 	};
 
-}//namespace silica
+}

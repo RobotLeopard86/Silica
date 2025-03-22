@@ -18,7 +18,7 @@
 #ifndef NDEBUG
 namespace silica::reflection {
 	std::string_view type_name(uint32_t id);
-}//namespace silica::reflection
+}
 #endif
 
 namespace silica {
@@ -110,4 +110,4 @@ namespace silica {
 		}
 	};
 
-}//namespace silica
+}

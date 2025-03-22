@@ -40,4 +40,4 @@ namespace silica::reflection {
 
 	Expected<None> copy(Var to, Var from);
 
-}//namespace silica::reflection
+}

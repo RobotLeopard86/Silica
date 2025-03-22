@@ -44,7 +44,7 @@ Expected<None> ParserJson::parse(TypeInfo* info, char token) {
 				auto nested_info = reflection::reflect(p.var());
 				return parse(&nested_info, token);
 			},
-			[this, info, token](Var var) -> Expected<None> {
+			[this, token](Var var) -> Expected<None> {
 				auto nested_info = reflection::reflect(var);
 				return parse(&nested_info, token);
 			});

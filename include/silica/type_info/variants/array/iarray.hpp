@@ -24,4 +24,4 @@ namespace silica {
 		virtual Expected<None> fill(Var filler) = 0;
 	};
 
-}//namespace silica
+}

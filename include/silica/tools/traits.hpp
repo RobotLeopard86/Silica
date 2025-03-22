@@ -121,4 +121,4 @@ namespace silica {
 	template<typename T>
 	inline constexpr bool is_class_v = is_class<T>::value;//NOLINT std like name
 
-}//namespace silica
+}

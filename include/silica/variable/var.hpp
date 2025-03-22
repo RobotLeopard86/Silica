@@ -63,4 +63,4 @@ namespace silica {
 		static Error error(TypeId type, TypeId desired_type);
 	};
 
-}//namespace silica
+}

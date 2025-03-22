@@ -12,4 +12,4 @@ namespace silica {
 		virtual bool contains(Var value) = 0;
 	};
 
-}//namespace silica
+}

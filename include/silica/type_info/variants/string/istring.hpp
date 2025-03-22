@@ -17,4 +17,4 @@ namespace silica {
 		virtual Var var() const = 0;
 	};
 
-}//namespace silica
+}

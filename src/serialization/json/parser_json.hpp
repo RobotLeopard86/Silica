@@ -41,4 +41,4 @@ namespace silica {
 		char _token;
 	};
 
-}//namespace silica
+}

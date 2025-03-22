@@ -14,4 +14,4 @@ namespace silica {
 		virtual Expected<None> parse(std::string_view name) = 0;
 	};
 
-}//namespace silica
+}

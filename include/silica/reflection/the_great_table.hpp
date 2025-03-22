@@ -35,4 +35,4 @@ namespace silica {
 		}
 	};
 
-}//namespace silica
+}

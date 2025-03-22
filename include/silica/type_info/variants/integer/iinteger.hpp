@@ -22,4 +22,4 @@ namespace silica {
 		virtual Expected<None> set_unsigned(uint64_t value) = 0;
 	};
 
-}//namespace silica
+}

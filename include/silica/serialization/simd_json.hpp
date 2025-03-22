@@ -27,4 +27,4 @@ namespace silica::serialization {
 
 #endif
 
-}//namespace silica::serialization
+}

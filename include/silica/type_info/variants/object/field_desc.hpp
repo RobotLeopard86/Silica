@@ -77,4 +77,4 @@ namespace silica {
 			return reinterpret_cast<std::ptrdiff_t>(&(reinterpret_cast<ClassT const*>(NULL)->*ptr));
 		}
 	};
-}//namespace silica
+}

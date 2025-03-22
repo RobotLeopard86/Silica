@@ -12,4 +12,4 @@ namespace silica {
 	template<typename... Ts>
 	Overloaded(Ts...) -> Overloaded<Ts...>;
 
-}//namespace silica
+}

@@ -40,4 +40,4 @@ namespace silica {
 		size_t _i;
 	};
 
-}//namespace silica
+}

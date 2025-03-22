@@ -19,4 +19,4 @@ namespace silica {
 		virtual Expected<None> set(double value) = 0;
 	};
 
-}//namespace silica
+}

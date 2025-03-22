@@ -11,4 +11,4 @@ namespace silica {
 		virtual bool empty() const = 0;
 	};
 
-}//namespace silica
+}

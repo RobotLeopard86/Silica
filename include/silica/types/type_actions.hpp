@@ -6,4 +6,4 @@ namespace silica {
 	template<typename T, typename = void>
 	struct TypeActions {};
 
-}//namespace silica
+}

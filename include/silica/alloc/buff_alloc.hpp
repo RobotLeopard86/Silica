@@ -41,4 +41,4 @@ namespace silica {
 		const size_t kSize;
 	};
 
-}//namespace silica
+}

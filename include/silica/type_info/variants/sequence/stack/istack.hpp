@@ -13,4 +13,4 @@ namespace silica {
 		virtual Expected<Var> top() = 0;
 	};
 
-}//namespace silica
+}

@@ -60,4 +60,4 @@ namespace silica {
 		const ConstexprMap<T, size_v>& _all_constants;
 	};
 
-}//namespace silica
+}

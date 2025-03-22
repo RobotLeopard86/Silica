@@ -8,8 +8,8 @@
 namespace clang {
 	namespace tooling {
 		class CompilationDatabase;
-	}//namespace tooling
-}//namespace clang
+	}
+}
 
 class ParserCpp {
   public:
