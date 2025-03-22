@@ -1,0 +1,1 @@
+option('generator', type: 'boolean', value: false, description: 'Whether to build the generator in addition to the Silica library. Enabling the generator can significantly increase build times.')

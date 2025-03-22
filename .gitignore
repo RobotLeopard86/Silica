@@ -20,3 +20,6 @@ subprojects/*
 x64
 *.vcxproj*
 *.sln
+
+# Don't send the local stuff directory
+.local
