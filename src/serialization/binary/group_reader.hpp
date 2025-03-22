@@ -13,7 +13,7 @@
 
 #include "../readers/ireader.h"
 
-namespace er {
+namespace silica {
 
 	struct GroupReader {
 		GroupReader(const GroupReader& other) = delete;
@@ -112,4 +112,4 @@ namespace er {
 		}
 	};
 
-}//namespace er
+}//namespace silica

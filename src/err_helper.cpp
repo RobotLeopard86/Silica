@@ -5,8 +5,8 @@
 #include "silica/tools/format.h"
 #include "silica/types/all_types.h"
 
-using namespace er;
-using namespace er::sequence;
+using namespace silica;
+using namespace silica::sequence;
 
 Error ErrHelper::error(std::string_view message, TypeId type, TypeId nested_type) {
 	return Error(format(message,	//

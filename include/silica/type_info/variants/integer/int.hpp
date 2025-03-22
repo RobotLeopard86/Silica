@@ -4,11 +4,11 @@
 #include <cstring>
 #include <type_traits>
 
-#include "silica/reflection/type_name.h"
-#include "silica/tools/format.h"
-#include "iinteger.h"
+#include "silica/reflection/type_name.hpp"
+#include "silica/tools/format.hpp"
+#include "iinteger.hpp"
 
-namespace er {
+namespace silica {
 
 	template<typename T>
 	struct Int : IInteger {
@@ -89,4 +89,4 @@ namespace er {
 		bool _is_const;
 	};
 
-}//namespace er
+}//namespace silica

@@ -6,7 +6,7 @@
 #include "silica/reflection/reflection.h"
 #include "silica/types/all_types.h"
 
-using namespace er;
+using namespace silica;
 
 Box::Box(TypeId id, palloc_t* alloc)
   : _alloc(alloc) {

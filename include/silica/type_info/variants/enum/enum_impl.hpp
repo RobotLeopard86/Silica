@@ -1,10 +1,10 @@
 #pragma once
 
-#include "silica/constexpr_map.h"
-#include "silica/reflection/type_name.h"
-#include "ienum.h"
+#include "silica/constexpr_map.hpp"
+#include "silica/reflection/type_name.hpp"
+#include "ienum.hpp"
 
-namespace er {
+namespace silica {
 
 	template<typename T, size_t size_v>
 	struct EnumImpl final : public IEnum {
@@ -60,4 +60,4 @@ namespace er {
 		const ConstexprMap<T, size_v>& _all_constants;
 	};
 
-}//namespace er
+}//namespace silica

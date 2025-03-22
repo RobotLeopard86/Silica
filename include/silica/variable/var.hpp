@@ -2,10 +2,10 @@
 
 #include <type_traits>
 
-#include "silica/expected.h"
-#include "silica/type_id.h"
+#include "silica/expected.hpp"
+#include "silica/type_id.hpp"
 
-namespace er {
+namespace silica {
 
 	///The abstraction from type and const modifier
 	///all types represented like a pointer + type id + const flag
@@ -63,4 +63,4 @@ namespace er {
 		static Error error(TypeId type, TypeId desired_type);
 	};
 
-}//namespace er
+}//namespace silica

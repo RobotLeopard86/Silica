@@ -2,7 +2,7 @@
 
 #include <cstddef>
 
-namespace er {
+namespace silica {
 
 	template<typename T, typename... Args>
 	struct Sizeof {
@@ -18,4 +18,4 @@ namespace er {
 		}
 	};
 
-}//namespace er
+}//namespace silica

@@ -2,10 +2,10 @@
 
 #include <limits>
 
-#include "silica/reflection/type_name.h"
-#include "ifloating.h"
+#include "silica/reflection/type_name.hpp"
+#include "ifloating.hpp"
 
-namespace er {
+namespace silica {
 
 	template<typename T>
 	struct Float : IFloating {
@@ -61,4 +61,4 @@ namespace er {
 		bool _is_const;
 	};
 
-}//namespace er
+}//namespace silica

@@ -8,7 +8,7 @@
 #include "silica/types/all_types.h"
 #include "sprint.h"
 
-using namespace er;
+using namespace silica;
 
 TypeInfo reflection::reflect(Var variable) {
 	return TheGreatTable::data()[variable.type().number()].reflect(const_cast<void*>(variable.raw()),

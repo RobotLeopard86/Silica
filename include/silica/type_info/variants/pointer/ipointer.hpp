@@ -1,8 +1,8 @@
 #pragma once
 
-#include "silica/variable/var.h"
+#include "silica/variable/var.hpp"
 
-namespace er {
+namespace silica {
 
 	struct IPointer {
 		virtual ~IPointer() = default;
@@ -15,4 +15,4 @@ namespace er {
 		virtual Expected<Var> get_nested() const = 0;
 	};
 
-}//namespace er
+}//namespace silica

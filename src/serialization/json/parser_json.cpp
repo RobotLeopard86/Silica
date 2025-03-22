@@ -16,7 +16,7 @@
 #include "silica/types/all_types.h"
 #include "silica/variable/box.h"
 
-using namespace er;
+using namespace silica;
 
 ParserJson::ParserJson(const char* input, size_t input_size)//
   : LexerJson(input, input_size) {

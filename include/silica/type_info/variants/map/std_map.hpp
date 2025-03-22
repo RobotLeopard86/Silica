@@ -2,10 +2,10 @@
 
 #include <map>
 
-#include "silica/reflection/type_name.h"
-#include "imap.h"
+#include "silica/reflection/type_name.hpp"
+#include "imap.hpp"
 
-namespace er {
+namespace silica {
 
 	template<typename KeyT, typename ValueT>
 	struct StdMap final : public IMap {
@@ -119,4 +119,4 @@ namespace er {
 		bool _is_const;
 	};
 
-}//namespace er
+}//namespace silica

@@ -6,7 +6,7 @@
 
 #include "ireader.h"
 
-namespace er {
+namespace silica {
 	struct VectorReader final : IReader {
 		VectorReader() = delete;
 
@@ -32,4 +32,4 @@ namespace er {
 		mutable size_t _i;
 	};
 
-}//namespace er
+}//namespace silica

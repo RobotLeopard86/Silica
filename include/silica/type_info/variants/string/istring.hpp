@@ -2,10 +2,10 @@
 
 #include <string_view>
 
-#include "silica/expected.h"
-#include "silica/variable/var.h"
+#include "silica/expected.hpp"
+#include "silica/variable/var.hpp"
 
-namespace er {
+namespace silica {
 
 	struct IString {
 		virtual ~IString() = default;
@@ -17,4 +17,4 @@ namespace er {
 		virtual Var var() const = 0;
 	};
 
-}//namespace er
+}//namespace silica

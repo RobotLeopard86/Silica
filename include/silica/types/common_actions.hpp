@@ -2,10 +2,10 @@
 
 #include <cstddef>
 
-#include "silica/reflection/the_great_table.h"
-#include "silica/tools/names.h"
+#include "silica/reflection/the_great_table.hpp"
+#include "silica/tools/names.hpp"
 
-namespace er {
+namespace silica {
 
 	template<typename T>
 	struct CommonActions {
@@ -38,4 +38,4 @@ namespace er {
 		}
 	};
 
-}//namespace er
+}//namespace silica

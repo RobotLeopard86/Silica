@@ -4,9 +4,9 @@
 #include <array>
 #include <cstdint>
 
-#include "alloc.h"
+#include "alloc.hpp"
 
-namespace er {
+namespace silica {
 
 	struct BuffAlloc final : public palloc_t {
 		BuffAlloc()
@@ -41,4 +41,4 @@ namespace er {
 		const size_t kSize;
 	};
 
-}//namespace er
+}//namespace silica

@@ -5,7 +5,7 @@
 
 #include "iwriter.h"
 
-namespace er {
+namespace silica {
 
 	struct StreamWriter final : IWriter {
 		StreamWriter() = delete;
@@ -36,4 +36,4 @@ namespace er {
 		std::ostream& _stream;
 	};
 
-}//namespace er
+}//namespace silica

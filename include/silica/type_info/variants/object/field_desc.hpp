@@ -3,12 +3,12 @@
 #include <cstdint>
 #include <type_traits>
 
-#include "access.h"
-#include "silica/tools/traits.h"
-#include "silica/type_id.h"
-#include "silica/variable/var.h"
+#include "access.hpp"
+#include "silica/tools/traits.hpp"
+#include "silica/type_id.hpp"
+#include "silica/variable/var.hpp"
 
-namespace er {
+namespace silica {
 
 	struct FieldDesc {
 
@@ -77,4 +77,4 @@ namespace er {
 			return reinterpret_cast<std::ptrdiff_t>(&(reinterpret_cast<ClassT const*>(NULL)->*ptr));
 		}
 	};
-}//namespace er
+}//namespace silica

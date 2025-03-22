@@ -1,11 +1,11 @@
 #pragma once
 
-#include "silica/tools/sizeof.h"
-#include "ipointer.h"
-#include "std_shared_ptr.h"
-#include "std_unique_ptr.h"
+#include "silica/tools/sizeof.hpp"
+#include "ipointer.hpp"
+#include "std_shared_ptr.hpp"
+#include "std_unique_ptr.hpp"
 
-namespace er {
+namespace silica {
 
 	struct Pointer {
 		template<typename T>
@@ -54,4 +54,4 @@ namespace er {
 		}
 	};
 
-}//namespace er
+}//namespace silica

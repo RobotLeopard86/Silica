@@ -1,8 +1,8 @@
 #pragma once
 
-#include "tight_string.h"
+#include "tight_string.hpp"
 
-namespace er {
+namespace silica {
 
 	struct Error {
 		explicit Error(const char* message)
@@ -58,4 +58,4 @@ namespace er {
 		TightString _data;
 	};
 
-}//namespace er
+}//namespace silica

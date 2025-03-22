@@ -5,7 +5,7 @@
 #include "silica/types/common_actions.h"
 #include "silica/types/type_actions.h"
 
-namespace er {
+namespace silica {
 
 template <>
 struct TypeActions<{{name}}> {
@@ -68,6 +68,6 @@ TypeId TypeId::get({{name}}* /*unused*/) {
   return id;
 }
 
-}  // namespace er
+}  // namespace silica
 
 // clang-format on

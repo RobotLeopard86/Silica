@@ -4,9 +4,9 @@
 #include <map>
 #include <string_view>
 
-#include "method_info.h"
+#include "method_info.hpp"
 
-namespace er {
+namespace silica {
 
 	///Skip iterator for methods collection, steps over items with unwanted properties
 	class MethodIterator {
@@ -71,4 +71,4 @@ namespace er {
 		}
 	};
 
-}//namespace er
+}//namespace silica

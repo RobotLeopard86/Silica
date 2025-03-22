@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../isequence.h"
+#include "../isequence.hpp"
 
-namespace er {
+namespace silica {
 
 	struct IStack : public ISequence {
 		~IStack() override = default;
@@ -13,4 +13,4 @@ namespace er {
 		virtual Expected<Var> top() = 0;
 	};
 
-}//namespace er
+}//namespace silica

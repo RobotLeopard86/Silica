@@ -4,14 +4,14 @@
 #include <string_view>
 #include <vector>
 
-#include "format.h"
-#include "traits.h"
+#include "format.hpp"
+#include "traits.hpp"
 
 #ifdef __GNUG__
 #include <cxxabi.h>
 #endif
 
-namespace er {
+namespace silica {
 
 	template<typename T>
 	struct Names {
@@ -127,4 +127,4 @@ namespace er {
 		}
 	};
 
-}//namespace er
+}//namespace silica

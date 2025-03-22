@@ -4,11 +4,11 @@
 #include <cstdint>
 #include <type_traits>
 
-#include "silica/error/error.h"
-#include "silica/type_id.h"
-#include "method_desc.h"
+#include "silica/error/error.hpp"
+#include "silica/type_id.hpp"
+#include "method_desc.hpp"
 
-namespace er {
+namespace silica {
 
 	class MethodInfo {
 	  public:
@@ -95,4 +95,4 @@ namespace er {
 		}
 	};
 
-}//namespace er
+}//namespace silica

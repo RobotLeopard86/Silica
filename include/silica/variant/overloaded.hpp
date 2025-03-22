@@ -1,6 +1,6 @@
 #pragma once
 
-namespace er {
+namespace silica {
 
 	//a little helper for std::variant
 	template<typename... Ts>
@@ -12,4 +12,4 @@ namespace er {
 	template<typename... Ts>
 	Overloaded(Ts...) -> Overloaded<Ts...>;
 
-}//namespace er
+}//namespace silica

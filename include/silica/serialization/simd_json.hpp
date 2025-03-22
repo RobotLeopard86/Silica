@@ -2,10 +2,10 @@
 
 #include <istream>
 
-#include "silica/expected.h"
-#include "silica/variable/var.h"
+#include "silica/expected.hpp"
+#include "silica/variable/var.hpp"
 
-namespace er::serialization {
+namespace silica::serialization {
 
 #ifdef USE_SIMD_JSON
 
@@ -27,4 +27,4 @@ namespace er::serialization {
 
 #endif
 
-}//namespace er::serialization
+}//namespace silica::serialization

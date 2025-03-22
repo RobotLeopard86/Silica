@@ -6,7 +6,7 @@
 #include "silica/tools/stringify.h"
 #include "silica/type_info/type_info.h"
 
-namespace er {
+namespace silica {
 
 	template<typename T>
 	void print_sequence(const T& sequence, std::string* result, int indention);
@@ -103,4 +103,4 @@ namespace er {
 		*result += "]";
 	}
 
-}//namespace er
+}//namespace silica

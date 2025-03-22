@@ -8,7 +8,7 @@
 #include "silica/variable/var.h"
 #include "lexer_json.yy.h"
 
-namespace er {
+namespace silica {
 
 	class TypeInfo;
 
@@ -41,4 +41,4 @@ namespace er {
 		char _token;
 	};
 
-}//namespace er
+}//namespace silica

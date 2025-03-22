@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-namespace er {
+namespace silica {
 
 	///Represent common access modifiers kPublic, kProtected, kPrivate, etc.
 	///DO NOT edit they used as text by generator project
@@ -26,4 +26,4 @@ namespace er {
 		return static_cast<Access>(static_cast<uint8_t>(lhs) & static_cast<uint8_t>(rhs));
 	}
 
-}//namespace er
+}//namespace silica

@@ -3,12 +3,12 @@
 #include <memory>
 #include <utility>
 
-#include "c_array.h"
-#include "silica/tools/sizeof.h"
-#include "iarray.h"
-#include "std_array.h"
+#include "c_array.hpp"
+#include "silica/tools/sizeof.hpp"
+#include "iarray.hpp"
+#include "std_array.hpp"
 
-namespace er {
+namespace silica {
 
 	struct Array final {
 		Array() = delete;
@@ -91,4 +91,4 @@ namespace er {
 		}
 	};
 
-}//namespace er
+}//namespace silica

@@ -3,10 +3,10 @@
 #include <cstddef>
 #include <cstdint>
 
-#include "silica/expected.h"
-#include "silica/variable/var.h"
+#include "silica/expected.hpp"
+#include "silica/variable/var.hpp"
 
-namespace er {
+namespace silica {
 
 	struct IInteger {
 		virtual ~IInteger() = default;
@@ -22,4 +22,4 @@ namespace er {
 		virtual Expected<None> set_unsigned(uint64_t value) = 0;
 	};
 
-}//namespace er
+}//namespace silica

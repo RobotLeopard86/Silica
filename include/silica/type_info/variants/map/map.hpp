@@ -1,11 +1,11 @@
 #pragma once
 
-#include "silica/tools/sizeof.h"
-#include "imap.h"
-#include "std_map.h"
-#include "std_unordered_map.h"
+#include "silica/tools/sizeof.hpp"
+#include "imap.hpp"
+#include "std_map.hpp"
+#include "std_unordered_map.hpp"
 
-namespace er {
+namespace silica {
 
 	struct Map final {
 		Map() = delete;
@@ -80,4 +80,4 @@ namespace er {
 		}
 	};
 
-}//namespace er
+}//namespace silica

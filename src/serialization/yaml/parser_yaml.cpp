@@ -12,7 +12,7 @@
 #include "silica/types/all_types.h"
 #include "silica/variable/box.h"
 
-using namespace er;
+using namespace silica;
 
 ParserYaml::ParserYaml(const char* input, size_t input_size)//
   : LexerYaml(input, input_size),							//

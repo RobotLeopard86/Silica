@@ -1,9 +1,9 @@
 #pragma once
 
-#include "silica/type_id.h"
+#include "silica/type_id.hpp"
 
-namespace er::reflection {
+namespace silica::reflection {
 
 	std::string_view type_name(TypeId id);
 
-}//namespace er::reflection
+}//namespace silica::reflection

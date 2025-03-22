@@ -2,11 +2,11 @@
 
 #include <vector>
 
-#include "silica/reflection/type_name.h"
-#include "silica/tools/format.h"
-#include "iarray.h"
+#include "silica/reflection/type_name.hpp"
+#include "silica/tools/format.hpp"
+#include "iarray.hpp"
 
-namespace er {
+namespace silica {
 
 	template<typename T, size_t size_v>
 	struct StdArray final : public IArray {
@@ -104,4 +104,4 @@ namespace er {
 		bool _is_const;
 	};
 
-}//namespace er
+}//namespace silica

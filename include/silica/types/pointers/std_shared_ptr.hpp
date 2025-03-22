@@ -3,13 +3,13 @@
 #include <memory>
 #include <stdexcept>
 
-#include "silica/reflection/the_great_table.h"
-#include "silica/type_info/type_info.h"
-#include "silica/type_info/variants/pointer/std_shared_ptr.h"
-#include "silica/types/common_actions.h"
-#include "silica/types/type_actions.h"
+#include "silica/reflection/the_great_table.hpp"
+#include "silica/type_info/type_info.hpp"
+#include "silica/type_info/variants/pointer/std_shared_ptr.hpp"
+#include "silica/types/common_actions.hpp"
+#include "silica/types/type_actions.hpp"
 
-namespace er {
+namespace silica {
 
 	template<typename T>
 	struct TypeActions<std::shared_ptr<T>> {
@@ -31,4 +31,4 @@ namespace er {
 		return id;
 	}
 
-}//namespace er
+}//namespace silica

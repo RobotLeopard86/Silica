@@ -13,7 +13,7 @@
 #include "silica/types/all_types.h"
 #include "parser_json.h"
 
-using namespace er::serialization;
+using namespace silica::serialization;
 
 inline void append(IWriter* writer, std::string_view str) {
 	writer->write(str.data(), str.size());

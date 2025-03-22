@@ -2,9 +2,9 @@
 
 #include <functional>
 
-#include "silica/variable/var.h"
+#include "silica/variable/var.hpp"
 
-namespace er {
+namespace silica {
 
 	struct IMap {
 		virtual ~IMap() = default;
@@ -23,4 +23,4 @@ namespace er {
 		virtual Expected<None> remove(Var key) = 0;
 	};
 
-}//namespace er
+}//namespace silica

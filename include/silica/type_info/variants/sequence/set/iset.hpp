@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../isequence.h"
+#include "../isequence.hpp"
 
-namespace er {
+namespace silica {
 
 	struct ISet : public ISequence {
 		~ISet() override = default;
@@ -12,4 +12,4 @@ namespace er {
 		virtual bool contains(Var value) = 0;
 	};
 
-}//namespace er
+}//namespace silica

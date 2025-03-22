@@ -1,9 +1,9 @@
 #pragma once
 
-#include "silica/reflection/type_name.h"
-#include "ipointer.h"
+#include "silica/reflection/type_name.hpp"
+#include "ipointer.hpp"
 
-namespace er {
+namespace silica {
 
 	template<typename T>
 	struct StdUniquePtr : IPointer {
@@ -53,4 +53,4 @@ namespace er {
 		bool _is_const;
 	};
 
-}//namespace er
+}//namespace silica

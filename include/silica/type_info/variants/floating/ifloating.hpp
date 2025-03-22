@@ -3,10 +3,10 @@
 #include <iomanip>
 #include <sstream>
 
-#include "silica/expected.h"
-#include "silica/variable/var.h"
+#include "silica/expected.hpp"
+#include "silica/variable/var.hpp"
 
-namespace er {
+namespace silica {
 
 	struct IFloating {
 		virtual ~IFloating() = default;
@@ -19,4 +19,4 @@ namespace er {
 		virtual Expected<None> set(double value) = 0;
 	};
 
-}//namespace er
+}//namespace silica

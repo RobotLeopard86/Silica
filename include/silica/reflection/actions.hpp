@@ -1,9 +1,9 @@
 #pragma once
 
-#include "silica/type_info/type_info.h"
-#include "silica/variable/var.h"
+#include "silica/type_info/type_info.hpp"
+#include "silica/variable/var.hpp"
 
-namespace er {
+namespace silica {
 
 	struct Actions {
 		constexpr Actions(TypeInfo (*reflect)(void*, bool),//
@@ -36,4 +36,4 @@ namespace er {
 		void (*move)(void*, void*);
 	};
 
-}//namespace er
+}//namespace silica

@@ -4,9 +4,9 @@
 #include <map>
 #include <string_view>
 
-#include "field_info.h"
+#include "field_info.hpp"
 
-namespace er {
+namespace silica {
 
 	///Skip iterator for fields collection, steps over items with unwanted properties
 	class FieldIterator {
@@ -85,4 +85,4 @@ namespace er {
 		}
 	};
 
-}//namespace er
+}//namespace silica

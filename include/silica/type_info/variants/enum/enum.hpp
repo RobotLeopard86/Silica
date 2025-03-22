@@ -2,10 +2,10 @@
 
 #include <memory>
 
-#include "enum_impl.h"
-#include "ienum.h"
+#include "enum_impl.hpp"
+#include "ienum.hpp"
 
-namespace er {
+namespace silica {
 
 	///container of all field names matched to Var structs
 	///just a registry of types and value pointers
@@ -48,4 +48,4 @@ namespace er {
 		}
 	};
 
-}//namespace er
+}//namespace silica

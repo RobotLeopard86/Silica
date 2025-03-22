@@ -4,7 +4,7 @@
 
 #include "ireader.h"
 
-namespace er {
+namespace silica {
 
 	struct StreamReader final : IReader {
 		StreamReader() = delete;
@@ -30,4 +30,4 @@ namespace er {
 		std::istream& _stream;
 	};
 
-}//namespace er
+}//namespace silica

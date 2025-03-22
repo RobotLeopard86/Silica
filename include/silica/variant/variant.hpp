@@ -4,9 +4,9 @@
 #include <type_traits>
 #include <variant>
 
-#include "overloaded.h"
+#include "overloaded.hpp"
 
-namespace er {
+namespace silica {
 
 	//declaring a slightly more readable state of nothing
 	using None = std::monostate;
@@ -72,4 +72,4 @@ namespace er {
 		std::variant<T...> _content;
 	};
 
-}//namespace er
+}//namespace silica

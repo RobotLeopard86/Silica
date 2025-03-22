@@ -2,11 +2,11 @@
 
 #include <deque>
 
-#include "../err_helper.h"
-#include "silica/reflection/type_name.h"
-#include "ilist.h"
+#include "../err_helper.hpp"
+#include "silica/reflection/type_name.hpp"
+#include "ilist.hpp"
 
-namespace er {
+namespace silica {
 
 	template<typename T>
 	struct StdDeque : public IList, public sequence::ErrHelper {
@@ -115,4 +115,4 @@ namespace er {
 		bool _is_const;
 	};
 
-}//namespace er
+}//namespace silica

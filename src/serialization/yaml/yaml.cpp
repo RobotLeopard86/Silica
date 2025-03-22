@@ -9,7 +9,7 @@
 #include "parser_yaml.h"
 #include "serializer.h"
 
-using namespace er::serialization;
+using namespace silica::serialization;
 
 void yaml::serialize(std::string* str, Var var) {
 	StringWriter string_w(str);

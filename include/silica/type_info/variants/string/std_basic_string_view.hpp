@@ -2,12 +2,12 @@
 
 #include <cstddef>
 
-#include "silica/reflection/type_name.h"
-#include "silica/tools/format.h"
-#include "silica/variant/variant.h"
-#include "istring.h"
+#include "silica/reflection/type_name.hpp"
+#include "silica/tools/format.hpp"
+#include "silica/variant/variant.hpp"
+#include "istring.hpp"
 
-namespace er {
+namespace silica {
 
 	template<typename T>
 	struct StdBasicStringView : IString {
@@ -53,4 +53,4 @@ namespace er {
 		Var _var;
 	};
 
-}//namespace er
+}//namespace silica

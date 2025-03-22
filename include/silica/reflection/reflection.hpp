@@ -1,9 +1,9 @@
 #pragma once
 
-#include "silica/type_info/type_info.h"
-#include "type_name.h"
+#include "silica/type_info/type_info.hpp"
+#include "type_name.hpp"
 
-namespace er::reflection {
+namespace silica::reflection {
 
 	TypeInfo reflect(Var variable);
 
@@ -40,4 +40,4 @@ namespace er::reflection {
 
 	Expected<None> copy(Var to, Var from);
 
-}//namespace er::reflection
+}//namespace silica::reflection

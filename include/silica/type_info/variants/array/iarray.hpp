@@ -2,9 +2,9 @@
 
 #include <functional>
 
-#include "silica/variable/var.h"
+#include "silica/variable/var.hpp"
 
-namespace er {
+namespace silica {
 
 	struct IArray {
 		virtual ~IArray() = default;
@@ -24,4 +24,4 @@ namespace er {
 		virtual Expected<None> fill(Var filler) = 0;
 	};
 
-}//namespace er
+}//namespace silica

@@ -12,7 +12,7 @@
 #include "group_reader.h"
 #include "group_writer.h"
 
-using namespace er::serialization;
+using namespace silica::serialization;
 
 template<typename SeqT>
 inline void serialize_sequence(const SeqT& seq, GroupWriter* writer);

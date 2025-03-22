@@ -2,13 +2,13 @@
 
 #include <queue>
 
-#include "../err_helper.h"
-#include "silica/reflection/type_name.h"
-#include "silica/variant/variant.h"
-#include "iqueue.h"
-#include "queue_iterator.h"
+#include "../err_helper.hpp"
+#include "silica/reflection/type_name.hpp"
+#include "silica/variant/variant.hpp"
+#include "iqueue.hpp"
+#include "queue_iterator.hpp"
 
-namespace er {
+namespace silica {
 
 	template<typename T>
 	struct StdQueue : public IQueue, public sequence::ErrHelper {
@@ -109,4 +109,4 @@ namespace er {
 		bool _is_const;
 	};
 
-}//namespace er
+}//namespace silica

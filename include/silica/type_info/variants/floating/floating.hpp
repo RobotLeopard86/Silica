@@ -2,10 +2,10 @@
 
 #include <memory>
 
-#include "float.h"
-#include "ifloating.h"
+#include "float.hpp"
+#include "ifloating.hpp"
 
-namespace er {
+namespace silica {
 
 	struct Floating final {
 		Floating() = delete;
@@ -51,4 +51,4 @@ namespace er {
 		}
 	};
 
-}//namespace er
+}//namespace silica

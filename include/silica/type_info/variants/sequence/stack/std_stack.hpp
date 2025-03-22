@@ -2,12 +2,12 @@
 
 #include <stack>
 
-#include "../err_helper.h"
-#include "silica/reflection/type_name.h"
-#include "istack.h"
-#include "stack_iterator.h"
+#include "../err_helper.hpp"
+#include "silica/reflection/type_name.hpp"
+#include "istack.hpp"
+#include "stack_iterator.hpp"
 
-namespace er {
+namespace silica {
 
 	template<typename T>
 	struct StdStack : public IStack, public sequence::ErrHelper {
@@ -106,4 +106,4 @@ namespace er {
 		bool _is_const;
 	};
 
-}//namespace er
+}//namespace silica

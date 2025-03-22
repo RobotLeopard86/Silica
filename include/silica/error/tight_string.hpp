@@ -6,7 +6,7 @@
 #include <string>
 #include <string_view>
 
-namespace er {
+namespace silica {
 
 	///immutable union object to tightly pack std::string and std::string_view together
 	///the main idea to determine which one is in the memory is
@@ -118,4 +118,4 @@ namespace er {
 		}
 	};
 
-}//namespace er
+}//namespace silica

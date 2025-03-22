@@ -6,7 +6,7 @@
 
 #include "iwriter.h"
 
-namespace er {
+namespace silica {
 
 	struct VectorWriter final : IWriter {
 		VectorWriter() = delete;
@@ -40,4 +40,4 @@ namespace er {
 		size_t _i;
 	};
 
-}//namespace er
+}//namespace silica

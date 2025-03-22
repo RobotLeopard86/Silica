@@ -2,9 +2,9 @@
 
 #include <functional>
 
-#include "silica/variable/var.h"
+#include "silica/variable/var.hpp"
 
-namespace er {
+namespace silica {
 
 	struct ISequence {
 		virtual ~ISequence() = default;
@@ -20,4 +20,4 @@ namespace er {
 		virtual Expected<None> push(Var value) = 0;
 	};
 
-}//namespace er
+}//namespace silica

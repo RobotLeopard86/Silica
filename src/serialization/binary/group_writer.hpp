@@ -10,7 +10,7 @@
 
 #include "../writers/iwriter.h"
 
-namespace er {
+namespace silica {
 
 	struct GroupWriter {
 		GroupWriter(const GroupWriter& other) = delete;
@@ -145,4 +145,4 @@ namespace er {
 		}
 	};
 
-}//namespace er
+}//namespace silica

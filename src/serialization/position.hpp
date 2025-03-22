@@ -5,7 +5,7 @@
 
 #include "silica/tools/format.h"
 
-namespace er {
+namespace silica {
 
 	struct Position {
 		size_t column = 0;
@@ -16,4 +16,4 @@ namespace er {
 		}
 	};
 
-}//namespace er
+}//namespace silica

@@ -5,7 +5,7 @@
 
 #include "iwriter.h"
 
-namespace er {
+namespace silica {
 
 	struct StringWriter final : IWriter {
 		StringWriter() = delete;
@@ -34,4 +34,4 @@ namespace er {
 		std::string* _string;
 	};
 
-}//namespace er
+}//namespace silica

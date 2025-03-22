@@ -3,23 +3,23 @@
 #include <string>
 #include <string_view>
 
-#include "silica/expected.h"
-#include "silica/tools/names.h"
-#include "silica/variant/variant.h"
+#include "silica/expected.hpp"
+#include "silica/tools/names.hpp"
+#include "silica/variant/variant.hpp"
 
 //all variants
-#include "variants/array/array.h"
-#include "variants/bool.h"
-#include "variants/enum/enum.h"
-#include "variants/floating/floating.h"
-#include "variants/integer/integer.h"
-#include "variants/map/map.h"
-#include "variants/object/object.h"
-#include "variants/pointer/pointer.h"
-#include "variants/sequence/sequence.h"
-#include "variants/string/string.h"
+#include "variants/array/array.hpp"
+#include "variants/bool.hpp"
+#include "variants/enum/enum.hpp"
+#include "variants/floating/floating.hpp"
+#include "variants/integer/integer.hpp"
+#include "variants/map/map.hpp"
+#include "variants/object/object.hpp"
+#include "variants/pointer/pointer.hpp"
+#include "variants/sequence/sequence.hpp"
+#include "variants/string/string.hpp"
 
-namespace er {
+namespace silica {
 
 #define BASE Variant<Bool, Integer, Floating, String, Enum, Object, Array, Sequence, Map, Pointer>
 
@@ -117,4 +117,4 @@ namespace er {
 
 #undef BASE
 
-}//namespace er
+}//namespace silica

@@ -5,14 +5,14 @@
 #include <map>
 #include <utility>
 
-#include "silica/expected.h"
-#include "silica/reflection/type_name.h"
-#include "silica/tools/format.h"
-#include "silica/variable/var.h"
-#include "fields.h"
-#include "methods.h"
+#include "silica/expected.hpp"
+#include "silica/reflection/type_name.hpp"
+#include "silica/tools/format.hpp"
+#include "silica/variable/var.hpp"
+#include "fields.hpp"
+#include "methods.hpp"
 
-namespace er {
+namespace silica {
 
 	///container of all field names matched to Var structs
 	///just a registry of types and value pointers
@@ -80,4 +80,4 @@ namespace er {
 		const std::map<std::string_view, MethodDesc>* _methods;
 	};
 
-}//namespace er
+}//namespace silica

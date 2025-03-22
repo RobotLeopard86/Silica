@@ -2,7 +2,7 @@
 
 #include <stack>
 
-namespace er {
+namespace silica {
 
 	template<typename T>
 	struct StackIterator : public std::stack<T> {
@@ -18,4 +18,4 @@ namespace er {
 		friend struct StdStack;
 	};
 
-}//namespace er
+}//namespace silica

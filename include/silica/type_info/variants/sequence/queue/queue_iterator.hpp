@@ -2,7 +2,7 @@
 
 #include <queue>
 
-namespace er {
+namespace silica {
 
 	template<typename T>
 	struct QueueIterator : public std::queue<T> {
@@ -18,4 +18,4 @@ namespace er {
 		friend struct StdQueue;
 	};
 
-}//namespace er
+}//namespace silica

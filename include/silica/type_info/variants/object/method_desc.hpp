@@ -2,12 +2,12 @@
 
 #include <type_traits>
 
-#include "access.h"
-#include "silica/tools/traits.h"
-#include "silica/type_id.h"
-#include "silica/variable/var.h"
+#include "access.hpp"
+#include "silica/tools/traits.hpp"
+#include "silica/type_id.hpp"
+#include "silica/variable/var.hpp"
 
-namespace er {
+namespace silica {
 
 	struct MethodDesc {
 		MethodDesc(Expected<None> (*fn)(Var res, void* obj, const std::vector<Var>& args),//
@@ -48,4 +48,4 @@ namespace er {
 		const Access _acc;
 	};
 
-}//namespace er
+}//namespace silica

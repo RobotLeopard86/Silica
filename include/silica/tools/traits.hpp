@@ -13,9 +13,9 @@
 #include <unordered_set>
 #include <vector>
 
-#include "silica/expected.h"
+#include "silica/expected.hpp"
 
-namespace er {
+namespace silica {
 
 	template<typename T>
 	struct is_ref_type : std::false_type {};
@@ -121,4 +121,4 @@ namespace er {
 	template<typename T>
 	inline constexpr bool is_class_v = is_class<T>::value;//NOLINT std like name
 
-}//namespace er
+}//namespace silica

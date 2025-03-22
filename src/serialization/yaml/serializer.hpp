@@ -10,7 +10,7 @@
 #include "silica/type_info/type_info.h"
 #include "silica/type_info/variants/integer/integer.h"
 
-namespace er {
+namespace silica {
 
 	inline void append(IWriter* writer, std::string_view str) {
 		writer->write(str.data(), str.size());
@@ -237,4 +237,4 @@ namespace er {
 		writer->step_back(1);
 	}
 
-}//namespace er
+}//namespace silica

@@ -2,9 +2,9 @@
 
 #include <cstddef>
 
-#include "field_iterator.h"
+#include "field_iterator.hpp"
 
-namespace er {
+namespace silica {
 
 	struct Fields {
 		Fields(const void* base, const std::map<std::string_view, FieldDesc>* map, Access access, bool include_readonly)//
@@ -31,4 +31,4 @@ namespace er {
 		const bool _include_readonly;
 	};
 
-}//namespace er
+}//namespace silica

@@ -2,13 +2,13 @@
 
 #include <cstddef>
 
-#include "c_string.h"
-#include "silica/tools/sizeof.h"
-#include "istring.h"
-#include "std_basic_string.h"
-#include "std_basic_string_view.h"
+#include "c_string.hpp"
+#include "silica/tools/sizeof.hpp"
+#include "istring.hpp"
+#include "std_basic_string.hpp"
+#include "std_basic_string_view.hpp"
 
-namespace er {
+namespace silica {
 
 	struct String final {
 		String() = delete;
@@ -60,4 +60,4 @@ namespace er {
 		}
 	};
 
-}//namespace er
+}//namespace silica

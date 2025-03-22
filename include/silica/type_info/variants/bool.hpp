@@ -4,13 +4,13 @@
 #include <cctype>
 #include <string_view>
 
-#include "silica/expected.h"
-#include "silica/reflection/type_name.h"
-#include "silica/tools/format.h"
-#include "silica/type_id.h"
-#include "silica/variable/var.h"
+#include "silica/expected.hpp"
+#include "silica/reflection/type_name.hpp"
+#include "silica/tools/format.hpp"
+#include "silica/type_id.hpp"
+#include "silica/variable/var.hpp"
 
-namespace er {
+namespace silica {
 
 	struct Bool {
 		Bool(bool* value, bool is_const)
@@ -56,4 +56,4 @@ namespace er {
 		bool _is_const;
 	};
 
-}//namespace er
+}//namespace silica

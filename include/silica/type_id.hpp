@@ -12,16 +12,16 @@
 #include <unordered_set>
 #include <vector>
 
-#include "silica/tools/names.h"
-#include "silica/tools/traits.h"
+#include "silica/tools/names.hpp"
+#include "silica/tools/traits.hpp"
 
 #ifndef NDEBUG
-namespace er::reflection {
+namespace silica::reflection {
 	std::string_view type_name(uint32_t id);
-}//namespace er::reflection
+}//namespace silica::reflection
 #endif
 
-namespace er {
+namespace silica {
 
 	///copyable value type with single int under the hood
 	///represent sequential type id
@@ -110,4 +110,4 @@ namespace er {
 		}
 	};
 
-}//namespace er
+}//namespace silica

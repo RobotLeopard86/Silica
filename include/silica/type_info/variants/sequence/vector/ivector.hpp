@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../isequence.h"
+#include "../isequence.hpp"
 
-namespace er {
+namespace silica {
 
 	struct IVector : public ISequence {
 		~IVector() override = default;
@@ -16,4 +16,4 @@ namespace er {
 		virtual Expected<Var> operator[](size_t idx) = 0;
 	};
 
-}//namespace er
+}//namespace silica

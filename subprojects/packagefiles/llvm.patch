@@ -2255,26 +2255,26 @@ index 2a3a29bd2ee1..02a58bed25e6 100644
    let SimpleHandler = 1;
  }
 +
-+def ErReflect : InheritableAttr {
-+  let Spellings = [CXX11<"er", "reflect", 1>];
++def SilicaReflect : InheritableAttr {
++  let Spellings = [CXX11<"silica", "reflect", 1>];
 +  let Subjects = SubjectList<[CXXRecord, Enum]>;
 +  let Args = [VariadicEnumArgument<"Options", "Option", 1,
 +              ["all", "base", "nonPublic", "data", "func"],
 +              ["All", "Base", "NonPublic", "Data", "Func"]>];
-+  let Documentation = [ErReflectDocs];
++  let Documentation = [SilicaReflectDocs];
 +}
 +
-+def ErAlias : InheritableAttr {
-+  let Spellings = [CXX11<"er", "alias", 1>];
++def SilicaAlias : InheritableAttr {
++  let Spellings = [CXX11<"silica", "alias", 1>];
 +  let Subjects = SubjectList<[Field, Function, CXXRecord]>;
 +  let Args = [StringArgument<"Name">];
-+  let Documentation = [ErAliasDocs];
++  let Documentation = [SilicaAliasDocs];
 +}
 +
-+def ErIgnore : InheritableAttr {
-+  let Spellings = [CXX11<"er", "ignore", 1>];
++def SilicaIgnore : InheritableAttr {
++  let Spellings = [CXX11<"silica", "ignore", 1>];
 +  let Subjects = SubjectList<[Field, Function, CXXRecord]>;
-+  let Documentation = [ErIgnoreDocs];
++  let Documentation = [SilicaIgnoreDocs];
 +}
 diff --git a/clang/include/clang/Basic/AttrDocs.td b/clang/include/clang/Basic/AttrDocs.td
 index a8b588169725..ca9b181a695e 100644
@@ -2285,7 +2285,7 @@ index a8b588169725..ca9b181a695e 100644
    }];
  }
 +
-+def ErReflectDocs : Documentation {
++def SilicaReflectDocs : Documentation {
 +  let Category = DocCatFunction;
 +  let Content = [{
 +The attribute marks an object for later analysis and code generation. It accepts
@@ -2299,14 +2299,14 @@ index a8b588169725..ca9b181a695e 100644
 +  }];
 +}
 +
-+def ErAliasDocs : Documentation {
++def SilicaAliasDocs : Documentation {
 +  let Category = DocCatFunction;
 +  let Content = [{
-+Set alias for an entity as ``[[er::alias("new_name")]]``
++Set alias for an entity as ``[[silica::alias("new_name")]]``
 +  }];
 +}
 +
-+def ErIgnoreDocs : Documentation {
++def SilicaIgnoreDocs : Documentation {
 +  let Category = DocCatFunction;
 +  let Content = [{
 +The attribute prevents the generation of reflection code for the marked entity.
@@ -7126,17 +7126,17 @@ index f351663c6824..e74ff535aab7 100644
 +                                                                     AL);
 +}
 +
-+/// Handle Easy Reflection main 'reflect' attribute.
-+static void handleErReflect(Sema &S, Decl *D, const ParsedAttr &AL) {
-+  SmallVector<ErReflectAttr::Option, 4> Options;
++/// Handle Silica main 'reflect' attribute.
++static void handleSilicaReflect(Sema &S, Decl *D, const ParsedAttr &AL) {
++  SmallVector<SilicaReflectAttr::Option, 4> Options;
 +
 +  for (unsigned I = 0, E = AL.getNumArgs(); I != E; ++I) {
 +    StringRef OptStr;
 +    if (!S.checkStringLiteralArgumentAttr(AL, I, OptStr))
 +      continue;
 +
-+    ErReflectAttr::Option Option;
-+    if (!ErReflectAttr::ConvertStrToOption(OptStr, Option)) {
++    SilicaReflectAttr::Option Option;
++    if (!SilicaReflectAttr::ConvertStrToOption(OptStr, Option)) {
 +      S.Diag(AL.getLoc(), diag::warn_attribute_type_not_supported)
 +          << AL << "'" + std::string(OptStr) + "'";
 +      continue;
@@ -7146,21 +7146,21 @@ index f351663c6824..e74ff535aab7 100644
 +  }
 +
 +  D->addAttr(::new (S.Context)
-+                 ErReflectAttr(S.Context, AL, Options.data(), Options.size()));
++                 SilicaReflectAttr(S.Context, AL, Options.data(), Options.size()));
  }
  
 -EnforceTCBLeafAttr *Sema::mergeEnforceTCBLeafAttr(
 -    Decl *D, const EnforceTCBLeafAttr &AL) {
 -  return mergeEnforceTCBAttrImpl<EnforceTCBLeafAttr, EnforceTCBAttr>(
 -      *this, D, AL);
-+/// Handle Easy Reflection 'alias' attribute.
-+static void handleErAlias(Sema &S, Decl *D, const ParsedAttr &AL) {
++/// Handle Silica 'alias' attribute.
++static void handleSilicaAlias(Sema &S, Decl *D, const ParsedAttr &AL) {
 +  StringRef Name;
 +
 +  if (!S.checkStringLiteralArgumentAttr(AL, 0, Name))
 +    return;
 +
-+  D->addAttr(::new (S.Context) ErAliasAttr(S.Context, AL, Name));
++  D->addAttr(::new (S.Context) SilicaAliasAttr(S.Context, AL, Name));
  }
  
  static void handleVTablePointerAuthentication(Sema &S, Decl *D,
@@ -7204,16 +7204,16 @@ index f351663c6824..e74ff535aab7 100644
      handleVTablePointerAuthentication(S, D, AL);
      break;
 +
-+  case ParsedAttr::AT_ErReflect:
-+    handleErReflect(S, D, AL);
++  case ParsedAttr::AT_SilicaReflect:
++    handleSilicaReflect(S, D, AL);
 +    break;
 +
-+  case ParsedAttr::AT_ErAlias:
-+    handleErAlias(S, D, AL);
++  case ParsedAttr::AT_SilicaAlias:
++    handleSilicaAlias(S, D, AL);
 +    break;
 +
-+  case ParsedAttr::AT_ErIgnore:
-+    handleSimpleAttribute<ErIgnoreAttr>(S, D, AL);
++  case ParsedAttr::AT_SilicaIgnore:
++    handleSimpleAttribute<SilicaIgnoreAttr>(S, D, AL);
 +    break;
    }
  }

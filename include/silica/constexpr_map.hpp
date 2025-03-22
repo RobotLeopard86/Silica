@@ -2,11 +2,11 @@
 
 #include <array>
 
-#include "constexpr_sort.h"
-#include "expected.h"
-#include "tools/format.h"
+#include "constexpr_sort.hpp"
+#include "expected.hpp"
+#include "tools/format.hpp"
 
-namespace er {
+namespace silica {
 
 	///the analogue of tree based map container with fixed type of second argument
 	///and the same log(N) search performance
@@ -129,4 +129,4 @@ namespace er {
 		}
 	};
 
-}//namespace er
+}//namespace silica

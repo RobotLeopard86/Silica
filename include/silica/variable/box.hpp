@@ -2,11 +2,11 @@
 
 #include <memory_resource>
 
-#include "silica/alloc/alloc.h"
-#include "silica/tools/sizeof.h"
-#include "var.h"
+#include "silica/alloc/alloc.hpp"
+#include "silica/tools/sizeof.hpp"
+#include "var.hpp"
 
-namespace er {
+namespace silica {
 
 	struct Box {
 		Box(palloc_t* alloc = &default_alloc)
@@ -33,4 +33,4 @@ namespace er {
 		//std::array<uint8_t, kMemSize> _buff;
 	};
 
-}//namespace er
+}//namespace silica

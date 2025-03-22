@@ -4,11 +4,11 @@
 #include <cstdint>
 #include <type_traits>
 
-#include "access.h"
-#include "silica/type_id.h"
-#include "field_desc.h"
+#include "access.hpp"
+#include "silica/type_id.hpp"
+#include "field_desc.hpp"
 
-namespace er {
+namespace silica {
 
 	class FieldInfo {
 	  public:
@@ -69,4 +69,4 @@ namespace er {
 		}
 	};
 
-}//namespace er
+}//namespace silica

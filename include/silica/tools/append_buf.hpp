@@ -2,7 +2,7 @@
 
 #include <streambuf>
 
-namespace er {
+namespace silica {
 
 	class AppendBuf : public std::streambuf {
 	  public:
@@ -26,4 +26,4 @@ namespace er {
 		std::string* _buf;
 	};
 
-}//namespace er
+}//namespace silica

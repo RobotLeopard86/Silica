@@ -1,8 +1,8 @@
 #pragma once
 
-#include "silica/variable/var.h"
+#include "silica/variable/var.hpp"
 
-namespace er {
+namespace silica {
 
 	struct IEnum {
 		virtual ~IEnum() = default;
@@ -14,4 +14,4 @@ namespace er {
 		virtual Expected<None> parse(std::string_view name) = 0;
 	};
 
-}//namespace er
+}//namespace silica

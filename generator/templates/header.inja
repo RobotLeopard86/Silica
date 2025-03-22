@@ -6,7 +6,7 @@
 // injected
 #include "{{origin}}"
 
-namespace er {
+namespace silica {
 
 template <>
 struct TypeActions<{{name}}>;
@@ -14,4 +14,4 @@ struct TypeActions<{{name}}>;
 template <>
 TypeId TypeId::get({{name}}* /*unused*/);
 
-}  // namespace er
+}  // namespace silica

@@ -3,10 +3,10 @@
 #include <istream>
 #include <string>
 
-#include "silica/expected.h"
-#include "silica/variable/var.h"
+#include "silica/expected.hpp"
+#include "silica/variable/var.hpp"
 
-namespace er::serialization {
+namespace silica::serialization {
 
 	struct yaml {//NOLINT namespace like name
 		template<typename T>
@@ -50,4 +50,4 @@ namespace er::serialization {
 		static Expected<None> deserialize(Var var, std::istream& stream);
 	};
 
-}//namespace er::serialization
+}//namespace silica::serialization

@@ -3,7 +3,7 @@
 #include <iomanip>
 #include <sstream>
 
-namespace er {
+namespace silica {
 
 	std::string to_string(bool value) {
 		return value ? "true" : "false";
@@ -24,4 +24,4 @@ namespace er {
 		return stream.str();
 	}
 
-}//namespace er
+}//namespace silica

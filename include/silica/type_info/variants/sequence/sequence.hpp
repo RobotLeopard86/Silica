@@ -1,15 +1,15 @@
 #pragma once
 
-#include "silica/tools/sizeof.h"
-#include "list/std_deque.h"
-#include "list/std_list.h"
-#include "queue/std_queue.h"
-#include "set/std_set.h"
-#include "set/std_unordered_set.h"
-#include "stack/std_stack.h"
-#include "vector/std_vector.h"
+#include "silica/tools/sizeof.hpp"
+#include "list/std_deque.hpp"
+#include "list/std_list.hpp"
+#include "queue/std_queue.hpp"
+#include "set/std_set.hpp"
+#include "set/std_unordered_set.hpp"
+#include "stack/std_stack.hpp"
+#include "vector/std_vector.hpp"
 
-namespace er {
+namespace silica {
 
 	struct Sequence {
 		Sequence() = delete;
@@ -102,4 +102,4 @@ namespace er {
 		}
 	};
 
-}//namespace er
+}//namespace silica

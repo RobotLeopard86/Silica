@@ -3,10 +3,10 @@
 #include <stdexcept>
 #include <variant>
 
-#include "error/error.h"
-#include "variant/variant.h"
+#include "error/error.hpp"
+#include "variant/variant.hpp"
 
-namespace er {
+namespace silica {
 
 #define BASE Variant<T, ErrorT>
 
@@ -52,4 +52,4 @@ namespace er {
 
 #undef BASE
 
-}//namespace er
+}//namespace silica

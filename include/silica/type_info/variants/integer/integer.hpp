@@ -4,10 +4,10 @@
 #include <memory>
 #include <type_traits>
 
-#include "iinteger.h"
-#include "int.h"
+#include "iinteger.hpp"
+#include "int.hpp"
 
-namespace er {
+namespace silica {
 
 	struct Integer {
 		Integer() = delete;
@@ -79,4 +79,4 @@ namespace er {
 		}
 	};
 
-}//namespace er
+}//namespace silica

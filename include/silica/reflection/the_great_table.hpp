@@ -1,9 +1,9 @@
 #pragma once
 
-#include "actions.h"
-#include "silica/types/unknown.h"
+#include "actions.hpp"
+#include "silica/types/unknown.hpp"
 
-namespace er {
+namespace silica {
 
 	///the main component of reflection system - big table with function pointers
 	///each reflectable type has to have a record in the table
@@ -35,4 +35,4 @@ namespace er {
 		}
 	};
 
-}//namespace er
+}//namespace silica

@@ -4,7 +4,7 @@
 #include "silica/tools/format.h"
 #include "silica/types/all_types.h"
 
-using namespace er;
+using namespace silica;
 
 Var::Var()
   : _value(nullptr), _type(), _is_const(true) {

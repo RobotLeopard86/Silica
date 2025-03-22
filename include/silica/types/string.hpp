@@ -1,9 +1,9 @@
 #pragma once
 
-#include "common_actions.h"
-#include "silica/reflection/the_great_table.h"
+#include "common_actions.hpp"
+#include "silica/reflection/the_great_table.hpp"
 
-namespace er {
+namespace silica {
 
 	template<typename T>
 	struct StringActions {
@@ -25,4 +25,4 @@ namespace er {
 		return id;
 	}
 
-}//namespace er
+}//namespace silica

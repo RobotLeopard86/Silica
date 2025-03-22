@@ -2,9 +2,9 @@
 
 #include <cstddef>
 
-#include "method_iterator.h"
+#include "method_iterator.hpp"
 
-namespace er {
+namespace silica {
 
 	struct Methods {
 		Methods(void* base, const std::map<std::string_view, MethodDesc>* map, Access acc)//
@@ -30,4 +30,4 @@ namespace er {
 		const Access _acc;
 	};
 
-}//namespace er
+}//namespace silica

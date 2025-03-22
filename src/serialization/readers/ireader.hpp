@@ -3,7 +3,7 @@
 #include <cstddef>
 #include <cstdint>
 
-namespace er {
+namespace silica {
 
 	struct IReader {
 		virtual void read(void* buff, size_t size) const = 0;
@@ -11,4 +11,4 @@ namespace er {
 		virtual bool empty() const = 0;
 	};
 
-}//namespace er
+}//namespace silica

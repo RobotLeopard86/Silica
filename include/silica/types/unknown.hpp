@@ -2,9 +2,9 @@
 
 #include <cstddef>
 
-#include "silica/type_info/type_info.h"
+#include "silica/type_info/type_info.hpp"
 
-namespace er {
+namespace silica {
 
 	struct UnknownActions {
 		static TypeInfo reflect(void* /*value*/, bool /*is_const*/) {
@@ -40,4 +40,4 @@ namespace er {
 		//The Great Table put references to HelperUnknown methods itself
 	};
 
-}//namespace er
+}//namespace silica

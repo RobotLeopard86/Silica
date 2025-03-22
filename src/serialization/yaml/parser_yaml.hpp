@@ -8,7 +8,7 @@
 #include "silica/variable/box.h"
 #include "lexer_yaml.yy.h"
 
-namespace er {
+namespace silica {
 
 	class TypeInfo;
 
@@ -57,6 +57,6 @@ namespace er {
 		std::unordered_map<std::string, Box> _anchors;
 	};
 
-}//namespace er
+}//namespace silica
 
 #undef __retry

@@ -6,10 +6,10 @@
 #include <string>
 #include <type_traits>
 
-#include "append_buf.h"
-#include "traits.h"
+#include "append_buf.hpp"
+#include "traits.hpp"
 
-namespace er {
+namespace silica {
 
 	template<typename T>
 	static typename std::enable_if_t<is_string_v<std::remove_reference_t<T>>, void>//
@@ -86,4 +86,4 @@ namespace er {
 		return result;
 	}
 
-}//namespace er
+}//namespace silica
