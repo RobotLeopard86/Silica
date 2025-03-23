@@ -26,5 +26,13 @@ int main(int argc, char* argv[]) {
 	//Parse CLI arguments
 	CLI11_PARSE(app, argc, argv);
 
+	//If the output directory doesn't exist, we need to make it, or if it exists we need to empty it
+	//We do this by deleting it if it exists, then remaking the directory
+	std::filesystem::path out(outDir);
+	if(std::filesystem::exists(out)) {
+		std::filesystem::remove_all(out);
+	}
+	std::filesystem::create_directories(out);
+
 	return 0;
 }
