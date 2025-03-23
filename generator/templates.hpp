@@ -1,7 +1,5 @@
 #pragma once
 
-#include <string>
-
 namespace templates {
 	const char* Enum =
 #include "templates/enum.inc"
