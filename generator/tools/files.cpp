@@ -1,4 +1,4 @@
-#include "files.h"
+#include "files.hpp"
 
 #include <filesystem>
 #include <memory>
@@ -15,25 +15,8 @@
 #include <algorithm>
 #endif
 
-#include "../config.h"
-
-Files::Files() {
-	_root = executable_name();
-	cut_filename(&_root);
-}
-
-const std::string& Files::root() {
-	return _root;
-}
-
-void Files::correct_config(Config* config) {
-	correct_path(&(config->compdb_dir));
-	correct_path(&(config->templates.header));
-	correct_path(&(config->templates.for_enum));
-	correct_path(&(config->templates.object));
-	correct_path(&(config->output_dir));
-
-	complete_files(&(config->input));
+Files::Files()
+  : root(cut_filename(executable_name())) {
 }
 
 #if defined(_WIN32)
@@ -116,17 +99,17 @@ inline std::string Files::executable_name() {
 
 void Files::correct_path(std::string* path) {
 	if(!is_absolute(*path)) {
-		path->insert(0, _root);
+		path->insert(0, root);
 	}
 
-	if(path->back() != kDelim) {
+	if(path->back() != deliminator) {
 #if defined(_WIN32)
 		std::filesystem::path fs_p(from_utf8(path->data(), path->size()));
 #else
 		std::filesystem::path fs_p(*path);
 #endif
 		if(std::filesystem::is_directory(fs_p)) {
-			*path += kDelim;
+			*path += deliminator;
 		}
 	}
 }
@@ -159,19 +142,22 @@ void Files::complete_files(std::vector<std::string>* paths) {
 	}
 }
 
-void Files::cut_filename(std::string* str) {
-	auto pos = str->find_last_of(kDelim);
+std::string Files::cut_filename(std::string str) {
+	std::string ret = str;
+	auto pos = ret.find_last_of(deliminator);
 
 	if(pos != std::string::npos) {
 		pos += 1;
-		str->erase(pos, str->length() - pos);
+		ret.erase(pos, ret.length() - pos);
 	}
+
+	return ret;
 }
 
 inline bool Files::is_absolute(const std::string& path) {
 #if defined(_WIN32)
 	return path[1] == ':';//match 'C:\', 'D:\', etc
 #else
-	return path.front() == kDelim;
+	return path.front() == deliminator;
 #endif
 }

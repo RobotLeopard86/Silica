@@ -23,21 +23,21 @@ namespace {
 	}
 }
 
-ParserCpp::ParserCpp(std::string_view compdb_dir,//
-	std::string_view output_dir)				 //
-  : _compdb(load_compdb(compdb_dir)) {
-	_ctx.output_dir = output_dir;
+Parser::Parser(std::string_view compdb_dir,//
+	std::string_view output_dir)		   //
+  : compDB(load_compdb(compdb_dir)) {
+	ctx.output_dir = output_dir;
 }
 
-std::unordered_map<std::string, nlohmann::json> ParserCpp::parse(const std::vector<std::string>& input_files) {
-	tooling::ClangTool tool(*_compdb, input_files);
-	ActionFactory factory(&_ctx);
+std::unordered_map<std::string, nlohmann::json> Parser::parse(const std::vector<std::string>& input_files) {
+	tooling::ClangTool tool(*compDB, input_files);
+	ActionFactory factory(&ctx);
 
 	//handle macro attributes at first then
 	//traverse AST, check attributes, build json objects and fill result field in context
 	tool.run(&factory);
 
-	return _ctx.result;
+	return ctx.result;
 }
 
-ParserCpp::~ParserCpp() = default;
+Parser::~Parser() = default;

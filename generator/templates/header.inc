@@ -1,8 +1,8 @@
 R"(
 #pragma once
 
-#include "silica/type_id.h"
-#include "silica/types/type_actions.h"
+#include "silica/type_id.hpp"
+#include "silica/types/type_actions.hpp"
 
 // injected
 #include "{{origin}}"

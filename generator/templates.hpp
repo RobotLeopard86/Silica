@@ -1,13 +1,15 @@
 #pragma once
 
+#include <string>
+
 namespace templates {
-	const char* Enum =
+	const std::string Enum =
 #include "templates/enum.inc"
 		;
-	const char* Header =
+	const std::string Header =
 #include "templates/header.inc"
 		;
-	const char* Object =
+	const std::string Object =
 #include "templates/object.inc"
 		;
 }

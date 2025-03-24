@@ -1,10 +1,10 @@
 R"(
-#include "{{file_name}}.silica.h"
+#include "{{file_name}}.silica.hpp"
 
 // clang-format off
-#include "silica/reflection/the_great_table.h"
-#include "silica/types/common_actions.h"
-#include "silica/types/type_actions.h"
+#include "silica/reflection/the_great_table.hpp"
+#include "silica/types/common_actions.hpp"
+#include "silica/types/type_actions.hpp"
 
 namespace silica {
 

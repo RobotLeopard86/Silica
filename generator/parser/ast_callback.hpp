@@ -27,7 +27,7 @@ struct JsonBuilder {
 	}
 
 	void handle_class(const CXXRecordDecl* c) {
-		if(!c->hasAttr<ErReflectAttr>()) {
+		if(!c->hasAttr<SilicaReflectAttr>()) {
 			return;
 		}
 		_options = get_options(c);
@@ -36,7 +36,7 @@ struct JsonBuilder {
 	}
 
 	void handle_enum(const EnumDecl* e) {
-		if(!e->hasAttr<ErReflectAttr>()) {
+		if(!e->hasAttr<SilicaReflectAttr>()) {
 			return;
 		}
 		_options = get_options(e);
@@ -46,7 +46,7 @@ struct JsonBuilder {
 
   private:
 	Context* _ctx;
-	std::unordered_set<ErReflectAttr::Option> _options;
+	std::unordered_set<SilicaReflectAttr::Option> _options;
 
 	const SourceManager* _sm;
 	const LangOptions& _opts;
@@ -65,7 +65,7 @@ struct JsonBuilder {
 		json["name"] = name;
 		json["origin"] = file_name(c);
 
-		if(_options.count(ErReflectAttr::Option::Base) != 0) {
+		if(_options.count(SilicaReflectAttr::Option::Base) != 0) {
 			auto parents = nlohmann::json::array();
 
 			for(auto&& b : c->bases()) {
@@ -98,7 +98,7 @@ struct JsonBuilder {
 
 			} else if(const auto* nc = dyn_cast<CXXRecordDecl>(d)) {
 				if(!nc->isThisDeclarationADefinition() ||//
-					nc->hasAttr<ErReflectAttr>()) {
+					nc->hasAttr<SilicaReflectAttr>()) {
 					//skip nested classes with dedicated 'reflect' attribute,
 					//handle them further as root declarations
 					continue;
@@ -106,7 +106,7 @@ struct JsonBuilder {
 				add_class(nc);
 
 			} else if(const auto* ne = dyn_cast<EnumDecl>(d)) {
-				if(ne->hasAttr<ErReflectAttr>()) {
+				if(ne->hasAttr<SilicaReflectAttr>()) {
 					//skip nested enums with dedicated 'reflect' attribute,
 					//handle them further as root declarations
 					continue;
@@ -136,7 +136,7 @@ struct JsonBuilder {
 		auto& arr = json["constants"];
 
 		for(auto&& c : e->enumerators()) {
-			if(c->hasAttr<ErIgnoreAttr>()) {
+			if(c->hasAttr<SilicaIgnoreAttr>()) {
 				continue;
 			}
 			auto& item = arr.emplace_back();
@@ -147,13 +147,13 @@ struct JsonBuilder {
 	}
 
 	void add_function(nlohmann::json* functions, const FunctionDecl* f, const std::string& class_name) {
-		if(f->hasAttr<ErIgnoreAttr>()) {
+		if(f->hasAttr<SilicaIgnoreAttr>()) {
 			return;
 		}
 
 		auto acc = f->getAccess();
-		if((acc != clang::AS_public && _options.count(ErReflectAttr::Option::NonPublic) == 0) ||
-			_options.count(ErReflectAttr::Option::Func) == 0) {
+		if((acc != clang::AS_public && _options.count(SilicaReflectAttr::Option::NonPublic) == 0) ||
+			_options.count(SilicaReflectAttr::Option::Func) == 0) {
 			return;
 		}
 
@@ -179,13 +179,13 @@ struct JsonBuilder {
 	}
 
 	void add_field(nlohmann::json* fields, const ValueDecl* v) {
-		if(v->template hasAttr<ErIgnoreAttr>()) {
+		if(v->template hasAttr<SilicaIgnoreAttr>()) {
 			return;
 		}
 
 		auto acc = v->getAccess();
-		if((acc != clang::AS_public && _options.count(ErReflectAttr::Option::NonPublic) == 0) ||
-			_options.count(ErReflectAttr::Option::Data) == 0) {
+		if((acc != clang::AS_public && _options.count(SilicaReflectAttr::Option::NonPublic) == 0) ||
+			_options.count(SilicaReflectAttr::Option::Data) == 0) {
 			return;
 		}
 
@@ -269,7 +269,7 @@ struct JsonBuilder {
 
 		(*item)["name"] = name;
 
-		if(const auto* alias = decl->getAttr<ErAliasAttr>()) {
+		if(const auto* alias = decl->getAttr<SilicaAliasAttr>()) {
 			(*item)["alias"] = alias->getName().str();
 
 			return;
@@ -277,23 +277,23 @@ struct JsonBuilder {
 		(*item)["alias"] = name;
 	}
 
-	static std::unordered_set<ErReflectAttr::Option> get_options(const NamedDecl* decl) {
-		std::unordered_set<ErReflectAttr::Option> opts;
+	static std::unordered_set<SilicaReflectAttr::Option> get_options(const NamedDecl* decl) {
+		std::unordered_set<SilicaReflectAttr::Option> opts;
 
-		if(const auto* r = decl->getAttr<ErReflectAttr>()) {
+		if(const auto* r = decl->getAttr<SilicaReflectAttr>()) {
 			for(auto&& option : r->options()) {
 				opts.insert(option);
 			}
 		}
-		if(opts.count(ErReflectAttr::Option::All) != 0) {
-			opts.insert(ErReflectAttr::Option::Base);
-			opts.insert(ErReflectAttr::Option::NonPublic);
-			opts.insert(ErReflectAttr::Option::Data);
-			opts.insert(ErReflectAttr::Option::Func);
+		if(opts.count(SilicaReflectAttr::Option::All) != 0) {
+			opts.insert(SilicaReflectAttr::Option::Base);
+			opts.insert(SilicaReflectAttr::Option::NonPublic);
+			opts.insert(SilicaReflectAttr::Option::Data);
+			opts.insert(SilicaReflectAttr::Option::Func);
 		}
 		if(opts.empty()) {
 			//default state
-			opts.insert(ErReflectAttr::Option::Data);
+			opts.insert(SilicaReflectAttr::Option::Data);
 		}
 		return opts;
 	}
