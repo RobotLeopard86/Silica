@@ -2343,10 +2343,10 @@ index bec8122ea..3cd778346 100644
  
  const char *getSubjectMatchRuleSpelling(SubjectMatchRule Rule);
 diff --git a/clang/include/clang/Basic/AttributeCommonInfo.h b/clang/include/clang/Basic/AttributeCommonInfo.h
-index 4af5a8fd1..8bb70523c 100644
+index 4af5a8fd1..cd9f55d0f 100644
 --- a/clang/include/clang/Basic/AttributeCommonInfo.h
 +++ b/clang/include/clang/Basic/AttributeCommonInfo.h
-@@ -61,7 +61,7 @@ public:
+@@ -61,13 +61,13 @@ public:
    };
    enum Kind {
  #define PARSED_ATTR(NAME) AT_##NAME,
@@ -2355,6 +2355,13 @@ index 4af5a8fd1..8bb70523c 100644
  #undef PARSED_ATTR
      NoSemaHandlerAttribute,
      IgnoredAttribute,
+     UnknownAttribute,
+   };
+-  enum class Scope { NONE, CLANG, GNU, MSVC, OMP, HLSL, GSL, RISCV };
++  enum class Scope { NONE, CLANG, GNU, MSVC, OMP, HLSL, GSL, RISCV, SILICA };
+   enum class AttrArgsInfo {
+     None,
+     Optional,
 @@ -271,7 +271,7 @@ inline bool doesKeywordAttributeTakeArgs(tok::TokenKind Kind) {
  #define KEYWORD_ATTRIBUTE(NAME, HASARG, ...)                                   \
    case tok::kw_##NAME:                                                         \
@@ -2963,6 +2970,20 @@ index c4f31900d..15c2b98ab 100644
  
  } // namespace syntax
  } // namespace clang
+diff --git a/clang/lib/Basic/Attributes.cpp b/clang/lib/Basic/Attributes.cpp
+index 2035d4c0a..7a46d7bdd 100644
+--- a/clang/lib/Basic/Attributes.cpp
++++ b/clang/lib/Basic/Attributes.cpp
+@@ -187,7 +187,8 @@ getScopeFromNormalizedScopeName(StringRef ScopeName) {
+       .Case("hlsl", AttributeCommonInfo::Scope::HLSL)
+       .Case("msvc", AttributeCommonInfo::Scope::MSVC)
+       .Case("omp", AttributeCommonInfo::Scope::OMP)
+-      .Case("riscv", AttributeCommonInfo::Scope::RISCV);
++      .Case("riscv", AttributeCommonInfo::Scope::RISCV)
++      .Case("silica", AttributeCommonInfo::Scope::SILICA);
+ }
+ 
+ unsigned AttributeCommonInfo::calculateAttributeSpellingListIndex() const {
 diff --git a/clang/lib/Basic/CMakeLists.txt b/clang/lib/Basic/CMakeLists.txt
 index 331dfbb3f..83e85f903 100644
 --- a/clang/lib/Basic/CMakeLists.txt
