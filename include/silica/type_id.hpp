@@ -49,6 +49,12 @@ namespace silica {
 			return TypeId(0);
 		}
 
+		template<typename T>
+		static typename std::enable_if_t<std::is_void_v<T>, TypeId>//
+		get(T* ptr) {
+			return TypeId(0);
+		}
+
 		///specializations defined in ./types
 		template<typename T>
 		static typename std::enable_if_t<std::is_integral_v<T>, TypeId>//

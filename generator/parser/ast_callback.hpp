@@ -169,7 +169,11 @@ struct JsonBuilder {
 
 		set_name(&func, f);
 		func["acc"] = access_arr(f);
-		func["return"] = f->getDeclaredReturnType().getAsString();
+		auto ret = f->getDeclaredReturnType().getAsString();
+		if(ret.compare("_Bool") == 0)
+			func["return"] = "bool";
+		else
+			func["return"] = ret;
 
 		auto params = nlohmann::json::array();
 		for(auto&& p : f->parameters()) {

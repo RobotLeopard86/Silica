@@ -3,7 +3,13 @@
 
 #include "example.silica.hpp"
 
+#include "silica/reflection/reflection.hpp"
+
+#include <iostream>
+
 int main() {
-	std::cout << "Ack" << std::endl;
+	//We have a car
+	Car car;
+
 	return 0;
 }

@@ -41,7 +41,7 @@ struct TypeActions<{{name}}> {
 
     {% endfor -%}
 
-    {% if item.return -%}
+    {% if item.return != "void" -%}
     if (res.type() != TypeId::get<{{item.return}}>()) {
       return Error(format("Return type expected: {{item.return}}, received: {}", reflection::type_name(res.type())));
     }

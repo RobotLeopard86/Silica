@@ -5,19 +5,20 @@
 #include <string>
 #include <iostream>
 
+#define REFINISH_COST 8000
+
 class [[silica::reflect("data", "func")]] Car {
   public:
 	std::string owner, brand;
 	unsigned int year;
+	[[silica::alias("insured")]] bool hasInsurance;
+	[[silica::ignore]] bool hasSatRadio;
 
-	void refinish(Color newColor) {
-		exterior = newColor;
+	int refinish(Color newColor) {
+		finish = newColor;
+		return REFINISH_COST;
 	}
 
   private:
-	Color exterior, interior;
-
-	void enableSeatHeaters() {
-		std::cout << "SECRET SEAT HEATERS ACTIVATED" << std::endl;
-	}
+	Color finish;
 };
