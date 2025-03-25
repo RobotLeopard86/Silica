@@ -74,7 +74,12 @@ int main(int argc, char* argv[]) {
 	//Parse source files
 	clock::time_point parseBegin = clock::now();
 	Parser parser(compDbPath, out.string());
-	auto parsed = parser.parse(input);
+	auto parsedOpt = parser.parse(input);
+	if(!parsedOpt.has_value()) {
+		std::cerr << "Errors encountered while parsing source files!";
+		return -1;
+	}
+	auto parsed = parsedOpt.value();
 	clock::time_point parseEnd = clock::now();
 	VERBOSE_LOG("Parsing source files completed in " << std::chrono::duration_cast<std::chrono::milliseconds>(parseEnd - parseBegin).count() << "ms")
 

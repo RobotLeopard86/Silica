@@ -29,15 +29,13 @@ Parser::Parser(std::string_view compdb_dir,//
 	ctx.output_dir = output_dir;
 }
 
-std::unordered_map<std::string, nlohmann::json> Parser::parse(const std::vector<std::string>& input_files) {
+std::optional<std::unordered_map<std::string, nlohmann::json>> Parser::parse(const std::vector<std::string>& input_files) {
 	tooling::ClangTool tool(*compDB, input_files);
 	ActionFactory factory(&ctx);
 
 	//handle macro attributes at first then
 	//traverse AST, check attributes, build json objects and fill result field in context
-	tool.run(&factory);
-
-	return ctx.result;
+	return (tool.run(&factory) == 0 ? std::make_optional(ctx.result) : std::nullopt);
 }
 
 Parser::~Parser() = default;
