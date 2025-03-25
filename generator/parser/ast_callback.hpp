@@ -63,7 +63,7 @@ struct JsonBuilder {
 
 		json["kind"] = 0;
 		json["name"] = name;
-		json["origin"] = file_name(c);
+		json["origin"] = std::filesystem::path(file_name(c)).filename();
 
 		if(_options.count(SilicaReflectAttr::Option::Base) != 0) {
 			auto parents = nlohmann::json::array();
@@ -131,7 +131,7 @@ struct JsonBuilder {
 		nlohmann::json json;
 		json["kind"] = 1;
 		json["name"] = name;
-		json["origin"] = file_name(e);
+		json["origin"] = std::filesystem::path(file_name(e)).filename();
 
 		auto& arr = json["constants"];
 

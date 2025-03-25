@@ -5,11 +5,8 @@
 #include <string>
 #include <iostream>
 
-class [[silica::reflect("all")]] Car {
+class [[silica::reflect("data", "func")]] Car {
   public:
-	Car(const std::string& owner, const std::string& brand, unsigned int year)
-	  : owner(owner), brand(brand), year(year) {}
-
 	std::string owner, brand;
 	unsigned int year;
 

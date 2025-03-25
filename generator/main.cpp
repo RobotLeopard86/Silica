@@ -81,13 +81,13 @@ int main(int argc, char* argv[]) {
 	}
 	auto parsed = parsedOpt.value();
 	clock::time_point parseEnd = clock::now();
-	VERBOSE_LOG("Parsing source files completed in " << std::chrono::duration_cast<std::chrono::milliseconds>(parseEnd - parseBegin).count() << "ms")
+	VERBOSE_LOG("Parsing source files completed in " << std::chrono::duration_cast<std::chrono::duration<float>>(parseEnd - parseBegin).count() << " seconds")
 
 	//Create template objects
 	inja::Environment inja;
-	inja::Template headerTemplate(templates::Header);
-	inja::Template enumTemplate(templates::Enum);
-	inja::Template objectTemplate(templates::Object);
+	inja::Template headerTemplate = inja.parse(templates::Header);
+	inja::Template enumTemplate = inja.parse(templates::Enum);
+	inja::Template objectTemplate = inja.parse(templates::Object);
 	VERBOSE_LOG("Loaded templates")
 
 	//Write root files
@@ -204,7 +204,7 @@ int main(int argc, char* argv[]) {
 	rootCpp.close();
 	VERBOSE_LOG("Generated " << out / (project + ".silica.cdpp"));
 	clock::time_point writeEnd = clock::now();
-	VERBOSE_LOG("File generation completed in " << std::chrono::duration_cast<std::chrono::milliseconds>(writeEnd - writeBegin).count() << "ms")
+	VERBOSE_LOG("File generation completed in " << std::chrono::duration_cast<std::chrono::duration<float>>(writeEnd - writeBegin).count() << " seconds")
 
 	//Write done message
 	VERBOSE_LOG("Done!")
