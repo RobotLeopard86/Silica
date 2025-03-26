@@ -5,11 +5,8 @@
 #include "silica/types/type_actions.hpp"
 
 #include <string>
-#include <iostream>
 
 #define REFINISH_COST 8000
-
-namespace silica {}
 
 class [[silica::reflect("all")]] Car {
   public:
@@ -18,7 +15,7 @@ class [[silica::reflect("all")]] Car {
 	[[silica::alias("insured")]] bool hasInsurance = false;
 	[[silica::ignore]] bool hasSatRadio = false;
 
-	int refinish(Color newColor) {
+	virtual int refinish(Color newColor) {
 		color = newColor;
 		return REFINISH_COST;
 	}
@@ -26,6 +23,8 @@ class [[silica::reflect("all")]] Car {
 	Color whatColorAmI() {
 		return color;
 	}
+
+	virtual ~Car() {}
 
   private:
 	Color color = Color::Green;

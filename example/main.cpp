@@ -1,5 +1,6 @@
 #include "data/car.hpp"
 #include "data/colors.hpp"
+#include "data/suv.hpp"
 
 #include "example.silica.hpp"
 
@@ -58,6 +59,28 @@ int main() {
 	silica::reflection::reflect(info.get<silica::Object>().get_field("color").unwrap().var()).get<silica::Enum>().parse("White").unwrap();
 	carColor = car.whatColorAmI();
 	std::cout << "The car is " << silica::reflection::reflect(&carColor).get<silica::Enum>().to_string() << std::endl;
+
+	//SUV for base class testing
+	SUV suv;
+	suv.brand = "Subaru";
+	suv.year = 2016;
+	suv.hasInsurance = true;
+	suv.hasSatRadio = false;
+	suv.nickname = "Big Belly";
+	suv.refinish(Color::Red);
+	suv.owner = "Big Mack";
+	suv.trunkVolume = 4.5 * 3.1 * 2;
+	std::cout << "I have an SUV now:\n"
+			  << silica::serialization::json::to_string(&suv).unwrap() << std::endl;
+	auto suvInfo = silica::reflection::reflect(&suv);
+	std::cout << "Because an SUV is also a Car... I can do car stuff with it." << std::endl;
+	std::cout << "Let's refinish it via reflection!";
+	int suvCost = suvInfo.get<silica::Object>().get_method("refinish").unwrap().invoke<int>(Color::Blue).unwrap();
+	Color suvColor = suv.whatColorAmI();
+	std::cout << "The SUV is " << silica::reflection::reflect(&suvColor).get<silica::Enum>().to_string() << std::endl;
+	std::cout << "Refinishing it cost more: $" << suvCost << std::endl;
+	std::cout << "I also can do SUV-specific stuff, like checking the trunk volume" << std::endl;
+	std::cout << "(it's " << silica::reflection::reflect(suvInfo.get<silica::Object>().get_field("trunkVolume").unwrap().var()).get<silica::Floating>().get() << " cubic feet btw)" << std::endl;
 
 	//Done
 	std::cout << "Thanks for checking out the Silica demo!" << std::endl;

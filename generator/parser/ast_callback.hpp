@@ -65,6 +65,9 @@ struct JsonBuilder {
 		json["name"] = name;
 		json["origin"] = std::filesystem::path(file_name(c)).filename();
 
+		std::vector<const clang::CXXRecordDecl*> decls;
+		decls.push_back(c);
+
 		if(_options.count(SilicaReflectAttr::Option::Base) != 0) {
 			auto parents = nlohmann::json::array();
 
@@ -75,6 +78,8 @@ struct JsonBuilder {
 				item["name"] = b.getType()->getAsRecordDecl()->getQualifiedNameAsString();
 
 				parents.push_back(std::move(item));
+
+				decls.push_back(b.getType()->getAsCXXRecordDecl());
 			}
 			json.emplace("parents", std::move(parents));
 		}
@@ -82,36 +87,38 @@ struct JsonBuilder {
 		auto fields = nlohmann::json::array();
 		auto func = nlohmann::json::array();
 
-		for(auto&& d : c->getPrimaryContext()->decls()) {
+		for(auto&& de : decls) {
+			for(auto&& d : de->getPrimaryContext()->decls()) {
 
-			if(const auto* f = dyn_cast<FieldDecl>(d)) {
+				if(const auto* f = dyn_cast<FieldDecl>(d)) {
 
-				add_field(&fields, f);
+					add_field(&fields, f);
 
-			} else if(const auto* v = dyn_cast<VarDecl>(d)) {
+				} else if(const auto* v = dyn_cast<VarDecl>(d)) {
 
-				add_field(&fields, v);
+					add_field(&fields, v);
 
-			} else if(const auto* f = dyn_cast<FunctionDecl>(d)) {
+				} else if(const auto* f = dyn_cast<FunctionDecl>(d)) {
 
-				add_function(&func, f, c->getNameAsString());
+					add_function(&func, f, c->getNameAsString());
 
-			} else if(const auto* nc = dyn_cast<CXXRecordDecl>(d)) {
-				if(!nc->isThisDeclarationADefinition() ||//
-					nc->hasAttr<SilicaReflectAttr>()) {
-					//skip nested classes with dedicated 'reflect' attribute,
-					//handle them further as root declarations
-					continue;
+				} else if(const auto* nc = dyn_cast<CXXRecordDecl>(d)) {
+					if(!nc->isThisDeclarationADefinition() ||//
+						nc->hasAttr<SilicaReflectAttr>()) {
+						//skip nested classes with dedicated 'reflect' attribute,
+						//handle them further as root declarations
+						continue;
+					}
+					add_class(nc);
+
+				} else if(const auto* ne = dyn_cast<EnumDecl>(d)) {
+					if(ne->hasAttr<SilicaReflectAttr>()) {
+						//skip nested enums with dedicated 'reflect' attribute,
+						//handle them further as root declarations
+						continue;
+					}
+					add_enum(ne);
 				}
-				add_class(nc);
-
-			} else if(const auto* ne = dyn_cast<EnumDecl>(d)) {
-				if(ne->hasAttr<SilicaReflectAttr>()) {
-					//skip nested enums with dedicated 'reflect' attribute,
-					//handle them further as root declarations
-					continue;
-				}
-				add_enum(ne);
 			}
 		}
 		json.emplace("fields", std::move(fields));
