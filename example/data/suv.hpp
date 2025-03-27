@@ -5,7 +5,7 @@
 
 #define SUV_REFINISH_FEE 1500
 
-class [[silica::reflect("base", "data")]] SUV : public Car {
+class [[silica::reflect("all")]] SUV : public Car {
   public:
 	std::string nickname;
 	float trunkVolume;

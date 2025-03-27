@@ -66,7 +66,7 @@ int main() {
 	suv.year = 2016;
 	suv.hasInsurance = true;
 	suv.hasSatRadio = false;
-	suv.nickname = "Big Belly";
+	suv.nickname = "Macho Truck";
 	suv.refinish(Color::Red);
 	suv.owner = "Big Mack";
 	suv.trunkVolume = 4.5 * 3.1 * 2;
@@ -74,7 +74,7 @@ int main() {
 			  << silica::serialization::json::to_string(&suv).unwrap() << std::endl;
 	auto suvInfo = silica::reflection::reflect(&suv);
 	std::cout << "Because an SUV is also a Car... I can do car stuff with it." << std::endl;
-	std::cout << "Let's refinish it via reflection!";
+	std::cout << "Let's refinish it via reflection!" << std::endl;
 	int suvCost = suvInfo.get<silica::Object>().get_method("refinish").unwrap().invoke<int>(Color::Blue).unwrap();
 	Color suvColor = suv.whatColorAmI();
 	std::cout << "The SUV is " << silica::reflection::reflect(&suvColor).get<silica::Enum>().to_string() << std::endl;

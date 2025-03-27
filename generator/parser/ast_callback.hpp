@@ -66,7 +66,6 @@ struct JsonBuilder {
 		json["origin"] = std::filesystem::path(file_name(c)).filename();
 
 		std::vector<const clang::CXXRecordDecl*> decls;
-		decls.push_back(c);
 
 		if(_options.count(SilicaReflectAttr::Option::Base) != 0) {
 			auto parents = nlohmann::json::array();
@@ -87,20 +86,53 @@ struct JsonBuilder {
 		auto fields = nlohmann::json::array();
 		auto func = nlohmann::json::array();
 
+		//Process primary class members
+		for(auto&& d : c->getPrimaryContext()->decls()) {
+			if(const auto* f = dyn_cast<FieldDecl>(d)) {
+
+				add_field(&fields, f, false);
+
+			} else if(const auto* v = dyn_cast<VarDecl>(d)) {
+
+				add_field(&fields, v, false);
+
+			} else if(const auto* f = dyn_cast<FunctionDecl>(d)) {
+
+				add_function(&func, f, c->getNameAsString(), false);
+
+			} else if(const auto* nc = dyn_cast<CXXRecordDecl>(d)) {
+				if(!nc->isThisDeclarationADefinition() ||//
+					nc->hasAttr<SilicaReflectAttr>()) {
+					//skip nested classes with dedicated 'reflect' attribute,
+					//handle them further as root declarations
+					continue;
+				}
+				add_class(nc);
+
+			} else if(const auto* ne = dyn_cast<EnumDecl>(d)) {
+				if(ne->hasAttr<SilicaReflectAttr>()) {
+					//skip nested enums with dedicated 'reflect' attribute,
+					//handle them further as root declarations
+					continue;
+				}
+				add_enum(ne);
+			}
+		}
+
+		//Process inherited members
 		for(auto&& de : decls) {
 			for(auto&& d : de->getPrimaryContext()->decls()) {
-
 				if(const auto* f = dyn_cast<FieldDecl>(d)) {
 
-					add_field(&fields, f);
+					add_field(&fields, f, true);
 
 				} else if(const auto* v = dyn_cast<VarDecl>(d)) {
 
-					add_field(&fields, v);
+					add_field(&fields, v, true);
 
 				} else if(const auto* f = dyn_cast<FunctionDecl>(d)) {
 
-					add_function(&func, f, c->getNameAsString());
+					add_function(&func, f, de->getNameAsString(), true);
 
 				} else if(const auto* nc = dyn_cast<CXXRecordDecl>(d)) {
 					if(!nc->isThisDeclarationADefinition() ||//
@@ -121,6 +153,7 @@ struct JsonBuilder {
 				}
 			}
 		}
+
 		json.emplace("fields", std::move(fields));
 		json.emplace("methods", std::move(func));
 
@@ -153,14 +186,14 @@ struct JsonBuilder {
 		_ctx->result.emplace(std::move(name), std::move(json));
 	}
 
-	void add_function(nlohmann::json* functions, const FunctionDecl* f, const std::string& class_name) {
+	void add_function(nlohmann::json* functions, const FunctionDecl* f, const std::string& class_name, bool inherited) {
 		if(f->hasAttr<SilicaIgnoreAttr>()) {
 			return;
 		}
 
 		auto acc = f->getAccess();
 		if((acc != clang::AS_public && _options.count(SilicaReflectAttr::Option::NonPublic) == 0) ||
-			_options.count(SilicaReflectAttr::Option::Func) == 0) {
+			_options.count(SilicaReflectAttr::Option::Func) == 0 || (acc == clang::AS_private && inherited)) {
 			return;
 		}
 
@@ -174,7 +207,10 @@ struct JsonBuilder {
 
 		auto& func = functions->emplace_back();
 
-		set_name(&func, f);
+		if(inherited)
+			set_name(&func, f, class_name);
+		else
+			set_name(&func, f);
 		func["acc"] = access_arr(f);
 		auto ret = f->getDeclaredReturnType().getAsString();
 		if(ret.compare("_Bool") == 0)
@@ -189,14 +225,14 @@ struct JsonBuilder {
 		func.emplace("params", std::move(params));
 	}
 
-	void add_field(nlohmann::json* fields, const ValueDecl* v) {
+	void add_field(nlohmann::json* fields, const ValueDecl* v, bool inherited) {
 		if(v->template hasAttr<SilicaIgnoreAttr>()) {
 			return;
 		}
 
 		auto acc = v->getAccess();
 		if((acc != clang::AS_public && _options.count(SilicaReflectAttr::Option::NonPublic) == 0) ||
-			_options.count(SilicaReflectAttr::Option::Data) == 0) {
+			_options.count(SilicaReflectAttr::Option::Data) == 0 || (acc == clang::AS_private && inherited)) {
 			return;
 		}
 
@@ -279,6 +315,7 @@ struct JsonBuilder {
 		auto name = decl->getNameAsString();
 
 		(*item)["name"] = name;
+		(*item)["safe_name"] = name;
 
 		if(const auto* alias = decl->getAttr<SilicaAliasAttr>()) {
 			(*item)["alias"] = alias->getName().str();
@@ -286,6 +323,20 @@ struct JsonBuilder {
 			return;
 		}
 		(*item)["alias"] = name;
+	}
+
+	static void set_name(nlohmann::json* item, const NamedDecl* decl, const std::string& prefix) {
+		auto name = decl->getNameAsString();
+
+		(*item)["name"] = prefix + "::" + name;
+		(*item)["safe_name"] = prefix + "__" + name;
+
+		if(const auto* alias = decl->getAttr<SilicaAliasAttr>()) {
+			(*item)["alias"] = prefix + "::" + alias->getName().str();
+
+			return;
+		}
+		(*item)["alias"] = prefix + "::" + name;
 	}
 
 	static std::unordered_set<SilicaReflectAttr::Option> get_options(const NamedDecl* decl) {

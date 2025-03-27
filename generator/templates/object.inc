@@ -22,13 +22,13 @@ struct TypeActions<{{name}}> {
     static std::map<std::string_view, MethodDesc> methods {% if length(methods) != 0 %}{
       {% else %}{};{% endif -%}
       {% for item in methods -%}
-        {"{{item.alias}}", MethodDesc(&invoke_{{item.name}}, Access::{{join(item.acc," | Access::")}})},
+        {"{{item.alias}}", MethodDesc(&invoke_{{item.safe_name}}, Access::{{join(item.acc," | Access::")}})},
     {% if not loop.is_last %}  {% else %}};{% endif -%}
       {% endfor %}
     return Object(Var(p, is_const), &fields, &methods);
   }
 {% for item in methods %}
-  static Expected<None> invoke_{{item.name}}(Var res, void* obj, const std::vector<Var>& args) {
+  static Expected<None> invoke_{{item.safe_name}}(Var res, void* obj, const std::vector<Var>& args) {
     if (args.size() != {{length(item.params)}}) {
       return Error("Number of arguments is not the same as in the callable");
     }
