@@ -14,7 +14,6 @@ Silica is a codegen-based reflection library for C++. It is forked from [the `ea
 * Enum <-> string conversion
 * STL container support
 * Smart pointer support
-* Invocation of superclass methods
 
 ## Building
 You will need:  
