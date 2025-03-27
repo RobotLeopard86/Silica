@@ -86,20 +86,17 @@ struct JsonBuilder {
 		auto fields = nlohmann::json::array();
 		auto func = nlohmann::json::array();
 
+		std::vector<std::string> func_names;
+
 		//Process primary class members
 		for(auto&& d : c->getPrimaryContext()->decls()) {
 			if(const auto* f = dyn_cast<FieldDecl>(d)) {
-
 				add_field(&fields, f, false);
-
 			} else if(const auto* v = dyn_cast<VarDecl>(d)) {
-
 				add_field(&fields, v, false);
-
 			} else if(const auto* f = dyn_cast<FunctionDecl>(d)) {
-
 				add_function(&func, f, c->getNameAsString(), false);
-
+				func_names.push_back(f->getNameAsString());
 			} else if(const auto* nc = dyn_cast<CXXRecordDecl>(d)) {
 				if(!nc->isThisDeclarationADefinition() ||//
 					nc->hasAttr<SilicaReflectAttr>()) {
@@ -108,7 +105,6 @@ struct JsonBuilder {
 					continue;
 				}
 				add_class(nc);
-
 			} else if(const auto* ne = dyn_cast<EnumDecl>(d)) {
 				if(ne->hasAttr<SilicaReflectAttr>()) {
 					//skip nested enums with dedicated 'reflect' attribute,
@@ -123,17 +119,15 @@ struct JsonBuilder {
 		for(auto&& de : decls) {
 			for(auto&& d : de->getPrimaryContext()->decls()) {
 				if(const auto* f = dyn_cast<FieldDecl>(d)) {
-
 					add_field(&fields, f, true);
-
 				} else if(const auto* v = dyn_cast<VarDecl>(d)) {
-
 					add_field(&fields, v, true);
-
 				} else if(const auto* f = dyn_cast<FunctionDecl>(d)) {
-
+					std::cout << "Function " << f->getNameAsString() << " for class " << de->getNameAsString() << std::endl;
+					if(std::find(func_names.begin(), func_names.end(), f->getNameAsString()) != func_names.end()) continue;
+					std::cout << "good 2 go" << std::endl;
 					add_function(&func, f, de->getNameAsString(), true);
-
+					func_names.push_back(f->getNameAsString());
 				} else if(const auto* nc = dyn_cast<CXXRecordDecl>(d)) {
 					if(!nc->isThisDeclarationADefinition() ||//
 						nc->hasAttr<SilicaReflectAttr>()) {
@@ -142,7 +136,6 @@ struct JsonBuilder {
 						continue;
 					}
 					add_class(nc);
-
 				} else if(const auto* ne = dyn_cast<EnumDecl>(d)) {
 					if(ne->hasAttr<SilicaReflectAttr>()) {
 						//skip nested enums with dedicated 'reflect' attribute,
@@ -207,10 +200,7 @@ struct JsonBuilder {
 
 		auto& func = functions->emplace_back();
 
-		if(inherited)
-			set_name(&func, f, class_name);
-		else
-			set_name(&func, f);
+		set_name(&func, f);
 		func["acc"] = access_arr(f);
 		auto ret = f->getDeclaredReturnType().getAsString();
 		if(ret.compare("_Bool") == 0)
@@ -323,20 +313,6 @@ struct JsonBuilder {
 			return;
 		}
 		(*item)["alias"] = name;
-	}
-
-	static void set_name(nlohmann::json* item, const NamedDecl* decl, const std::string& prefix) {
-		auto name = decl->getNameAsString();
-
-		(*item)["name"] = prefix + "::" + name;
-		(*item)["safe_name"] = prefix + "__" + name;
-
-		if(const auto* alias = decl->getAttr<SilicaAliasAttr>()) {
-			(*item)["alias"] = prefix + "::" + alias->getName().str();
-
-			return;
-		}
-		(*item)["alias"] = prefix + "::" + name;
 	}
 
 	static std::unordered_set<SilicaReflectAttr::Option> get_options(const NamedDecl* decl) {
