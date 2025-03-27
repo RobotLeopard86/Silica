@@ -46,7 +46,7 @@ int main(int argc, char* argv[]) {
 		}
 		return "Provided path does not exist or is not a directory or file";
 	};
-	app.add_option("input", input, "Input header files to the generator")->check(inputValidateFunc)->expected(1)->required();
+	app.add_option("input", input, "Input header files to the generator")->check(inputValidateFunc)->required();
 	std::string project;
 	app.add_option("-p", project, "Name of the project")->transform([](const std::string& val) { return to_filename(val); })->required();
 	bool verbose;

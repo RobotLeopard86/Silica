@@ -2,7 +2,7 @@
 #### Modern C++ reflection library 
 
 ## About
-Silica is a codegen-based reflection library for C++. It is forked from [the `easy_reflection_cpp` project by Maxim Voloshin](https://github.com/chocolacula/easy_reflection_cpp). More information is available in the `docs` directory.
+Silica is a codegen-based reflection library for C++. It is forked from [the `easy_reflection_cpp` project by Maxim Voloshin](https://github.com/chocolacula/easy_reflection_cpp). More information is available in the `doc` directory.
 
 ## Features
 * Automatic reflection info generation via code generator
@@ -25,9 +25,6 @@ You will need:
 
 All other dependencies will be downloaded at configure-time.  
 Configure the build directory with `meson setup build`, then run `meson compile -C build` to build the library. This can take a while.
-
-## Branching Scheme
-Silica uses two branches, `main` and `dev`. `main` should be considered stable and should **NEVER** be pushed to on its own. `dev` is where main work can happen and is allowed to be unstable and break. Only once `dev` is in a stable state can it be merged into `main` via a pull request.
 
 ## Licensing
 The Silica library and generator are licensed under the Apache License 2.0, which can be found in the root directory. All third-party licenses are present in the `licenses` folder, including that of the original `easy_reflection_cpp` library.
