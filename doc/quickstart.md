@@ -2,7 +2,7 @@
 This guide assumes you are using Meson. If you aren't, you may need to use pre-compiled binaries or find some way to integrate Meson into your system.  
 1. Add Silica as a subproject  
     1. Set up a `silica.wrap` file in your `subprojects` directory. It should look something like this:
-	```TOML
+	```INI
 	[wrap-git]
 	url = https://github.com/RobotLeopard86/Silica
 	depth = 1
