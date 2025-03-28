@@ -6,6 +6,7 @@
 
 #include "silica/reflection/reflection.hpp"
 #include "silica/serialization/json.hpp"
+#include "silica/serialization/convert.hpp"
 
 #include <iostream>
 
@@ -17,8 +18,14 @@ int main() {
 	car.owner = "John Smith";
 
 	//Let's dump it to the console as JSON
+	std::string asJson = silica::serialization::json::to_string(&car).unwrap();
 	std::cout << "I have a car:\n"
-			  << silica::serialization::json::to_string(&car).unwrap() << std::endl;
+			  << asJson << std::endl;
+
+	//Let's turn the JSON into YAML
+
+	std::cout << "This can also be in YAML:\n---\n"
+			  << silica::serialization::convert::to_yaml::from_json_string<Car>(asJson).unwrap() << "\n---" << std::endl;
 
 	//Let's reflect it
 	silica::TypeInfo info = silica::reflection::reflect(&car);

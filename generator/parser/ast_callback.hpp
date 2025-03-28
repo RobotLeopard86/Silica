@@ -123,9 +123,7 @@ struct JsonBuilder {
 				} else if(const auto* v = dyn_cast<VarDecl>(d)) {
 					add_field(&fields, v, true);
 				} else if(const auto* f = dyn_cast<FunctionDecl>(d)) {
-					std::cout << "Function " << f->getNameAsString() << " for class " << de->getNameAsString() << std::endl;
 					if(std::find(func_names.begin(), func_names.end(), f->getNameAsString()) != func_names.end()) continue;
-					std::cout << "good 2 go" << std::endl;
 					add_function(&func, f, de->getNameAsString(), true);
 					func_names.push_back(f->getNameAsString());
 				} else if(const auto* nc = dyn_cast<CXXRecordDecl>(d)) {
