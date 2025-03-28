@@ -15,13 +15,13 @@ posheader_cpy = import('fs').copyfile('serialization' / 'position.hpp', 'positio
 json_lex = custom_target('lexer_json.yy.[cpph]', 
 	output: ['lexer_json.yy.h', 'lexer_json.yy.cpp'],
 	input: 'serialization' / 'json' / 'json.l',
-	command: [reflex_exe, '@INPUT@', '--outfile=src' / 'lexer_json.yy.cpp', '--header-file=' + meson.current_source_dir() / 'serialization' / 'json' / 'lexer_json.yy.h'],
+	command: [reflex_exe, '@INPUT@', '--outfile=' + meson.current_build_dir() / 'lexer_json.yy.cpp', '--header-file=' + meson.current_source_dir() / 'serialization' / 'json' / 'lexer_json.yy.h'],
 	depends: posheader_cpy
 )
 yaml_lex = custom_target('lexer_yaml.yy.[cpph]', 
 	output: ['lexer_yaml.yy.h', 'lexer_yaml.yy.cpp'],
 	input: 'serialization' / 'yaml' / 'yaml.l',
-	command: [reflex_exe, '@INPUT@', '--outfile=src' / 'lexer_yaml.yy.cpp', '--header-file=' + meson.current_source_dir() / 'serialization' / 'yaml' / 'lexer_yaml.yy.h'],
+	command: [reflex_exe, '@INPUT@', '--outfile=' + meson.current_build_dir() / 'lexer_yaml.yy.cpp', '--header-file=' + meson.current_source_dir() / 'serialization' / 'yaml' / 'lexer_yaml.yy.h'],
 	depends: posheader_cpy
 )
 
