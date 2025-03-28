@@ -1,0 +1,9 @@
+[wrap-git]
+url = https://github.com/Genivia/RE-flex
+depth = 1
+revision = v5.1.1
+patch_directory = reflex-5.1.1
+
+[provide]
+reflex = reflex_dep
+program_names = reflex

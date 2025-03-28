@@ -1,147 +1,96 @@
-#include <cfloat>
+#include "data/car.hpp"
+#include "data/colors.hpp"
+#include "data/suv.hpp"
+
+#include "example.silica.hpp"
+
+#include "silica/reflection/reflection.hpp"
+#include "silica/serialization/json.hpp"
+#include "silica/serialization/convert.hpp"
+
 #include <iostream>
-#include <string_view>
-#include <utility>
-
-#include "data/bicycle.h"
-#include "data/colors.h"
-#include "er/reflection/reflection.h"
-#include "er/serialization/json.h"
-#include "generated/reflection.h"
-#include "print.h"
-
-using namespace er;
 
 int main() {
-  // You can get an Enum constant string representation by reflecting them
-  auto white = Colors::kWhite;
+	//We have a car
+	Car car;
+	car.brand = "Toyota";
+	car.year = 2023;
+	car.owner = "John Smith";
 
-  // reflection::reflect(ptr) returns a TypeInfo structure
-  // which could represent Integer, Floating, Enum and other kinds of types
-  auto white_info = reflection::reflect(&white);
+	//Let's dump it to the console as JSON
+	std::string asJson = silica::serialization::json::to_string(&car).unwrap();
+	std::cout << "I have a car:\n"
+			  << asJson << std::endl;
 
-  // You can check kind of the TypeInfo by calling is<Type>() and get it further
-  if (white_info.is<Enum>()) {
-    println("it's a string representation of {}", white_info.get<Enum>().to_string());
-  }
+	//Let's turn the JSON into YAML
 
-  // or use type matching
-  white_info.match([](Enum& e) { println("Matched and printed: {}", e.to_string()); },
-                   [](auto&& /*unused*/) { println("It's not an enum"); });
+	std::cout << "This can also be in YAML:\n---\n"
+			  << silica::serialization::convert::to_yaml::from_json_string<Car>(asJson).unwrap() << "\n---" << std::endl;
 
-  println();
+	//Let's reflect it
+	silica::TypeInfo info = silica::reflection::reflect(&car);
 
-  // it is possible to parse enum constant from string value too
-  auto the_enum = white_info.get<Enum>();
+	//Let's see if the car is insured
+	auto insuredVar = info.get<silica::Object>().get_field("insured").unwrap().var();
+	bool insured = *(insuredVar.rt_cast<bool>().unwrap());
+	std::cout << "According to reflection, car is " << (insured ? "" : "NOT ") << "insured" << std::endl;
 
-  the_enum.parse("kPurple").match(  //
-      [&](None) { println("kWhite recolored to {}", the_enum.to_string()); },
-      [](Error& err) { println("Got an error message: {}", err.what()); });
+	//Give the car insurance now
+	silica::reflection::reflect(insuredVar).get<silica::Bool>().set(true);
+	std::cout << "THE INSURANCE WIZARD HATH SPOKEN! ABRA-CADRABA-INSURANCE!" << std::endl;
+	insured = *(insuredVar.rt_cast<bool>().unwrap());
+	std::cout << "According to reflection, car is " << (insured ? "" : "NOT ") << "insured" << std::endl;
 
-  // if the constant doesn't exist
-  // an Error object with message will be returned
-  the_enum.parse("kPurple").match(  //
-      [](None) { println("Got an enum constant"); },
-      [](Error& err) { println("Got an error message: {}", err.what()); });
+	//What color is the car?
+	Color carColor = car.whatColorAmI();
+	std::cout << "The car is " << silica::reflection::reflect(&carColor).get<silica::Enum>().to_string() << std::endl;
 
-  println();
+	//Let's recolor the car
+	car.refinish(Color::Black);
+	std::cout << "Imma recolor the car." << std::endl;
+	carColor = car.whatColorAmI();
+	std::cout << "The car is " << silica::reflection::reflect(&carColor).get<silica::Enum>().to_string() << std::endl;
 
-  // it works for old plain enum type but in this case there isn't any generated code for 'Animals'
-  auto giraffe = Animals::kGiraffe;
-  try {
-    auto giraffe_info = reflection::reflect(&giraffe);
-  } catch (const std::exception& ex) {
-    println("Reflection throws the exception: '{}'", ex.what());
-  }
+	//By the way, sat radio?
+	std::cout << "By the way, the car does " << (car.hasSatRadio ? "" : "NOT ") << "have satellite radio. Reflection just can't see it because we marked it as ignored." << std::endl;
 
-  println();
+	//Recolor the car via reflection
+	std::cout << "Anyways, let's recolor the car with reflection" << std::endl;
+	int cost = info.get<silica::Object>().get_method("refinish").unwrap().invoke<int>(Color::Yellow).unwrap();
+	carColor = car.whatColorAmI();
+	std::cout << "The car is " << silica::reflection::reflect(&carColor).get<silica::Enum>().to_string() << std::endl;
+	std::cout << "Refinishing it cost $" << cost << " though :(" << std::endl;
 
-  // and of course you can use structs and classes
-  Bicycle gt_avalanche;
-  gt_avalanche.id = 34894613;
-  gt_avalanche.manufacturer = "GT";
-  gt_avalanche.model = "Avalanche";
-  gt_avalanche.wheel_size_inch = 26;
-  gt_avalanche.frame_weight = 12;
-  gt_avalanche.colors = {Colors::kBlack, Colors::kRed};
+	//Direct private field access
+	std::cout << "Why not do it for free? Unleash the direct private field access!" << std::endl;
+	silica::reflection::reflect(info.get<silica::Object>().get_field("color").unwrap().var()).get<silica::Enum>().parse("White").unwrap();
+	carColor = car.whatColorAmI();
+	std::cout << "The car is " << silica::reflection::reflect(&carColor).get<silica::Enum>().to_string() << std::endl;
 
-  auto bicycle_info = reflection::reflect(&gt_avalanche);
+	//SUV for base class testing
+	SUV suv;
+	suv.brand = "Subaru";
+	suv.year = 2016;
+	suv.hasInsurance = true;
+	suv.hasSatRadio = false;
+	suv.nickname = "Macho Truck";
+	suv.refinish(Color::Red);
+	suv.owner = "Big Mack";
+	suv.trunkVolume = 4.5 * 3.1 * 2;
+	std::cout << "I have an SUV now:\n"
+			  << silica::serialization::json::to_string(&suv).unwrap() << std::endl;
+	auto suvInfo = silica::reflection::reflect(&suv);
+	std::cout << "Because an SUV is also a Car... I can do car stuff with it." << std::endl;
+	std::cout << "Let's refinish it via reflection!" << std::endl;
+	int suvCost = suvInfo.get<silica::Object>().get_method("refinish").unwrap().invoke<int>(Color::Blue).unwrap();
+	Color suvColor = suv.whatColorAmI();
+	std::cout << "The SUV is " << silica::reflection::reflect(&suvColor).get<silica::Enum>().to_string() << std::endl;
+	std::cout << "Refinishing it cost more: $" << suvCost << std::endl;
+	std::cout << "I also can do SUV-specific stuff, like checking the trunk volume" << std::endl;
+	std::cout << "(it's " << silica::reflection::reflect(suvInfo.get<silica::Object>().get_field("trunkVolume").unwrap().var()).get<silica::Floating>().get() << " cubic feet btw)" << std::endl;
 
-  // setting a value is possible with type checking and casting
-  // Note: field 'frame_weight' reflected with alias 'weight'
-  auto* field_p = bicycle_info.get<Object>().get_field("weight").unwrap().var().rt_cast<float>().unwrap();
-  *field_p = 14.9F;
+	//Done
+	std::cout << "Thanks for checking out the Silica demo!" << std::endl;
 
-  // or by using separate reflection step for a field
-  auto field_var = bicycle_info.get<Object>().get_field("weight").unwrap().var();
-  auto ok = reflection::reflect(field_var).get<Floating>().set(DBL_MAX);
-
-  if (ok.is_error()) {
-    println("The value too big for a float field");
-  } else {
-    println("New value has been set");
-  }
-
-  println();
-
-  // you can even use static fields without an instance
-  Bicycle* bicycle_ptr = nullptr;
-  auto static_info = reflection::reflect(bicycle_ptr);
-  const auto* is_cool = static_info.get<Object>().get_field("kIsCool").unwrap().var().rt_cast<const bool>().unwrap();
-
-  if (*is_cool) {
-    println("Bikes are definatelly cool");
-  } else {
-    println("Bikes are boring");
-  }
-  println();
-
-  // for debug purposes there is a possibility to print out struct content
-  // via print() and sprint() functions in Reflection namespace
-  reflection::print(bicycle_info);
-
-  // TypeInfo made from nullptr could print static fields only
-  println("\n{}", reflection::sprint(static_info));
-
-  // The big surprise is you can invoke methods!
-  auto ex = bicycle_info.get<Object>()
-                .get_method("set_color")
-                .unwrap()
-                .invoke<size_t>(std::vector<Colors>{Colors::kWhite, Colors::kGray, Colors::kBlue});
-
-  println("It has {} colors now\n", ex.unwrap());
-
-  // it supports even smart pointers by proxying nested type to reflection system
-  auto smart_ptr = std::make_unique<Bicycle>();
-  *smart_ptr = gt_avalanche;
-  reflection::print(&smart_ptr);
-  println();
-
-  // and for a sweet one you can serialize to struct and vice vera
-  const auto* str =
-      "{\"weight\":16.400000,"
-      "\"model\":\"Aurum\","
-      "\"colors\":[\"kGray\",\"kGreen\"],"
-      "\"wheel_size\":27.500000,"
-      "\"manufacturer\":\"Norco\","
-      "\"is_hardtail\":false,"
-      "\"id\":17893448}";
-
-  auto norco_aurum = serialization::json::from_string<Bicycle>(str).unwrap();
-  reflection::print(&norco_aurum);
-
-  // even a map could be deserialized, it works with two fields by default:
-  // 'key' for a key
-  // 'val' for a value
-  // only two fields allowed, the order doesn't metter
-  // with special tag '!!map|key:val' in the start of a JSON array fields names could be implicitly specified
-  const auto* m_str =
-      "[\"!!map|game:price_usd\","
-      "{\"game\":\"Blasphemous\",\"price_usd\":34},"
-      "{\"price_usd\":60,\"game\":\"Call Of Duty\"}]";
-  auto m = serialization::json::from_string<std::map<std::string, int>>(m_str).unwrap();
-
-  println("\n{}", serialization::json::to_string(&m).unwrap());
-
-  return 0;
+	return 0;
 }

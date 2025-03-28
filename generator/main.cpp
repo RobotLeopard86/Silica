@@ -1,164 +1,213 @@
-#include <filesystem>
-#include <fstream>
-#include <iostream>
-#include <memory>
-#include <string>
-#include <thread>
-#include <unordered_map>
-#include <vector>
+#include "templates.hpp"
 
-#include "er/serialization/yaml.h"
-#include "parser/parser_cpp.h"
-#include "self_generated/reflection.h"
-#include "tools/files.h"
-#include "tools/to_filename.h"
+#include "tools/files.hpp"
+#include "parser/parser.hpp"
+#include "tools/to_filename.hpp"
 
-// tclap
-#include "tclap/CmdLine.h"
-
-// inja
+#include "CLI/CLI.hpp"
 #include "inja/inja.hpp"
-#include "inja/template.hpp"
 
-namespace {
-const char* const kVersion = "0.1.0";
-}  // namespace
+#include <string>
+#include <vector>
+#include <iostream>
+#include <chrono>
+#include <fstream>
 
-int main(int argc, const char** argv) {
-  TCLAP::CmdLine cmd("Easy Reflection code generator", ' ', kVersion);
-
-  Files file_manager;
-
-  TCLAP::ValueArg<std::string> c_arg("c", "config", "Explicitly specify path to the config file",  //
-                                     false, file_manager.root() + "config.yaml", "path");
-
-  TCLAP::SwitchArg p_arg("p", "perf", "Print performance report", false);
-
-  cmd.add(c_arg);
-  cmd.add(p_arg);
-  cmd.parse(argc, argv);
-
-  std::string c_path = c_arg.getValue();
-
-  std::ifstream input;
-  input.open(c_path);
-
-  if (!input.is_open()) {
-    std::cerr << "Cannot find the config file, aborted" << std::endl;
-    return -1;
-  }
-
-  auto conf = er::serialization::yaml::from_stream<Config>(input).unwrap();
-  input.close();
-
-  // correct paths and find all files recursive inside input folders
-  file_manager.correct_config(&conf);
-
-#if defined(_WIN32)
-  std::filesystem::path fs_output_dir(Files::from_utf8(conf.output_dir.data(), conf.output_dir.size()));
-#else
-  std::filesystem::path fs_output_dir(conf.output_dir);
-#endif
-  // check output directory
-  if (!std::filesystem::exists(fs_output_dir)) {
-    std::filesystem::create_directory(fs_output_dir);
-  }
-
-  auto time_1 = std::chrono::steady_clock::now();
-
-  // parse source files
-  ParserCpp parser(conf.compdb_dir, conf.output_dir);
-
-  auto parsed = parser.parse(conf.input);
-
-  auto time_2 = std::chrono::steady_clock::now();
-
-  // load templates
-  inja::Environment inja_env;
-  auto template_header = inja_env.parse_template(conf.templates.header);
-  auto template_object = inja_env.parse_template(conf.templates.object);
-  auto template_enum = inja_env.parse_template(conf.templates.for_enum);
-
-  // create primary files
-  std::ofstream reflection_h(fs_output_dir / "reflection.h");
-
-  reflection_h << R"(#pragma once
-
-#include "er/reflection/reflection.h"
-#include "er/types/all_types.h"
-
-// generated:
-)";
-
-  std::ofstream reflection_cpp(fs_output_dir / "reflection.cpp");
-
-  reflection_cpp << R"(#include "reflection.h"
-
-// clang-format off
-)";
-
-  // clear and make 'reflected_types' directory
-  auto fs_reflected_dir = fs_output_dir / "reflected_types";
-
-  if (std::filesystem::exists(fs_reflected_dir)) {
-    std::filesystem::remove_all(fs_reflected_dir);
-  }
-  std::filesystem::create_directory(fs_reflected_dir);
-
-  // generate templates
-  for (auto&& [object_name, json] : parsed) {
-    auto file_name_utf8 = to_filename(object_name);
-    json["file_name"] = file_name_utf8;
-
-    file_name_utf8 += ".er";
-
-#if defined(_WIN32)
-    auto file_name = Files::from_utf8(file_name_utf8.data(), file_name_utf8.size());
-
-    auto file_name_h = fs_reflected_dir / (file_name + L".h");
-    auto file_name_cpp = fs_reflected_dir / (file_name + L".cpp");
-#else
-    auto& file_name = file_name_utf8;
-    auto file_name_h = fs_reflected_dir / (file_name + ".h");
-    auto file_name_cpp = fs_reflected_dir / (file_name + ".cpp");
+#ifndef PROJECT_VER
+#define PROJECT_VER "unknown"
 #endif
 
-    std::ofstream output_h(file_name_h);
-    std::ofstream output_cpp(file_name_cpp);
+#define VERBOSE_LOG(...) \
+	if(verbose) std::cout << __VA_ARGS__ << std::endl;
 
-    inja_env.render_to(output_h, template_header, json);
-    output_h.close();
+#define clock std::chrono::steady_clock
 
-    if (json["kind"].get<int>() == 0) {
-      inja_env.render_to(output_cpp, template_object, json);
-    } else {
-      inja_env.render_to(output_cpp, template_enum, json);
-    }
-    output_cpp.close();
+int main(int argc, char* argv[]) {
+	//Configure CLI
+	CLI::App app("Silica reflection info generator", std::filesystem::path(argv[0]).filename());
+	std::string compDbPath;
+	app.add_option("-c", compDbPath, "Path to the compilation database directory")->check(CLI::ExistingDirectory)->required();
+	std::string outDir;
+	const auto outDirValidateFunc = [](const std::string& opt) {
+		auto existDir = CLI::ExistingDirectory(opt);
+		auto nonexist = CLI::NonexistentPath(opt);
+		if(existDir.empty() || nonexist.empty()) {
+			return "";
+		}
+		return "Provided path exists but is not a directory";
+	};
+	app.add_option("-o", outDir, "Path to the directory to output generated code to")->check(outDirValidateFunc)->required();
+	std::vector<std::string> input;
+	const auto inputValidateFunc = [](const std::string& opt) {
+		auto existDir = CLI::ExistingDirectory(opt);
+		auto existFile = CLI::ExistingFile(opt);
+		if(existDir.empty() || existFile.empty()) {
+			return "";
+		}
+		return "Provided path does not exist or is not a directory or file";
+	};
+	app.add_option("input", input, "Input header files to the generator")->check(inputValidateFunc)->required();
+	std::string project;
+	app.add_option("-p", project, "Name of the project")->transform([](const std::string& val) { return to_filename(val); })->required();
+	bool verbose;
+	app.add_flag("-V", verbose, "Print verbose output");
+	app.set_version_flag("-v", []() { return PROJECT_VER; }, "Display version and exit");
 
-    const std::string_view include_str = "#include \"reflected_types/";
+	//Parse CLI arguments
+	CLI11_PARSE(app, argc, argv);
 
-    reflection_h << include_str << file_name_utf8 << ".h\"\n";
-    reflection_cpp << include_str << file_name_utf8 << ".cpp\" //NOLINT\n";
-  }
+	//Correct paths
+	Files files;
+	files.correct_path(&compDbPath);
+	files.correct_path(&outDir);
+	files.complete_files(&input);
 
-  reflection_cpp << "// clang-format on\n";
-  reflection_cpp.close();
+	//If the output directory doesn't exist, we need to make it, or if it exists we need to empty it
+	//We do this by deleting it if it exists, then remaking the directory
+	std::filesystem::path out(outDir);
+	if(std::filesystem::exists(out)) {
+		std::filesystem::remove_all(out);
+	}
+	std::filesystem::create_directories(out);
+	VERBOSE_LOG("Prepped output directory " << out)
 
-  reflection_h.close();
+	//Parse source files
+	clock::time_point parseBegin = clock::now();
+	Parser parser(compDbPath, out.string());
+	auto parsedOpt = parser.parse(input);
+	if(!parsedOpt.has_value()) {
+		std::cerr << "Errors encountered while parsing source files!";
+		return -1;
+	}
+	auto parsed = parsedOpt.value();
+	clock::time_point parseEnd = clock::now();
+	VERBOSE_LOG("Parsing source files completed in " << std::chrono::duration_cast<std::chrono::duration<float>>(parseEnd - parseBegin).count() << " seconds")
 
-  auto time_3 = std::chrono::steady_clock::now();
+	//Create template objects
+	inja::Environment inja;
+	inja::Template headerTemplate = inja.parse(templates::Header);
+	inja::Template enumTemplate = inja.parse(templates::Enum);
+	inja::Template objectTemplate = inja.parse(templates::Object);
+	VERBOSE_LOG("Loaded templates")
 
-  if (!p_arg.getValue()) {
-    return 0;
-  }
+	//Write root files
+	clock::time_point writeBegin = clock::now();
+	std::ofstream rootHeader(out / (project + ".silica.hpp"));
+	if(!rootHeader.is_open()) {
+		std::cerr << "Failed to open root header file for writing!";
+		return -1;
+	}
+	rootHeader << R"(
+/* ---------------------------------------- *\
+|                                            |
+|   Silica-generated reflection info file.   |
+|               DO NOT EDIT!                 |
+|                                            |
+\* ---------------------------------------- */
 
-  auto analysis = std::chrono::duration<double>(time_2 - time_1).count();
-  auto generation = std::chrono::duration_cast<std::chrono::milliseconds>(time_3 - time_2).count();
-  auto all = std::chrono::duration<double>(time_3 - time_1).count();
+#pragma once
 
-  std::cout << er::format("Takes for analysis {} sec, generation {} ms, all {} sec\n",  //
-                          analysis, generation, all);
+#include "silica/reflection/reflection.hpp"
+#include "silica/types/all_types.hpp"
 
-  return 0;
+	)";
+	std::ofstream rootCpp(out / (project + ".silica.cpp"));
+	if(!rootCpp.is_open()) {
+		std::cerr << "Failed to open root implementation file for writing!";
+		return -1;
+	}
+	rootCpp << R"(
+/* ---------------------------------------- *\
+|                                            |
+|   Silica-generated reflection info file.   |
+|               DO NOT EDIT!                 |
+|                                            |
+\* ---------------------------------------- */
+
+#include ")"
+			<< (project + ".silica.hpp") << "\"\n\n";
+
+	//Create type reflection directory
+	std::filesystem::path typesDir = out / "silica_types";
+	std::filesystem::create_directories(typesDir);
+
+	//Write file templates
+	for(auto&& [object_name, json] : parsed) {
+		//Generate filenames
+		auto filenameUTF8 = to_filename(object_name);
+		json["file_name"] = filenameUTF8;
+		filenameUTF8 += ".silica";
+#if defined(_WIN32)
+		auto fileName = Files::from_utf8(filenameUTF8.data(), filenameUTF8.size());
+
+		auto hppFile = typesDir / (fileName + L".hpp");
+		auto cppFile = typesDir / (fileName + L".cpp");
+#else
+		auto& fileName = filenameUTF8;
+		auto hppFile = typesDir / (fileName + ".hpp");
+		auto cppFile = typesDir / (fileName + ".cpp");
+#endif
+
+		//Open file streams
+		std::ofstream hpp(hppFile);
+		if(!hpp.is_open()) {
+			std::cerr << "Failed to open type header file for writing!";
+			return -1;
+		}
+		std::ofstream cpp(cppFile);
+		if(!cpp.is_open()) {
+			std::cerr << "Failed to open type implementation file for writing!";
+			return -1;
+		}
+
+		//Write generation notes
+		hpp << R"(
+/* ---------------------------------------- *\
+|                                            |
+|   Silica-generated reflection info file.   |
+|               DO NOT EDIT!                 |
+|                                            |
+\* ---------------------------------------- */
+
+		)";
+		cpp << R"(
+/* ---------------------------------------- *\
+|                                            |
+|   Silica-generated reflection info file.   |
+|               DO NOT EDIT!                 |
+|                                            |
+\* ---------------------------------------- */
+
+		)";
+
+		//Render templates
+		inja.render_to(hpp, headerTemplate, json);
+		hpp.close();
+		VERBOSE_LOG("Generated " << hppFile);
+		if(json["kind"].get<int>() == 0) {
+			inja.render_to(cpp, objectTemplate, json);
+		} else {
+			inja.render_to(cpp, enumTemplate, json);
+		}
+		cpp.close();
+		VERBOSE_LOG("Generated " << cppFile);
+
+		//Add includes to root files
+		const std::string includeStr = "#include \"silica_types/";
+		rootHeader << includeStr << filenameUTF8 << ".hpp\"\n";
+		rootCpp << includeStr << filenameUTF8 << ".cpp\"\n";
+	}
+
+	//Close root files
+	rootHeader.close();
+	VERBOSE_LOG("Generated " << out / (project + ".silica.hpp"));
+	rootCpp.close();
+	VERBOSE_LOG("Generated " << out / (project + ".silica.cdpp"));
+	clock::time_point writeEnd = clock::now();
+	VERBOSE_LOG("File generation completed in " << std::chrono::duration_cast<std::chrono::duration<float>>(writeEnd - writeBegin).count() << " seconds")
+
+	//Write done message
+	VERBOSE_LOG("Done!")
+
+	return 0;
 }

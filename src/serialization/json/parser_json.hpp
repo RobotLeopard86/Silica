@@ -1,0 +1,44 @@
+#pragma once
+
+#include <istream>
+
+#include "silica/expected.hpp"
+#include "silica/type_info/variants/array/array.hpp"
+#include "silica/type_info/variants/map/map.hpp"
+#include "silica/variable/var.hpp"
+#include "lexer_json.yy.h"
+
+namespace silica {
+
+	class TypeInfo;
+
+	class ParserJson : rf_json::LexerJson {
+	  public:
+		ParserJson(const char* input, size_t input_size);
+		explicit ParserJson(std::istream& stream);
+
+		Expected<None> deserialize(TypeInfo* info);
+
+	  private:
+		Expected<None> parse(TypeInfo* info, char token);
+		Expected<None> parse_next(TypeInfo* info);
+
+		Expected<None> parse_array(TypeId nested_type, std::function<Expected<None>(size_t, Var)> add);
+		Expected<None> parse_object(TypeInfo* info);
+		Expected<None> parse_map(Map& map);
+
+		inline Error error(const char* str);
+		inline Error error_token(char token);
+		inline Error error_match();
+
+		inline Expected<std::pair<std::string, std::string>> parse_tag(std::string_view str);
+		static inline bool parse_bool(std::string_view str);
+		static inline int64_t parse_int(std::string_view str);
+		static inline Expected<double> parse_double_special(std::string_view str);
+		static inline double parse_double(std::string_view str);
+
+		inline void next();
+		char _token;
+	};
+
+}
