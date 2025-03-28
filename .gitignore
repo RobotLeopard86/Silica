@@ -23,3 +23,6 @@ x64
 
 # Don't send the local stuff directory
 .local
+
+# Don't send generated sources
+*.yy*
