@@ -19,8 +19,8 @@ namespace silica {
 
 		Expected<None> assign(Var var) override {
 			if(var.type() != _var.type()) {
-				return Error(format("Cannot assign type: {} to {}",//
-					reflection::type_name(var.type()),			   //
+				return Error(silica::format("Cannot assign type: {} to {}",//
+					reflection::type_name(var.type()),					   //
 					reflection::type_name(_var.type())));
 			}
 			_var = var;

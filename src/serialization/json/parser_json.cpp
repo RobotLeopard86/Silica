@@ -260,7 +260,7 @@ Expected<None> ParserJson::parse_map(Map& map) {
 		} else if(get_word() == val) {
 			__retry(parse_next(&val_info));
 		} else {
-			return Error(format("Got an unexpected field '{}' while parse map; {}",//
+			return Error(silica::format("Got an unexpected field '{}' while parse map; {}",//
 				get_word(), get_position().to_string()));
 		}
 
@@ -288,7 +288,7 @@ Expected<None> ParserJson::parse_map(Map& map) {
 		} else if(get_word() == val) {
 			__retry(parse_next(&val_info));
 		} else {
-			return Error(format("Got an unexpected field '{}' while parse map; {}",//
+			return Error(silica::format("Got an unexpected field '{}' while parse map; {}",//
 				get_word(), get_position().to_string()));
 		}
 
@@ -315,15 +315,15 @@ void ParserJson::next() {
 }
 
 Error ParserJson::error(const char* str) {
-	return Error(format("{}; {}", str, get_position().to_string()));
+	return Error(silica::format("{}; {}", str, get_position().to_string()));
 }
 
 Error ParserJson::error_token(char token) {
-	return Error(format("Unexpected token '{}'; {}", token, get_position().to_string()));
+	return Error(silica::format("Unexpected token '{}'; {}", token, get_position().to_string()));
 }
 
 Error ParserJson::error_match() {
-	return Error(format("Cannot match correct type; {}", get_position().to_string()));
+	return Error(silica::format("Cannot match correct type; {}", get_position().to_string()));
 }
 
 Expected<std::pair<std::string, std::string>> ParserJson::parse_tag(std::string_view str) {
@@ -356,7 +356,7 @@ Expected<double> ParserJson::parse_double_special(std::string_view str) {
 	if(str == "nan") {
 		return std::nan("");
 	}
-	return Error(format("Expected -inf, inf, nan but {} reached", str));
+	return Error(silica::format("Expected -inf, inf, nan but {} reached", str));
 }
 
 double ParserJson::parse_double(std::string_view str) {

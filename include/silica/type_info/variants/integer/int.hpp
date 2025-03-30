@@ -19,8 +19,8 @@ namespace silica {
 		Expected<None> assign(Var var) override {
 			auto t = TypeId::get(_value);
 			if(var.type() != t) {
-				return Error(format("Cannot assign type: {} to {}",//
-					reflection::type_name(var.type()),			   //
+				return Error(silica::format("Cannot assign type: {} to {}",//
+					reflection::type_name(var.type()),					   //
 					reflection::type_name(t)));
 			}
 
@@ -60,7 +60,7 @@ namespace silica {
 			}
 
 			if(std::numeric_limits<T>::max() < value || std::numeric_limits<T>::min() > value) {
-				return Error(format("The value is too big to fit {} byte variable", sizeof(*_value)));
+				return Error(silica::format("The value is too big to fit {} byte variable", sizeof(*_value)));
 			}
 
 			if(value < 0 && !is_signed()) {
@@ -77,7 +77,7 @@ namespace silica {
 			}
 
 			if(std::numeric_limits<T>::max() < value || std::numeric_limits<T>::min() > value) {
-				return Error(format("The value is too big to fit {} byte variable", sizeof(*_value)));
+				return Error(silica::format("The value is too big to fit {} byte variable", sizeof(*_value)));
 			}
 
 			*_value = value;

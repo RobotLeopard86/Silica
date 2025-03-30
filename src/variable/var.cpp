@@ -53,7 +53,7 @@ void Var::dispose() {
 }
 
 Error Var::error(TypeId type, TypeId desired_type) {
-	return Error(format("Cannot cast {} to {}",//
-		reflection::type_name(type),		   //
+	return Error(silica::format("Cannot cast {} to {}",//
+		reflection::type_name(type),				   //
 		reflection::type_name(desired_type)));
 }

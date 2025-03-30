@@ -388,15 +388,15 @@ bool ParserYaml::is_null(const std::string& word) {
 }
 
 Error ParserYaml::error(const char* str) {
-	return Error(format("{}; {}", str, get_position().to_string()));
+	return Error(silica::format("{}; {}", str, get_position().to_string()));
 }
 
 Error ParserYaml::error_token(char token) {
-	return Error(format("Unexpected token '{}'; {}", token, get_position().to_string()));
+	return Error(silica::format("Unexpected token '{}'; {}", token, get_position().to_string()));
 }
 
 Error ParserYaml::error_match() {
-	return Error(format("Cannot match correct type; {}", get_position().to_string()));
+	return Error(silica::format("Cannot match correct type; {}", get_position().to_string()));
 }
 
 bool ParserYaml::parse_bool(std::string& str) {

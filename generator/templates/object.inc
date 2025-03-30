@@ -35,7 +35,7 @@ struct TypeActions<{{name}}> {
 
     {% for type in item.params -%}
     if (args[{{loop.index}}].type() != TypeId::get<{{type}}>()) {
-      return Error(format("Argument type expected: {{type}}, received: {}", reflection::type_name(args[{{loop.index}}].type())));
+      return Error(silica::format("Argument type expected: {{type}}, received: {}", reflection::type_name(args[{{loop.index}}].type())));
     }
     const {{type}}& a{{loop.index}} = *static_cast<const {{type}}*>(args[{{loop.index}}].raw());
 
@@ -43,7 +43,7 @@ struct TypeActions<{{name}}> {
 
     {% if item.return != "void" -%}
     if (res.type() != TypeId::get<{{item.return}}>()) {
-      return Error(format("Return type expected: {{item.return}}, received: {}", reflection::type_name(res.type())));
+      return Error(silica::format("Return type expected: {{item.return}}, received: {}", reflection::type_name(res.type())));
     }
     *reinterpret_cast<{{item.return}}*>(res.raw_mut()) = //
     {% endif -%}

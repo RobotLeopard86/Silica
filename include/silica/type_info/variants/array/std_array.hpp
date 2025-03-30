@@ -19,8 +19,8 @@ namespace silica {
 		Expected<None> assign(Var var) override {
 			auto t = TypeId::get(_array);
 			if(var.type() != t) {
-				return Error(format("Cannot assign type: {} to {}",//
-					reflection::type_name(var.type()),			   //
+				return Error(silica::format("Cannot assign type: {} to {}",//
+					reflection::type_name(var.type()),					   //
 					reflection::type_name(t)));
 			}
 
@@ -76,7 +76,7 @@ namespace silica {
 
 		Expected<Var> at(size_t idx) override {
 			if(idx >= size_v) {
-				return Error(format("Index: {} is out of array's size: {}", idx, size_v));
+				return Error(silica::format("Index: {} is out of array's size: {}", idx, size_v));
 			}
 
 			return Var(&(*_array)[idx], TypeId::get<T>(), _is_const);

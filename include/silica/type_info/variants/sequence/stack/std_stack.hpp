@@ -21,8 +21,8 @@ namespace silica {
 		Expected<None> assign(Var var) override {
 			auto t = TypeId::get(_stack);
 			if(var.type() != t) {
-				return Error(format("Cannot assign type: {} to {}",//
-					reflection::type_name(var.type()),			   //
+				return Error(silica::format("Cannot assign type: {} to {}",//
+					reflection::type_name(var.type()),					   //
 					reflection::type_name(t)));
 			}
 

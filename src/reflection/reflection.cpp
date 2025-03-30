@@ -63,7 +63,7 @@ Expected<None> reflection::copy(Var to, Var from) {
 		return Error("Cannot assign to const value");
 	}
 	if(to.type() != from.type()) {
-		return Error(format("Cannot copy {} to {}", type_name(from.type()), type_name(to.type())));
+		return Error(silica::format("Cannot copy {} to {}", type_name(from.type()), type_name(to.type())));
 	}
 	TheGreatTable::data()[to.type().number()].copy(to.raw_mut(), from.raw());
 	return None();

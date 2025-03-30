@@ -28,7 +28,7 @@ namespace silica {
 	template<typename T, size_t size_v>
 	struct Names<T[size_v]> {
 		static std::string_view get() {
-			static auto name = format("{}[{}]", Names<T>::get(), size_v);
+			static auto name = silica::format("{}[{}]", Names<T>::get(), size_v);
 			return name;
 		}
 	};
@@ -36,7 +36,7 @@ namespace silica {
 	template<typename T, size_t size_v>
 	struct Names<std::array<T, size_v>> {
 		static std::string_view get() {
-			static auto name = format("std::varray<{}, {}>", Names<T>::get(), size_v);
+			static auto name = silica::format("std::varray<{}, {}>", Names<T>::get(), size_v);
 			return name;
 		}
 	};
@@ -58,7 +58,7 @@ namespace silica {
 	template<typename T>
 	struct Names<std::vector<T>> {
 		static std::string_view get() {
-			static auto name = format("std::vector<{}>", Names<T>::get());
+			static auto name = silica::format("std::vector<{}>", Names<T>::get());
 			return name;
 		}
 	};
@@ -66,7 +66,7 @@ namespace silica {
 	template<typename T>
 	struct Names<std::list<T>> {
 		static std::string_view get() {
-			static auto name = format("std::list<{}>", Names<T>::get());
+			static auto name = silica::format("std::list<{}>", Names<T>::get());
 			return name;
 		}
 	};
@@ -74,7 +74,7 @@ namespace silica {
 	template<typename T>
 	struct Names<std::deque<T>> {
 		static std::string_view get() {
-			static auto name = format("std::deque<{}>", Names<T>::get());
+			static auto name = silica::format("std::deque<{}>", Names<T>::get());
 			return name;
 		}
 	};
@@ -82,7 +82,7 @@ namespace silica {
 	template<typename T>
 	struct Names<std::stack<T>> {
 		static std::string_view get() {
-			static auto name = format("std::stack<{}>", Names<T>::get());
+			static auto name = silica::format("std::stack<{}>", Names<T>::get());
 			return name;
 		}
 	};
@@ -90,7 +90,7 @@ namespace silica {
 	template<typename T>
 	struct Names<std::queue<T>> {
 		static std::string_view get() {
-			static auto name = format("std::queue<{}>", Names<T>::get());
+			static auto name = silica::format("std::queue<{}>", Names<T>::get());
 			return name;
 		}
 	};
@@ -98,7 +98,7 @@ namespace silica {
 	template<typename T>
 	struct Names<std::set<T>> {
 		static std::string_view get() {
-			static auto name = format("std::set<{}>", Names<T>::get());
+			static auto name = silica::format("std::set<{}>", Names<T>::get());
 			return name;
 		}
 	};
@@ -106,7 +106,7 @@ namespace silica {
 	template<typename T>
 	struct Names<std::unordered_set<T>> {
 		static std::string_view get() {
-			static auto name = format("std::unordered_set<{}>", Names<T>::get());
+			static auto name = silica::format("std::unordered_set<{}>", Names<T>::get());
 			return name;
 		}
 	};
@@ -114,7 +114,7 @@ namespace silica {
 	template<typename KeyT, typename ValueT>
 	struct Names<std::map<KeyT, ValueT>> {
 		static std::string_view get() {
-			static auto name = format("std::map<{}, {}>", Names<KeyT>::get(), Names<ValueT>::get());
+			static auto name = silica::format("std::map<{}, {}>", Names<KeyT>::get(), Names<ValueT>::get());
 			return name;
 		}
 	};
@@ -122,7 +122,7 @@ namespace silica {
 	template<typename KeyT, typename ValueT>
 	struct Names<std::unordered_map<KeyT, ValueT>> {
 		static std::string_view get() {
-			static auto name = format("std::unordered_map<{}, {}>", Names<KeyT>::get(), Names<ValueT>::get());
+			static auto name = silica::format("std::unordered_map<{}, {}>", Names<KeyT>::get(), Names<ValueT>::get());
 			return name;
 		}
 	};

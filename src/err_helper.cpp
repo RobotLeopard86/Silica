@@ -9,7 +9,7 @@ using namespace silica;
 using namespace silica::sequence;
 
 Error ErrHelper::error(std::string_view message, TypeId type, TypeId nested_type) {
-	return Error(format(message,	//
-		reflection::type_name(type),//
+	return Error(silica::format(message,//
+		reflection::type_name(type),	//
 		reflection::type_name(nested_type)));
 }

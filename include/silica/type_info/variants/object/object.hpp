@@ -27,8 +27,8 @@ namespace silica {
 
 		Expected<None> assign(Var var) {
 			if(var.type() != _var.type()) {
-				return Error(format("Cannot assign type: {} to {}",//
-					reflection::type_name(var.type()),			   //
+				return Error(silica::format("Cannot assign type: {} to {}",//
+					reflection::type_name(var.type()),					   //
 					reflection::type_name(_var.type())));
 			}
 			_var = var;
@@ -46,7 +46,7 @@ namespace silica {
 			if(it != _fields->end()) {
 				return FieldInfo(_var.raw(), &it->second);
 			}
-			return Error(format("There is no field with name: '{}'", name));
+			return Error(silica::format("There is no field with name: '{}'", name));
 		}
 
 		Fields get_fields(Access access = Access::kPublic, bool include_readonly = false) const {
@@ -62,12 +62,12 @@ namespace silica {
 					if(it->second.is_const()) {
 						return MethodInfo(_var.raw(), &it->second);
 					}
-					return Error(format("Cannot call non const method '{}' on const object", name));
+					return Error(silica::format("Cannot call non const method '{}' on const object", name));
 				}
 
 				return MethodInfo(_var.raw_mut(), &it->second);
 			}
-			return Error(format("There is no method with name: '{}'", name));
+			return Error(silica::format("There is no method with name: '{}'", name));
 		}
 
 		Var var() {

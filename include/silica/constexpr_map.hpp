@@ -56,7 +56,7 @@ namespace silica {
 			auto ptr = search_by_name(name, 0, size);
 
 			if(ptr == nullptr) {
-				return Error(format("Cannot find the constant '{}'", name));
+				return Error(silica::format("Cannot find the constant '{}'", name));
 			}
 
 			return ptr->value;
