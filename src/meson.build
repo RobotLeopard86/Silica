@@ -3,7 +3,8 @@ nlohmann_json_dep = subproject('nlohmannjson', required: true).get_variable('nlo
 
 # RE-flex
 reflex = subproject('reflex', required: true, default_options: {
-	'default_library': 'static'
+	'default_library': 'static',
+	'cpp_std': 'c++17'
 })
 reflex_exe = reflex.get_variable('reflex')
 reflex_dep = reflex.get_variable('reflex_dep')
