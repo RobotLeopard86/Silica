@@ -1,4 +1,4 @@
-project('silica', 'cpp', version: '0.2.1', meson_version: '>=1.2.0', license: 'Apache-2.0', default_options: ['cpp_std=c++20', 'default_library=static'])
+project('silica', 'cpp', version: '0.2.2', meson_version: '>=1.2.0', license: 'Apache-2.0', default_options: ['cpp_std=c++20', 'default_library=static'])
 
 # Get options
 example = get_option('example')
