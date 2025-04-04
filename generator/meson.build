@@ -1,9 +1,5 @@
 # Simple dependencies
-cli11_dep = subproject('cli11', required: true, default_options: {
-	'precompiled': true,
-	'tests': false,
-	'cpp_std': 'c++17'
-}).get_variable('CLI11_dep')
+cli11_dep = subproject('cli11', required: true).get_variable('CLI11_dep')
 inja_dep = subproject('inja', required: true, default_options: {
 	'build_tests': false
 }).get_variable('inja_dep')

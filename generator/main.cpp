@@ -4,7 +4,7 @@
 #include "parser/parser.hpp"
 #include "tools/to_filename.hpp"
 
-#include "CLI/CLI.hpp"
+#include "CLI11.hpp"
 #include "inja/inja.hpp"
 
 #include <string>
