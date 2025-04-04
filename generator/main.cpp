@@ -202,7 +202,7 @@ int main(int argc, char* argv[]) {
 	rootHeader.close();
 	VERBOSE_LOG("Generated " << out / (project + ".silica.hpp"));
 	rootCpp.close();
-	VERBOSE_LOG("Generated " << out / (project + ".silica.cdpp"));
+	VERBOSE_LOG("Generated " << out / (project + ".silica.cpp"));
 	clock::time_point writeEnd = clock::now();
 	VERBOSE_LOG("File generation completed in " << std::chrono::duration_cast<std::chrono::duration<float>>(writeEnd - writeBegin).count() << " seconds")
 

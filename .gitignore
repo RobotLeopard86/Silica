@@ -8,6 +8,7 @@
 subprojects/*
 !subprojects/*.wrap
 !subprojects/packagefiles
+!subprojects/cli11
 
 # Don't send Meson subproject download hash
 .meson-subproject-wrap-hash.txt
