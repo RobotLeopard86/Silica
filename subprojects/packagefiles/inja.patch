@@ -1,0 +1,17 @@
+diff --git a/meson.build b/meson.build
+index bfed780..56d8626 100644
+--- a/meson.build
++++ b/meson.build
+@@ -31,7 +31,11 @@ install_headers(
+ 
+ 
+ run_command(
+-  find_program('scripts/update_single_include.sh'),
++  find_program('python3'),
++  meson.current_source_dir() / 'third_party' / 'amalgamate' / 'amalgamate.py',
++  '-c', meson.current_source_dir() / 'scripts' / 'amalgamate_config.json',
++  '-s', 'include',
++  '-v', 'yes',
+   check: true
+ )
+ 

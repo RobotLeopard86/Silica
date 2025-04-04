@@ -1,3 +1,13 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+new file mode 100644
+index 000000000..1f62789ea
+--- /dev/null
++++ b/CMakeLists.txt
+@@ -0,0 +1,3 @@
++cmake_minimum_required(VERSION 3.20.0)
++project(LLVM)
++add_subdirectory(llvm)
+\ No newline at end of file
 diff --git a/clang/cmake/modules/AddClang.cmake b/clang/cmake/modules/AddClang.cmake
 index cdc8bd5cd..14af7860e 100644
 --- a/clang/cmake/modules/AddClang.cmake
@@ -11658,11 +11668,3 @@ index 770494405..898d03882 100644
  
    for (Matcher *Rule : InputRules)
      Rule->optimize();
-
-diff --git a/CMakeLists.txt b/CMakeLists.txt
-new file mode 100644
-index 000000000000..27ba77ddaf61
---- /dev/null
-+++ b/CMakeLists.txt
-@@ -0,0 +1 @@
-+add_subdirectory(llvm)

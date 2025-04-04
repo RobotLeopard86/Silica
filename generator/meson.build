@@ -1,7 +1,8 @@
 # Simple dependencies
 cli11_dep = subproject('cli11', required: true, default_options: {
 	'precompiled': true,
-	'tests': false
+	'tests': false,
+	'cpp_std': 'c++17'
 }).get_variable('CLI11_dep')
 inja_dep = subproject('inja', required: true, default_options: {
 	'build_tests': false
@@ -10,10 +11,11 @@ inja_dep = subproject('inja', required: true, default_options: {
 # CMake setup (for LLVM/Clang)
 cmake = import('cmake')
 cmake_build_type = ''
-bt = get_option('buildtype')
+cmake_msvc_lib = 'MultiThreaded'
 if bt.contains('debug')
 	if bt == 'debug'
 		cmake_build_type = 'Debug'
+		cmake_msvc_lib += 'Debug'
 	else
 		cmake_build_type = 'RelWithDebInfo'
 	endif
@@ -24,6 +26,7 @@ elif bt == 'release'
 else
 	error('Unsupported build type!')
 endif
+cmake_msvc_lib += 'DLL'
 
 # LLVM/Clang setup
 llvm_opts = cmake.subproject_options()
@@ -65,6 +68,8 @@ llvm_opts.add_cmake_defines({
 	'LLVM_ENABLE_PROJECTS': 'clang',
 	'CMAKE_POSITION_INDEPENDENT_CODE': 'ON',
 	'CMAKE_POLICY_DEFAULT_CMP0156': 'NEW',
+	'CMAKE_POLICY_DEFAULT_CMP0126': 'NEW',
+	'CMAKE_MSVC_RUNTIME_LIBRARY': cmake_msvc_lib,
 	'CMAKE_BUILD_TYPE': cmake_build_type
 })
 llvm_opts.append_compile_args('cpp', ['-I' + meson.current_source_dir(), '-Wno-unused-command-line-argument'])
@@ -126,4 +131,4 @@ silica_generator = executable('silica', generator_sources, dependencies: [
 	clang_sema_dep, clang_serialization_dep, clang_support_dep, clang_tooling_dep, libclang_dep, llvm_analysis_dep, llvm_asmparser_dep, llvm_binaryformat_dep, llvm_bitreader_dep, llvm_bitstreamreader_dep,
 	llvm_core_dep, llvm_debuginfodwarf_dep, llvm_demangle_dep, llvm_frontendatomic_dep, llvm_frontendoffloading_dep, llvm_frontendopenmp_dep, llvm_irreader_dep, llvm_mc_dep, llvm_mca_dep, llvm_mcparser_dep,
 	llvm_object_dep, llvm_option_dep, llvm_profiledata_dep, llvm_remarks_dep, llvm_scalaropts_dep, llvm_support_dep, llvm_supportblake3_dep, llvm_targetparser_dep, llvm_textapi_dep, llvm_transformutils_dep,
-	llvm_windowsdriver_dep], pie: true, cpp_args: ['-DPROJECT_VER="' + meson.project_version() + '"'])
+	llvm_windowsdriver_dep], cpp_args: ['-DPROJECT_VER="' + meson.project_version() + '"'])

@@ -4,7 +4,7 @@ project(
   license: 'BSD-3-Clause',
   meson_version: '>= 1.5.0',
   default_options: {
-    'cpp_std': 'c++11',
+    'cpp_std': 'c++17',
   }
 )
 

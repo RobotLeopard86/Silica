@@ -2,3 +2,4 @@
 url = https://github.com/pantor/inja
 depth = 1
 revision = v3.4.0
+diff_files = inja.patch

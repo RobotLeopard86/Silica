@@ -24,7 +24,7 @@
 
 int main(int argc, char* argv[]) {
 	//Configure CLI
-	CLI::App app("Silica reflection info generator", std::filesystem::path(argv[0]).filename());
+	CLI::App app("Silica reflection info generator", std::filesystem::path(argv[0]).filename().string());
 	std::string compDbPath;
 	app.add_option("-c", compDbPath, "Path to the compilation database directory")->check(CLI::ExistingDirectory)->required();
 	std::string outDir;
@@ -138,7 +138,7 @@ int main(int argc, char* argv[]) {
 		json["file_name"] = filenameUTF8;
 		filenameUTF8 += ".silica";
 #if defined(_WIN32)
-		auto fileName = Files::from_utf8(filenameUTF8.data(), filenameUTF8.size());
+		auto fileName = files.from_utf8(filenameUTF8.data(), filenameUTF8.size());
 
 		auto hppFile = typesDir / (fileName + L".hpp");
 		auto cppFile = typesDir / (fileName + L".cpp");
