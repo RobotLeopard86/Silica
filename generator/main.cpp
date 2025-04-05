@@ -110,7 +110,7 @@ int main(int argc, char* argv[]) {
 #include "silica/reflection/reflection.hpp"
 #include "silica/types/all_types.hpp"
 
-	)";
+)";
 	std::ofstream rootCpp(out / (project + ".silica.cpp"));
 	if(!rootCpp.is_open()) {
 		std::cerr << "Failed to open root implementation file for writing!";
@@ -169,7 +169,7 @@ int main(int argc, char* argv[]) {
 |                                            |
 \* ---------------------------------------- */
 
-		)";
+)";
 		cpp << R"(
 /* ---------------------------------------- *\
 |                                            |
@@ -178,7 +178,7 @@ int main(int argc, char* argv[]) {
 |                                            |
 \* ---------------------------------------- */
 
-		)";
+)";
 
 		//Render templates
 		inja.render_to(hpp, headerTemplate, json);
