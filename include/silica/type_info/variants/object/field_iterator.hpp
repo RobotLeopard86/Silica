@@ -67,7 +67,7 @@ namespace silica {
 		void next_valid() {
 			do {
 				++_it;
-			} while(!is_valid() && _it != _end);
+			} while(_it != _end && !is_valid());
 		}
 
 		inline bool right_access() {

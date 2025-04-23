@@ -6,12 +6,14 @@
 
 #include "CLI11.hpp"
 #include "inja/inja.hpp"
+#include "nlohmann/json.hpp"
 
 #include <string>
 #include <vector>
 #include <iostream>
 #include <chrono>
 #include <fstream>
+#include <filesystem>
 
 #ifndef PROJECT_VER
 #define PROJECT_VER "unknown"
@@ -74,12 +76,35 @@ int main(int argc, char* argv[]) {
 	//Parse source files
 	clock::time_point parseBegin = clock::now();
 	Parser parser(compDbPath, out.string());
-	auto parsedOpt = parser.parse(input);
-	if(!parsedOpt.has_value()) {
-		std::cerr << "Errors encountered while parsing source files!";
-		return -1;
+	std::unordered_map<std::string, nlohmann::json> parsed;
+	for(std::string in : input) {
+		//Parse this file
+		std::vector<std::string> inAsVec(1);
+		inAsVec[0] = in;
+		auto maybeFR = parser.parse(inAsVec);
+		if(!maybeFR.has_value()) {
+			std::cerr << "Errors encountered while parsing source files!" << std::endl;
+			return -1;
+		}
+		auto fileResults = maybeFR.value();
+
+		//Correct origins
+		for(auto& [_, json] : fileResults) {
+			if(!json.contains("origin") || (json.contains("origin") && json["origin"].get<std::string>().compare("") == 0)) {
+				//Calculate correct origin
+				auto fs_path = std::filesystem::path(in.begin(), in.end());
+				std::string rel = "../";
+				rel += std::filesystem::relative(fs_path, out).string();
+#if defined(_WIN32)
+				std::replace(rel.begin(), rel.end(), '\\', '/');
+#endif
+				json["origin"] = rel;
+			}
+		}
+
+		//Merge maps
+		parsed.merge(fileResults);
 	}
-	auto parsed = parsedOpt.value();
 	clock::time_point parseEnd = clock::now();
 	VERBOSE_LOG("Parsing source files completed in " << std::chrono::duration_cast<std::chrono::duration<float>>(parseEnd - parseBegin).count() << " seconds")
 
@@ -94,7 +119,7 @@ int main(int argc, char* argv[]) {
 	clock::time_point writeBegin = clock::now();
 	std::ofstream rootHeader(out / (project + ".silica.hpp"));
 	if(!rootHeader.is_open()) {
-		std::cerr << "Failed to open root header file for writing!";
+		std::cerr << "Failed to open root header file for writing!" << std::endl;
 		return -1;
 	}
 	rootHeader << R"(
@@ -113,7 +138,7 @@ int main(int argc, char* argv[]) {
 )";
 	std::ofstream rootCpp(out / (project + ".silica.cpp"));
 	if(!rootCpp.is_open()) {
-		std::cerr << "Failed to open root implementation file for writing!";
+		std::cerr << "Failed to open root implementation file for writing!" << std::endl;
 		return -1;
 	}
 	rootCpp << R"(
@@ -151,12 +176,12 @@ int main(int argc, char* argv[]) {
 		//Open file streams
 		std::ofstream hpp(hppFile);
 		if(!hpp.is_open()) {
-			std::cerr << "Failed to open type header file for writing!";
+			std::cerr << "Failed to open type header file for writing!" << std::endl;
 			return -1;
 		}
 		std::ofstream cpp(cppFile);
 		if(!cpp.is_open()) {
-			std::cerr << "Failed to open type implementation file for writing!";
+			std::cerr << "Failed to open type implementation file for writing!" << std::endl;
 			return -1;
 		}
 

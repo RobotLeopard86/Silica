@@ -15,6 +15,12 @@ msvc = cpp.get_argument_syntax() == 'msvc'
 
 flags = cpp.get_supported_arguments(['-Wno-non-virtual-dtor'])
 add_project_arguments(flags, language: 'cpp')
+if host_machine.system() == 'windows'
+	add_project_arguments(['-D_DLL', '-D_MT'], language: 'cpp')
+	if get_option('buildtype') == 'debug'
+		add_project_arguments(['-D_ITERATOR_DEBUG_LEVEL=2', '-D_DEBUG', '-fms-runtime-lib=dll_dbg'], language: 'cpp')
+	endif
+endif
 
 unicode_sources = files(
   'unicode/block_scripts.cpp',
