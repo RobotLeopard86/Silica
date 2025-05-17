@@ -15,7 +15,7 @@
   #include <iostream> // std::cout etc.
   #include <iomanip>  // std::setw
 
-  #include "position.hpp"
+  #include "serialization/position.hpp"
 }
 
 %class{
