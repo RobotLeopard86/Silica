@@ -13,7 +13,7 @@ Static members can also be accessed by passing in a `nullptr`, but this is not r
 
 In order for a class to be reflectable, it must have at least one constructor satisfying the  `std::is_default_constructible` type trait.  
 
-When a value is reflected, it returns a `TypeInfo` object, which is not super useful on it's own.
+When a value is reflected, it returns a `TypeInfo` object, which is not super useful on its own.
 To make it useful, call it's `get` method templated on one of Silica's reflection primitives.  The two most common ones are `Object` and `Enum`, but when working with `Var` objects as mentioned above, you will likely use others.  
 
 `Object` primitives allow you to examine fields and methods, while `Enum` primitives allow you to convert between an enum value and a `std::string`.   The other primitives allow things like checking integer signedness, checking for null pointers, array access, etc. depending on the type.  

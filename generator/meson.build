@@ -134,7 +134,7 @@ endif
 generator_sources = [
 	'main.cpp',
 	'tools' / 'files.cpp',
-	'parser' / 'parser.cpp'
+	'parser' / 'parser.cpp',
 ]
 
 # Executable

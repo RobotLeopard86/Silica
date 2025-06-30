@@ -27,3 +27,6 @@ x64
 
 # Don't send generated sources
 *.yy*
+
+# Don't send clangd cache
+.cache
