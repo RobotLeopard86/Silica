@@ -24,8 +24,8 @@ This guide assumes you are using Meson. If you aren't, you may need to use pre-c
 	3. Add `silica_dep` to your dependencies
 	4. Not strictly necessary, but recommended: add `-Wno-unknown-attributes` (or equivalent flag) to your extra C++ arguments. This will silence warnings regarding the Silica custom attributes
 3. Add reflection attributes
-	1. Note: for a class to be reflectable, it must have at least one constructor satisfying `std::is_default_constructible`
-	2. Add the `[[silica::reflect]]` attribute to your class, like this:
+	1. Note: for a class to be reflectable, it must satisfy the `silica::reflection::Reflectable` concept. See [basics.md](basics.md) for what that requires.
+	2. Add the `[[silica::reflect]]` attribute to your class (or enum), like this:
 	```cpp
 	class [[silica::reflect]] SomeClass {...};
 	```

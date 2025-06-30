@@ -11,7 +11,7 @@ The primary entrypoint for reflection is `silica::reflection::reflect`, from the
 You can either pass in a pointer to an object you wish to reflect, or a Silica `Var` object, which can be used to examine and modify a field.  
 Static members can also be accessed by passing in a `nullptr`, but this is not recommended as it can cause issues with other class objects.  
 
-In order for a class to be reflectable, it must have at least one constructor satisfying the  `std::is_default_constructible` type trait.  
+In order for a class to be reflectable, it must have at least one constructor satisfying the  `std::default_initializable` concept (so, a constructor taking no arguments) and have a public virtual member function named `getTypeid`, returning a `silica::TypeId`. This function will be implemented in the generated reflection code. For convienience, Silica provides the `silica::Reflectable` concept in `silica/reflectable.hpp`, for template constraints to reflectable types. All enums are reflectable by default.
 
 When a value is reflected, it returns a `TypeInfo` object, which is not super useful on its own.
 To make it useful, call it's `get` method templated on one of Silica's reflection primitives.  The two most common ones are `Object` and `Enum`, but when working with `Var` objects as mentioned above, you will likely use others.  

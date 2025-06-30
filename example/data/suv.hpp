@@ -13,4 +13,6 @@ class [[silica::reflect("all")]] SUV : public Car {
 	virtual int refinish(Color newColor) override {
 		return Car::refinish(newColor) + SUV_REFINISH_FEE;
 	}
+
+	virtual silica::TypeId getTypeid() const override;
 };

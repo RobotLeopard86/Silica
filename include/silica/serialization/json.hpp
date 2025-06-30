@@ -4,11 +4,12 @@
 
 #include "silica/expected.hpp"
 #include "silica/variable/var.hpp"
+#include "silica/reflectable.hpp"
 
 namespace silica::serialization {
 
 	struct json {//NOLINT namespace like name
-		template<typename T>
+		template<Reflectable T>
 		static Expected<T> from_string(std::string_view str) {
 			T obj;
 
@@ -19,7 +20,7 @@ namespace silica::serialization {
 			return obj;
 		}
 
-		template<typename T>
+		template<Reflectable T>
 		static Expected<T> from_stream(std::istream& stream) {
 			T obj;
 
@@ -30,14 +31,14 @@ namespace silica::serialization {
 			return obj;
 		}
 
-		template<typename T>
+		template<Reflectable T>
 		static Expected<std::string> to_string(const T* obj) {
 			std::string result;
 			serialize(&result, Var(obj));
 			return result;
 		}
 
-		template<typename T>
+		template<Reflectable T>
 		static void to_stream(std::ostream& stream, const T* obj) {
 			serialize(stream, Var(obj));
 		}

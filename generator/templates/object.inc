@@ -71,5 +71,9 @@ TypeId TypeId::get({{name}}* /*unused*/) {
 
 }
 
+TypeId {{name}}::getTypeid() const {
+	return TypeId::get<{{name}}>();
+}
+
 // clang-format on
 )"

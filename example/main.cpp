@@ -5,6 +5,7 @@
 #include "example.silica.hpp"
 
 #include "silica/reflection/reflection.hpp"
+#include "silica/reflection/type_name.hpp"
 #include "silica/serialization/json.hpp"
 #include "silica/serialization/convert.hpp"
 
@@ -88,6 +89,13 @@ int main() {
 	std::cout << "Refinishing it cost more: $" << suvCost << std::endl;
 	std::cout << "I also can do SUV-specific stuff, like checking the trunk volume" << std::endl;
 	std::cout << "(it's " << silica::reflection::reflect(suvInfo.get<silica::Object>().get_field("trunkVolume").unwrap().var()).get<silica::Floating>().get() << " cubic feet btw)" << std::endl;
+
+	//Casting to base class
+	std::cout << "Let's cast the SUV back to a car." << std::endl;
+	Car* suvAsCar = static_cast<Car*>(&suv);
+	std::cout << "Serializing the reflected Car pointer gives us:\n"
+			  << silica::serialization::json::to_string(suvAsCar).unwrap() << std::endl;
+	std::cout << "As you can see, it still has the SUV information." << std::endl;
 
 	//Done
 	std::cout << "Thanks for checking out the Silica demo!" << std::endl;

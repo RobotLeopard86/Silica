@@ -1,18 +1,19 @@
 #pragma once
 
+#include "silica/reflectable.hpp"
+#include "silica/type_id.hpp"
 #include "silica/type_info/type_info.hpp"
-#include "type_name.hpp"
 
 namespace silica::reflection {
 
 	TypeInfo reflect(Var variable);
 
-	template<typename T>
+	template<Reflectable T>
 	TypeInfo reflect(T* pointer) {
 		return reflection::reflect(Var(pointer));
 	}
 
-	template<typename T>
+	template<Reflectable T>
 	TypeInfo reflect(const T* pointer) {
 		return reflection::reflect(Var(pointer));
 	}
@@ -20,7 +21,7 @@ namespace silica::reflection {
 	std::string sprint(const TypeInfo& info);
 	std::string sprint(Var var);
 
-	template<typename T>
+	template<Reflectable T>
 	std::string sprint(const T* pointer) {
 		return sprint(reflect(pointer));
 	}
@@ -28,7 +29,7 @@ namespace silica::reflection {
 	void print(const TypeInfo& info);
 	void print(Var var);
 
-	template<typename T>
+	template<Reflectable T>
 	void print(const T* pointer) {
 		print(reflect(pointer));
 	}

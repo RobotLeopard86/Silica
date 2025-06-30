@@ -2,6 +2,7 @@
 
 #include "colors.hpp"
 
+#include "silica/type_id.hpp"
 #include "silica/types/type_actions.hpp"
 
 #include <string>
@@ -23,6 +24,8 @@ class [[silica::reflect("all")]] Car {
 	Color whatColorAmI() {
 		return color;
 	}
+
+	virtual silica::TypeId getTypeid() const;
 
 	virtual ~Car() {}
 

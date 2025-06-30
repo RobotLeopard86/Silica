@@ -1,8 +1,7 @@
 #pragma once
 
-#include <type_traits>
-
 #include "silica/expected.hpp"
+#include "silica/reflectable.hpp"
 #include "silica/type_id.hpp"
 
 namespace silica {
@@ -23,6 +22,16 @@ namespace silica {
 		explicit Var(T* value, bool is_const = false)
 		  : _value(value), _type(TypeId::get(value)), _is_const(is_const) {
 		}
+
+		template<Reflectable T>
+			requires(!std::is_enum_v<T>)
+		explicit Var(const T* value)
+		  : _value(const_cast<T*>(value)), _type(value->getTypeid()), _is_const(true) {}
+
+		template<Reflectable T>
+			requires(!std::is_enum_v<T>)
+		explicit Var(T* value, bool is_const = false)
+		  : _value(value), _type(value->getTypeid()), _is_const(is_const) {}
 
 		void unsafe_assign(void* ptr);
 

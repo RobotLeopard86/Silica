@@ -2,7 +2,7 @@
 #### Modern C++ reflection library 
 
 ## About
-Silica is a codegen-based reflection library for C++. It is forked from [the `easy_reflection_cpp` project by Maxim Voloshin](https://github.com/chocolacula/easy_reflection_cpp). More information is available in the `doc` directory.
+Silica is a codegen-based reflection library for C++. It is forked from [the `easy_reflection_cpp` project by Maxim Voloshin](https://github.com/chocolacula/easy_reflection_cpp). Silica uses C++20. More information is available in the `doc` directory.
 
 ## Features
 * Automatic reflection info generation via code generator
