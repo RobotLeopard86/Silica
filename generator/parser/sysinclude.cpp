@@ -1,4 +1,5 @@
 #include "parser.hpp"
+#include "flag.hpp"
 
 #include "clang/Tooling/CompilationDatabase.h"
 
@@ -7,6 +8,7 @@
 #include <set>
 #include <iostream>
 #include <regex>
+#include <sstream>
 
 #ifdef _WIN32
 #include <windows.h>
@@ -29,8 +31,10 @@ std::string runCommand(std::string cmd) {
 	std::string output;
 	FILE* pipe = popen(cmd.c_str(), pomode);
 	if(!pipe) {
-		std::cerr << "Failed to run command for system include detection: " << cmd << std::endl;
-		exit(1);
+		std::stringstream ss;
+		ss << "Failed to run command for system include detection: ";
+		sysincludeFailFlag = ss.str();
+		return "";
 	}
 	std::vector<char> buffer(4096);
 	while(true) {
@@ -41,7 +45,7 @@ std::string runCommand(std::string cmd) {
 		if(bytesRead < buffer.size()) {
 			if(feof(pipe)) break;
 			if(ferror(pipe)) {
-				std::cerr << "Error reading from compiler pipe" << std::endl;
+				std::cerr << "\x1b[2K\rError reading from compiler pipe" << std::endl;
 				break;
 			}
 		}
@@ -112,6 +116,7 @@ void Parser::find_sys_includes(const std::string& sample, const std::string& fal
 		MSVC,
 		Bad
 	} ctp = CompilerType::Bad;
+	sysincludeFailFlag.clear();
 
 	std::string lower = compiler;
 	for(char& c : lower) c = (char)tolower(c);
@@ -127,8 +132,8 @@ void Parser::find_sys_includes(const std::string& sample, const std::string& fal
 	//Fallback
 	if(ctp == CompilerType::Bad) {
 		if(fallback_compiler.empty()) {
-			std::cerr << "No fallback compiler provided and the compilation database compiler is unsupported for system include detection!" << std::endl;
-			exit(1);
+			sysincludeFailFlag = "No fallback compiler provided and the compilation database compiler is unsupported for system include detection!";
+			return;
 		}
 		compiler = fallback_compiler;
 		ctp = fallback_msvc ? CompilerType::MSVC : CompilerType::GCCLike;
@@ -147,6 +152,11 @@ void Parser::find_sys_includes(const std::string& sample, const std::string& fal
 		std::string cmd = "\"" + compiler + "\" -E -xc++ -v \"" + empty_file.string() + "\" 2>&1";
 		std::string output = runCommand(cmd);
 		std::filesystem::remove(empty_file);
+
+		//Check for failure
+		if(output.empty() && !sysincludeFailFlag.empty()) {
+			return;
+		}
 
 		//Parse includes
 		includes = gccLikeIncludeParser(output);
@@ -175,11 +185,16 @@ void Parser::find_sys_includes(const std::string& sample, const std::string& fal
 		std::string output = runCommand(cmd);
 		std::filesystem::remove(dummy_file);
 
+		//Check for failure
+		if(output.empty() && !sysincludeFailFlag.empty()) {
+			return;
+		}
+
 		//Parse includes
 		includes = msvcIncludeParser(output);
 #else
-		std::cerr << "Cannot use MSVC for system include parsing on a non-Windows system!" << std::endl;
-		exit(1);
+		sysincludeFailFlag = "Cannot use MSVC for system include parsing on a non-Windows system!";
+		return;
 #endif
 	}
 
@@ -187,6 +202,7 @@ void Parser::find_sys_includes(const std::string& sample, const std::string& fal
 	sysincludes.clear();
 	for(const auto& inc : includes) {
 		std::filesystem::path incp(inc);
-		sysincludes.insert(std::filesystem::canonical(incp).string());
+		std::string canon = std::filesystem::canonical(incp).string();
+		sysincludes.insert(canon);
 	}
 }

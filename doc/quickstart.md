@@ -17,7 +17,7 @@ This guide assumes you are using Meson. If you aren't, you may need to use pre-c
 2. Configure reflection codegen
 	1. Create the custom target. It should look something like this:
 	```Meson
-	reflection = custom_target('example.silica.[cpphpp]', output: ['example.silica.hpp', 'example.silica.cpp'], input: ['some_header.hpp'], console: true, command: [silica_generator, '-c', meson.global_build_root(), '-o', meson.current_build_dir(), '-p', 'example', meson.current_source_dir() / 'data', '-V'])
+	reflection = custom_target('example.silica.[cpphpp]', output: ['example.silica.hpp', 'example.silica.cpp'], input: ['some_header.hpp'], console: true, command: [silica_generator, '-c', meson.global_build_root(), '-o', meson.current_build_dir(), '-p', 'example', meson.current_source_dir()])
 	```
 	2. Add the custom target to your target's sources
 	3. Add `silica_dep` to your target's dependencies

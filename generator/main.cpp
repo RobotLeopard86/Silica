@@ -3,11 +3,15 @@
 #include "tools/files.hpp"
 #include "parser/parser.hpp"
 #include "tools/to_filename.hpp"
+#include "flag.hpp"
 
 #include "CLI11.hpp"
 #include "inja/inja.hpp"
 #include "nlohmann/json.hpp"
+#include "spinners.hpp"
 
+#include <memory>
+#include <sstream>
 #include <string>
 #include <vector>
 #include <iostream>
@@ -20,7 +24,7 @@
 #endif
 
 #define VERBOSE_LOG(...) \
-	if(verbose) std::cout << __VA_ARGS__ << std::endl;
+	if(!quiet) std::cout << __VA_ARGS__ << std::endl;
 
 #define clock std::chrono::steady_clock
 
@@ -60,8 +64,8 @@ int main(int argc, char* argv[]) {
 		fallbackIsMsvc = lower.find("++") == std::string::npos && (lower.find("cl.exe") != std::string::npos || lower.find("cl") == 0);
 	};
 	app.add_option_function<std::string>("--fallback-compiler,-C", fallbackOptFunc, "Fallback compiler to use for system include searching if the compiler in the database is not supported (if it isn't cl.exe, a GCC-like command line is assumed)");
-	bool verbose;
-	app.add_flag("--verbose,-V", verbose, "Print verbose output");
+	bool quiet;
+	app.add_flag("--quiet,-q", quiet, "Suppress output");
 	app.set_version_flag("--version,-v", []() { return PROJECT_VER; }, "Display version and exit");
 
 	//Parse CLI arguments
@@ -82,10 +86,21 @@ int main(int argc, char* argv[]) {
 	std::filesystem::create_directories(out);
 	VERBOSE_LOG("Prepped output directory " << out)
 
+	//Spinner to make the wait bearable (WHY IS IT SO SLOW)
+	std::unique_ptr<jms::Spinner> spinner;
+	if(!quiet) {
+		spinner = std::make_unique<jms::Spinner>("Parsing source files...", jms::dots);
+		spinner->start();
+	}
+
 	//Parse source files
 	clock::time_point parseBegin = clock::now();
 	Parser parser(compDbPath, out.string());
 	parser.find_sys_includes(input[0], fallbackCompiler, fallbackIsMsvc);
+	if(!quiet && !sysincludeFailFlag.empty()) {
+		spinner->finish(jms::FinishedState::FAILURE, sysincludeFailFlag);
+		exit(1);
+	}
 	std::unordered_map<std::string, nlohmann::json> parsed;
 	int counter = 0;
 	for(std::string in : input) {
@@ -115,10 +130,14 @@ int main(int argc, char* argv[]) {
 
 		//Merge maps
 		parsed.merge(fileResults);
-		VERBOSE_LOG("(" << ++counter << "/" << input.size() << ") Parsed \"" << in << "\"")
+		VERBOSE_LOG("\x1b[2K\r(" << ++counter << "/" << input.size() << ") Parsed \"" << in << "\"")
 	}
 	clock::time_point parseEnd = clock::now();
-	VERBOSE_LOG("Parsing source files completed in " << std::chrono::duration_cast<std::chrono::duration<float>>(parseEnd - parseBegin).count() << " seconds")
+	if(!quiet) {
+		std::stringstream ss;
+		ss << "Parsing source files completed in " << std::chrono::duration_cast<std::chrono::duration<float>>(parseEnd - parseBegin).count() << " seconds";
+		spinner->finish(jms::FinishedState::SUCCESS, ss.str());
+	}
 
 	//Create template objects
 	inja::Environment inja;
@@ -169,6 +188,8 @@ int main(int argc, char* argv[]) {
 	std::filesystem::create_directories(typesDir);
 
 	//Write file templates
+	int writeCount = (parsed.size() * 2) + 2;
+	counter = 0;
 	for(auto&& [object_name, json] : parsed) {
 		//Generate filenames
 		auto filenameUTF8 = to_filename(object_name);
@@ -220,14 +241,14 @@ int main(int argc, char* argv[]) {
 		//Render templates
 		inja.render_to(hpp, headerTemplate, json);
 		hpp.close();
-		VERBOSE_LOG("Generated " << hppFile);
+		VERBOSE_LOG("(" << ++counter << "/" << writeCount << ") Generated " << hppFile);
 		if(json["kind"].get<int>() == 0) {
 			inja.render_to(cpp, objectTemplate, json);
 		} else {
 			inja.render_to(cpp, enumTemplate, json);
 		}
 		cpp.close();
-		VERBOSE_LOG("Generated " << cppFile);
+		VERBOSE_LOG("(" << ++counter << "/" << writeCount << ") Generated " << cppFile);
 
 		//Add includes to root files
 		const std::string includeStr = "#include \"silica_types/";
@@ -237,9 +258,9 @@ int main(int argc, char* argv[]) {
 
 	//Close root files
 	rootHeader.close();
-	VERBOSE_LOG("Generated " << out / (project + ".silica.hpp"));
+	VERBOSE_LOG("(" << ++counter << "/" << writeCount << ") Generated " << out / (project + ".silica.hpp"));
 	rootCpp.close();
-	VERBOSE_LOG("Generated " << out / (project + ".silica.cpp"));
+	VERBOSE_LOG("(" << ++counter << "/" << writeCount << ") Generated " << out / (project + ".silica.cpp"));
 	clock::time_point writeEnd = clock::now();
 	VERBOSE_LOG("File generation completed in " << std::chrono::duration_cast<std::chrono::duration<float>>(writeEnd - writeBegin).count() << " seconds")
 
