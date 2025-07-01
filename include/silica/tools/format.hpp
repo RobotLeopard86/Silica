@@ -61,7 +61,7 @@ namespace silica {
 		*str += arg.string();
 	}
 
-	static void format(std::string* result, std::string_view fmt, size_t i) {
+	[[maybe_unused]] static void format(std::string* result, std::string_view fmt, size_t i) {
 		*result += fmt.substr(i, fmt.size() - i);
 	}
 

@@ -71,7 +71,7 @@ TypeId TypeId::get({{name}}* /*unused*/) {
 
 }
 
-TypeId {{name}}::getTypeid() const {
+TypeId {{name}}::SILICA__gettypeid() const {
 	return TypeId::get<{{name}}>();
 }
 

@@ -25,7 +25,7 @@ class [[silica::reflect("all")]] Car {
 		return color;
 	}
 
-	virtual silica::TypeId getTypeid() const;
+	virtual silica::TypeId SILICA__gettypeid() const;
 
 	virtual ~Car() {}
 

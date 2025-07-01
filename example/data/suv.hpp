@@ -14,5 +14,5 @@ class [[silica::reflect("all")]] SUV : public Car {
 		return Car::refinish(newColor) + SUV_REFINISH_FEE;
 	}
 
-	virtual silica::TypeId getTypeid() const override;
+	virtual silica::TypeId SILICA__gettypeid() const override;
 };

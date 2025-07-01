@@ -86,8 +86,8 @@ int main(int argc, char* argv[]) {
 	clock::time_point parseBegin = clock::now();
 	Parser parser(compDbPath, out.string());
 	parser.find_sys_includes(input[0], fallbackCompiler, fallbackIsMsvc);
-	VERBOSE_LOG("Detected system include paths")
 	std::unordered_map<std::string, nlohmann::json> parsed;
+	int counter = 0;
 	for(std::string in : input) {
 		//Parse this file
 		std::vector<std::string> inAsVec(1);
@@ -115,6 +115,7 @@ int main(int argc, char* argv[]) {
 
 		//Merge maps
 		parsed.merge(fileResults);
+		VERBOSE_LOG("(" << ++counter << "/" << input.size() << ") Parsed \"" << in << "\"")
 	}
 	clock::time_point parseEnd = clock::now();
 	VERBOSE_LOG("Parsing source files completed in " << std::chrono::duration_cast<std::chrono::duration<float>>(parseEnd - parseBegin).count() << " seconds")
