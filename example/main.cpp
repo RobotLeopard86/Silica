@@ -5,7 +5,6 @@
 #include "example.silica.hpp"
 
 #include "silica/reflection/reflection.hpp"
-#include "silica/reflection/type_name.hpp"
 #include "silica/serialization/json.hpp"
 #include "silica/serialization/convert.hpp"
 
@@ -69,7 +68,7 @@ int main() {
 	std::cout << "The car is " << silica::reflection::reflect(&carColor).get<silica::Enum>().to_string() << std::endl;
 
 	//SUV for base class testing
-	SUV suv;
+	ExampleNamespace::SUV suv;
 	suv.brand = "Subaru";
 	suv.year = 2016;
 	suv.hasInsurance = true;

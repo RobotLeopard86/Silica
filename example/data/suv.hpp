@@ -5,14 +5,16 @@
 
 #define SUV_REFINISH_FEE 1500
 
-class [[silica::reflect("all")]] SUV : public Car {
-  public:
-	std::string nickname;
-	float trunkVolume;
+namespace ExampleNamespace {
+	class [[silica::reflect("all")]] SUV : public Car {
+	  public:
+		std::string nickname;
+		float trunkVolume;
 
-	virtual int refinish(Color newColor) override {
-		return Car::refinish(newColor) + SUV_REFINISH_FEE;
-	}
+		virtual int refinish(Color newColor) override {
+			return Car::refinish(newColor) + SUV_REFINISH_FEE;
+		}
 
-	virtual silica::TypeId SILICA__gettypeid() const override;
-};
+		virtual silica::TypeId SILICA__gettypeid() const override;
+	};
+}
