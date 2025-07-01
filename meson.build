@@ -1,4 +1,4 @@
-project('silica', 'cpp', version: '0.2.5', meson_version: '>=1.2.0', license: 'Apache-2.0', default_options: ['cpp_std=c++20', 'default_library=static', 'b_vscrt=from_buildtype'])
+project('silica', 'cpp', version: '0.3.0', meson_version: '>=1.2.0', license: 'Apache-2.0', default_options: ['cpp_std=c++20', 'default_library=static', 'b_vscrt=from_buildtype'])
 
 bt = get_option('buildtype')
 
