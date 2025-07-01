@@ -28,7 +28,7 @@ int main(int argc, char* argv[]) {
 	//Configure CLI
 	CLI::App app("Silica reflection info generator", std::filesystem::path(argv[0]).filename().string());
 	std::string compDbPath;
-	app.add_option("-c", compDbPath, "Path to the compilation database directory")->check(CLI::ExistingDirectory)->required();
+	app.add_option("--compdb,-c", compDbPath, "Path to the compilation database directory")->check(CLI::ExistingDirectory)->required();
 	std::string outDir;
 	const auto outDirValidateFunc = [](const std::string& opt) {
 		auto existDir = CLI::ExistingDirectory(opt);
@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) {
 		}
 		return "Provided path exists but is not a directory";
 	};
-	app.add_option("-o", outDir, "Path to the directory to output generated code to")->check(outDirValidateFunc)->required();
+	app.add_option("--output,-o", outDir, "Path to the directory to output generated code to")->check(outDirValidateFunc)->required();
 	std::vector<std::string> input;
 	const auto inputValidateFunc = [](const std::string& opt) {
 		auto existDir = CLI::ExistingDirectory(opt);
@@ -50,10 +50,19 @@ int main(int argc, char* argv[]) {
 	};
 	app.add_option("input", input, "Input header files to the generator")->check(inputValidateFunc)->required();
 	std::string project;
-	app.add_option("-p", project, "Name of the project")->transform([](const std::string& val) { return to_filename(val); })->required();
+	app.add_option("--project-name,-p", project, "Name of the project")->transform([](const std::string& val) { return to_filename(val); })->required();
+	std::string fallbackCompiler;
+	bool fallbackIsMsvc;
+	const auto fallbackOptFunc = [&fallbackCompiler, &fallbackIsMsvc](const std::string& s) {
+		fallbackCompiler = s;
+		std::string lower = s;
+		for(char& c : lower) c = (char)tolower(c);
+		fallbackIsMsvc = lower.find("++") == std::string::npos && (lower.find("cl.exe") != std::string::npos || lower.find("cl") == 0);
+	};
+	app.add_option_function<std::string>("--fallback-compiler,-C", fallbackOptFunc, "Fallback compiler to use for system include searching if the compiler in the database is not supported (if it isn't cl.exe, a GCC-like command line is assumed)")->required();
 	bool verbose;
-	app.add_flag("-V", verbose, "Print verbose output");
-	app.set_version_flag("-v", []() { return PROJECT_VER; }, "Display version and exit");
+	app.add_flag("--verbose,-V", verbose, "Print verbose output");
+	app.set_version_flag("--version,-v", []() { return PROJECT_VER; }, "Display version and exit");
 
 	//Parse CLI arguments
 	CLI11_PARSE(app, argc, argv);
@@ -76,6 +85,8 @@ int main(int argc, char* argv[]) {
 	//Parse source files
 	clock::time_point parseBegin = clock::now();
 	Parser parser(compDbPath, out.string());
+	parser.find_sys_includes(input[0], fallbackCompiler, fallbackIsMsvc);
+	VERBOSE_LOG("Detected system include paths")
 	std::unordered_map<std::string, nlohmann::json> parsed;
 	for(std::string in : input) {
 		//Parse this file

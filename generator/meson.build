@@ -135,6 +135,7 @@ generator_sources = [
 	'main.cpp',
 	'tools' / 'files.cpp',
 	'parser' / 'parser.cpp',
+	'parser' / 'sysinclude.cpp'
 ]
 
 # Executable

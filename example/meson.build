@@ -1,6 +1,6 @@
 # Generate reflection info
-reflection = custom_target('example.silica.[cpphpp]', output: ['example.silica.hpp', 'example.silica.cpp'], input: ['data' / 'car.hpp', 'data' / 'colors.hpp', 'data' / 'suv.hpp'], 
-	command: [silica_generator, '-c', meson.global_build_root(), '-o', meson.current_build_dir(), '-p', 'example', meson.current_source_dir() / 'data'])
+reflection = custom_target('example.silica.[cpphpp]', output: ['example.silica.hpp', 'example.silica.cpp'], input: ['data' / 'car.hpp', 'data' / 'colors.hpp', 'data' / 'suv.hpp'], console: true,
+	command: [silica_generator, '-c', meson.global_build_root(), '-o', meson.current_build_dir(), '-p', 'example', meson.current_source_dir() / 'data', '-C', meson.get_compiler('cpp').get_id(), '-V'])
 
 # Create program
 executable('silica_example', sources: [

@@ -7,7 +7,7 @@
 #include "nlohmann/json.hpp"
 
 struct Context {
-	std::string_view output_dir;
+	std::string output_dir;
 
 	//clangTooling run analysis for each input file
 	//the files could intersect with each other
