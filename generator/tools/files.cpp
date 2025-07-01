@@ -4,7 +4,7 @@
 #include <memory>
 #include <vector>
 
-#if defined(__linux__)
+#ifdef __linux__
 #include <linux/limits.h>
 #include <unistd.h>
 #elif defined(__APPLE__)
@@ -19,7 +19,7 @@ Files::Files()
   : root(cut_filename(executable_name())) {
 }
 
-#if defined(_WIN32)
+#ifdef _WIN32
 std::string Files::to_utf8(const wchar_t* str, size_t size) {
 	int size_utf8 = WideCharToMultiByte(CP_UTF8,//
 		WC_ERR_INVALID_CHARS,					//
@@ -59,7 +59,7 @@ std::wstring Files::from_utf8(const char* str, size_t size) {
 #endif
 
 inline std::string Files::executable_name() {
-#if defined(__linux__)
+#ifdef __linux__
 	auto raw_path = std::make_unique<char[]>(PATH_MAX);
 
 	auto size = readlink("/proc/self/exe", raw_path.get(), PATH_MAX);
@@ -103,7 +103,7 @@ void Files::correct_path(std::string* path) {
 	}
 
 	if(path->back() != deliminator) {
-#if defined(_WIN32)
+#ifdef _WIN32
 		std::filesystem::path fs_p(from_utf8(path->data(), path->size()));
 #else
 		std::filesystem::path fs_p(*path);
@@ -121,7 +121,7 @@ void Files::complete_files(std::vector<std::string>* paths) {
 	for(auto path : old) {
 		correct_path(&path);
 
-#if defined(_WIN32)
+#ifdef _WIN32
 		std::filesystem::path fs_path(from_utf8(path.data(), path.size()));
 #else
 		std::filesystem::path fs_path(path);
@@ -129,7 +129,7 @@ void Files::complete_files(std::vector<std::string>* paths) {
 
 		if(std::filesystem::is_directory(fs_path)) {
 			for(auto&& file_path : std::filesystem::recursive_directory_iterator(fs_path)) {
-#if defined(_WIN32)
+#ifdef _WIN32
 				auto w_str = file_path.path().wstring();
 				paths->push_back(to_utf8(w_str.data(), w_str.size()));
 #else
@@ -155,7 +155,7 @@ std::string Files::cut_filename(std::string str) {
 }
 
 inline bool Files::is_absolute(const std::string& path) {
-#if defined(_WIN32)
+#ifdef _WIN32
 	return path[1] == ':';//match 'C:\', 'D:\', etc
 #else
 	return path.front() == deliminator;

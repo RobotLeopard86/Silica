@@ -121,7 +121,7 @@ int main(int argc, char* argv[]) {
 				auto fs_path = std::filesystem::path(in.begin(), in.end());
 				std::string rel = "../";
 				rel += std::filesystem::relative(fs_path, out).string();
-#if defined(_WIN32)
+#ifdef _WIN32
 				std::replace(rel.begin(), rel.end(), '\\', '/');
 #endif
 				json["origin"] = rel;
@@ -195,7 +195,7 @@ int main(int argc, char* argv[]) {
 		auto filenameUTF8 = to_filename(object_name);
 		json["file_name"] = filenameUTF8;
 		filenameUTF8 += ".silica";
-#if defined(_WIN32)
+#ifdef _WIN32
 		auto fileName = files.from_utf8(filenameUTF8.data(), filenameUTF8.size());
 
 		auto hppFile = typesDir / (fileName + L".hpp");
@@ -241,14 +241,14 @@ int main(int argc, char* argv[]) {
 		//Render templates
 		inja.render_to(hpp, headerTemplate, json);
 		hpp.close();
-		VERBOSE_LOG("(" << ++counter << "/" << writeCount << ") Generated " << hppFile);
+		VERBOSE_LOG("(" << ++counter << "/" << writeCount << ") Generated " << hppFile.generic_string());
 		if(json["kind"].get<int>() == 0) {
 			inja.render_to(cpp, objectTemplate, json);
 		} else {
 			inja.render_to(cpp, enumTemplate, json);
 		}
 		cpp.close();
-		VERBOSE_LOG("(" << ++counter << "/" << writeCount << ") Generated " << cppFile);
+		VERBOSE_LOG("(" << ++counter << "/" << writeCount << ") Generated " << cppFile.generic_string());
 
 		//Add includes to root files
 		const std::string includeStr = "#include \"silica_types/";

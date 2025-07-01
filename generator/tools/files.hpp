@@ -8,7 +8,7 @@ class Files {
   public:
 	Files();
 
-#if defined(_WIN32)
+#ifdef _WIN32
 	std::string to_utf8(const wchar_t* str, size_t size);
 	std::wstring from_utf8(const char* str, size_t size);
 #endif

@@ -255,7 +255,7 @@ struct JsonBuilder {
 		//add additional step back cause in output_dir is another directory
 		std::string rel = "../";
 		rel += std::filesystem::relative(fs_path, _ctx->output_dir).string();
-#if defined(_WIN32)
+#ifdef _WIN32
 		//use '/' instead of '\' even on Windows
 		std::replace(rel.begin(), rel.end(), '\\', '/');
 #endif
