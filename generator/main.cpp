@@ -59,7 +59,7 @@ int main(int argc, char* argv[]) {
 		for(char& c : lower) c = (char)tolower(c);
 		fallbackIsMsvc = lower.find("++") == std::string::npos && (lower.find("cl.exe") != std::string::npos || lower.find("cl") == 0);
 	};
-	app.add_option_function<std::string>("--fallback-compiler,-C", fallbackOptFunc, "Fallback compiler to use for system include searching if the compiler in the database is not supported (if it isn't cl.exe, a GCC-like command line is assumed)")->required();
+	app.add_option_function<std::string>("--fallback-compiler,-C", fallbackOptFunc, "Fallback compiler to use for system include searching if the compiler in the database is not supported (if it isn't cl.exe, a GCC-like command line is assumed)");
 	bool verbose;
 	app.add_flag("--verbose,-V", verbose, "Print verbose output");
 	app.set_version_flag("--version,-v", []() { return PROJECT_VER; }, "Display version and exit");

@@ -126,6 +126,10 @@ void Parser::find_sys_includes(const std::string& sample, const std::string& fal
 
 	//Fallback
 	if(ctp == CompilerType::Bad) {
+		if(fallback_compiler.empty()) {
+			std::cerr << "No fallback compiler provided and the compilation database compiler is unsupported for system include detection!" << std::endl;
+			exit(1);
+		}
 		compiler = fallback_compiler;
 		ctp = fallback_msvc ? CompilerType::MSVC : CompilerType::GCCLike;
 	}
