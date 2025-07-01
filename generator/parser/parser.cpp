@@ -35,15 +35,19 @@ std::optional<std::unordered_map<std::string, nlohmann::json>> Parser::parse(con
 	tool.appendArgumentsAdjuster([this](const tooling::CommandLineArguments& args, StringRef) {
 		tooling::CommandLineArguments adjArgs;
 		adjArgs.push_back(args[0]);
-		if(auto it = std::find_if(sysincludes.cbegin(), sysincludes.cend(), [](const std::string& si) {
+		std::set<std::string> used;
+		for(const std::string& include_dir : sysincludes) {
+			if(used.contains(include_dir)) continue;
 #ifdef _WIN32
-			   return si.find("c++\\v1") != std::string::npos;
+#define CPPSEARCH "c++\\"
 #else
-			   return si.find("c++/v1") != std::string::npos;
+#define CPPSEARCH "c++/"
 #endif
-		   });
-			it != sysincludes.cend()) {
-			adjArgs.push_back(std::string("-isystem") + *it);
+			if(include_dir.find(CPPSEARCH) != std::string::npos) {
+				adjArgs.push_back(std::string("-isystem") + include_dir);
+				used.insert(include_dir);
+			}
+#undef CPPSEARCH
 		}
 		if(auto it = std::find_if(sysincludes.cbegin(), sysincludes.cend(), [](const std::string& si) {
 #ifdef _WIN32
@@ -54,9 +58,12 @@ std::optional<std::unordered_map<std::string, nlohmann::json>> Parser::parse(con
 		   });
 			it != sysincludes.cend()) {
 			adjArgs.push_back(std::string("-isystem") + *it);
+			used.insert(*it);
 		}
 		for(const std::string& include_dir : sysincludes) {
+			if(used.contains(include_dir)) continue;
 			adjArgs.push_back(std::string("-isystem") + include_dir);
+			used.insert(include_dir);
 		}
 		for(int i = 1; i < args.size(); i++) {
 			adjArgs.push_back(args[i]);
