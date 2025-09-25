@@ -6,9 +6,12 @@ new file mode 100644
 index 000000000..1f62789ea
 --- /dev/null
 +++ b/CMakeLists.txt
-@@ -0,0 +1,3 @@
+@@ -0,0 +1,6 @@
 +cmake_minimum_required(VERSION 3.20.0)
 +project(LLVM)
++unset(LLVM_VERSION_MAJOR)
++unset(LLVM_VERSION_MINOR)
++unset(LLVM_VERSION_PATCH)
 +add_subdirectory(llvm)
 \ No newline at end of file
 diff --git a/clang/cmake/modules/AddClang.cmake b/clang/cmake/modules/AddClang.cmake
