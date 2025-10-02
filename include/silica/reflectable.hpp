@@ -7,7 +7,7 @@
 
 namespace silica {
 	template<typename T>
-	concept Reflectable = std::is_enum_v<T> || (std::default_initializable<T> && requires(const T t) {
+	concept Reflectable = std::is_enum_v<T> || (!std::is_class_v<T>) || (std::is_class_v<T> && std::default_initializable<T> && requires(const T t) {
 		{ t.SILICA__gettypeid() } -> std::same_as<TypeId>;
 	});
 }
