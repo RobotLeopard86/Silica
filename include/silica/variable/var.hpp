@@ -13,12 +13,14 @@ namespace silica {
 		Var();
 		Var(void* value, TypeId type, bool is_const);
 
-		template<typename T>
+		template<Reflectable T>
+			requires std::is_enum_v<T>
 		explicit Var(const T* value)
 		  : _value(const_cast<T*>(value)), _type(TypeId::get<T>()), _is_const(true) {
 		}
 
-		template<typename T>
+		template<Reflectable T>
+			requires std::is_enum_v<T>
 		explicit Var(T* value, bool is_const = false)
 		  : _value(value), _type(TypeId::get(value)), _is_const(is_const) {
 		}
@@ -26,12 +28,12 @@ namespace silica {
 		template<Reflectable T>
 			requires(!std::is_enum_v<T>)
 		explicit Var(const T* value)
-		  : _value(const_cast<T*>(value)), _type(value->SILICA__gettypeid()), _is_const(true) {}
+		  : _value(const_cast<T*>(value)), _type(value != nullptr ? value->SILICA__gettypeid() : TypeId::get<T>()), _is_const(true) {}
 
 		template<Reflectable T>
 			requires(!std::is_enum_v<T>)
 		explicit Var(T* value, bool is_const = false)
-		  : _value(value), _type(value->SILICA__gettypeid()), _is_const(is_const) {}
+		  : _value(value), _type(value != nullptr ? value->SILICA__gettypeid() : TypeId::get<T>()), _is_const(is_const) {}
 
 		void unsafe_assign(void* ptr);
 
