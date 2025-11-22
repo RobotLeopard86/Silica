@@ -1,9 +1,6 @@
-diff --git a/.meson-subproject-wrap-hash.txt b/.meson-subproject-wrap-hash.txt
-new file mode 100644
-index 000000000..e69de29bb
 diff --git a/CMakeLists.txt b/CMakeLists.txt
 new file mode 100644
-index 000000000..1f62789ea
+index 000000000..a3633bb0e
 --- /dev/null
 +++ b/CMakeLists.txt
 @@ -0,0 +1,6 @@
@@ -3623,6 +3620,54 @@ index 7b0fd0c84..8851d75e4 100644
  #include "clang/Basic/Builtins.h"
  #include "clang/Basic/Diagnostic.h"
  #include "clang/Basic/TargetBuiltins.h"
+diff --git a/clang/lib/CMakeLists.txt b/clang/lib/CMakeLists.txt
+index 14ba55360..3086c83d5 100644
+--- a/clang/lib/CMakeLists.txt
++++ b/clang/lib/CMakeLists.txt
+@@ -5,31 +5,31 @@ add_subdirectory(Lex)
+ add_subdirectory(Parse)
+ add_subdirectory(AST)
+ add_subdirectory(ASTMatchers)
+-add_subdirectory(CrossTU)
++#add_subdirectory(CrossTU)
+ add_subdirectory(Sema)
+-add_subdirectory(CodeGen)
++#add_subdirectory(CodeGen)
+ add_subdirectory(Analysis)
+ add_subdirectory(Edit)
+-add_subdirectory(ExtractAPI)
+-add_subdirectory(Rewrite)
++#add_subdirectory(ExtractAPI)
++#add_subdirectory(Rewrite)
+ if(CLANG_ENABLE_ARCMT)
+   add_subdirectory(ARCMigrate)
+ endif()
+ add_subdirectory(Driver)
+ add_subdirectory(Serialization)
+ add_subdirectory(Frontend)
+-add_subdirectory(FrontendTool)
++#add_subdirectory(FrontendTool)
+ add_subdirectory(Tooling)
+-add_subdirectory(DirectoryWatcher)
+-add_subdirectory(Index)
+-add_subdirectory(IndexSerialization)
+-add_subdirectory(InstallAPI)
+-add_subdirectory(StaticAnalyzer)
+-add_subdirectory(Format)
++#add_subdirectory(DirectoryWatcher)
++#add_subdirectory(Index)
++#add_subdirectory(IndexSerialization)
++#add_subdirectory(InstallAPI)
++#add_subdirectory(StaticAnalyzer)
++#add_subdirectory(Format)
+ if(CLANG_INCLUDE_TESTS)
+   add_subdirectory(Testing)
+ endif()
+-add_subdirectory(Interpreter)
++#add_subdirectory(Interpreter)
+ add_subdirectory(Support)
+ 
+ if(CLANG_ENABLE_CIR)
 diff --git a/clang/lib/CodeGen/CMakeLists.txt b/clang/lib/CodeGen/CMakeLists.txt
 index 868ec847b..ea3f1ae2d 100644
 --- a/clang/lib/CodeGen/CMakeLists.txt
@@ -7333,8 +7378,21 @@ index de06271e9..3d0a7c861 100644
    add_library(clangSupport_tablegen ALIAS clangSupport)
  else()
    # Build a version of the support library that does not link against
+diff --git a/clang/lib/Tooling/CMakeLists.txt b/clang/lib/Tooling/CMakeLists.txt
+index fc1f1f9f9..a294f1670 100644
+--- a/clang/lib/Tooling/CMakeLists.txt
++++ b/clang/lib/Tooling/CMakeLists.txt
+@@ -7,7 +7,7 @@ set(LLVM_LINK_COMPONENTS
+ 
+ add_subdirectory(Core)
+ add_subdirectory(Inclusions)
+-add_subdirectory(Refactoring)
++#add_subdirectory(Refactoring)
+ add_subdirectory(ASTDiff)
+ add_subdirectory(Syntax)
+ add_subdirectory(DependencyScanning)
 diff --git a/clang/tools/CMakeLists.txt b/clang/tools/CMakeLists.txt
-index 98c018e96..917a47588 100644
+index 98c018e96..895bed0ea 100644
 --- a/clang/tools/CMakeLists.txt
 +++ b/clang/tools/CMakeLists.txt
 @@ -1,45 +1,5 @@
@@ -7383,6 +7441,14 @@ index 98c018e96..917a47588 100644
  # We support checking out the clang-tools-extra repository into the 'extra'
  # subdirectory. It contains tools developed as part of the Clang/LLVM project
  # on top of the Clang tooling platform. We keep them in a separate repository
+@@ -50,5 +10,5 @@ add_llvm_external_project(clang-tools-extra extra)
+ # libclang may require clang-tidy in clang-tools-extra.
+ add_clang_subdirectory(libclang)
+ 
+-add_clang_subdirectory(amdgpu-arch)
+-add_clang_subdirectory(nvptx-arch)
++#add_clang_subdirectory(amdgpu-arch)
++#add_clang_subdirectory(nvptx-arch)
 diff --git a/clang/tools/libclang/CMakeLists.txt b/clang/tools/libclang/CMakeLists.txt
 index 00a1223c0..b7a02410f 100644
 --- a/clang/tools/libclang/CMakeLists.txt
@@ -8488,25 +8554,77 @@ index c14abca02..87be980f8 100644
  } // end namespace llvm
  
 diff --git a/llvm/lib/CMakeLists.txt b/llvm/lib/CMakeLists.txt
-index d0a2bc929..3ec909d95 100644
+index d0a2bc929..9ab6f26ce 100644
 --- a/llvm/lib/CMakeLists.txt
 +++ b/llvm/lib/CMakeLists.txt
-@@ -24,7 +24,6 @@ add_subdirectory(Analysis)
- add_subdirectory(LTO)
+@@ -4,53 +4,51 @@ include(LLVM-Build)
+ # CMakeLists.txt
+ 
+ add_subdirectory(IR)
+-add_subdirectory(FuzzMutate)
+-add_subdirectory(FileCheck)
+-add_subdirectory(InterfaceStub)
++#add_subdirectory(FuzzMutate)
++#add_subdirectory(FileCheck)
++#add_subdirectory(InterfaceStub)
+ add_subdirectory(IRPrinter)
+ add_subdirectory(IRReader)
+-add_subdirectory(CGData)
+-add_subdirectory(CodeGen)
++#add_subdirectory(CGData)
++#add_subdirectory(CodeGen)
+ add_subdirectory(CodeGenTypes)
+ add_subdirectory(BinaryFormat)
+ add_subdirectory(Bitcode)
+ add_subdirectory(Bitstream)
+ add_subdirectory(DWARFLinker)
+-add_subdirectory(Extensions)
++#add_subdirectory(Extensions)
+ add_subdirectory(Frontend)
+ add_subdirectory(Transforms)
+-add_subdirectory(Linker)
++#add_subdirectory(Linker)
+ add_subdirectory(Analysis)
+-add_subdirectory(LTO)
++#add_subdirectory(LTO)
  add_subdirectory(MC)
  add_subdirectory(MCA)
 -add_subdirectory(ObjCopy)
  add_subdirectory(Object)
  add_subdirectory(ObjectYAML)
  add_subdirectory(Option)
-@@ -44,7 +43,6 @@ add_subdirectory(TextAPI)
+ add_subdirectory(Remarks)
+ add_subdirectory(Debuginfod)
+ add_subdirectory(DebugInfo)
+-add_subdirectory(DWP)
+-add_subdirectory(ExecutionEngine)
++#add_subdirectory(DWP)
++#add_subdirectory(ExecutionEngine)
+ add_subdirectory(Target)
+ add_subdirectory(SandboxIR)
+ add_subdirectory(AsmParser)
+-add_subdirectory(LineEditor)
++#add_subdirectory(LineEditor)
+ add_subdirectory(ProfileData)
+-add_subdirectory(Passes)
++#add_subdirectory(Passes)
+ add_subdirectory(TargetParser)
+ add_subdirectory(TextAPI)
  if (LLVM_BUILD_TELEMETRY)
    add_subdirectory(Telemetry)
  endif()
 -add_subdirectory(ToolDrivers)
- add_subdirectory(XRay)
+-add_subdirectory(XRay)
++#add_subdirectory(XRay)
  if (LLVM_INCLUDE_TESTS)
    add_subdirectory(Testing)
+ endif()
+ add_subdirectory(WindowsDriver)
+-add_subdirectory(WindowsManifest)
++#add_subdirectory(WindowsManifest)
+ 
+ set(LLVMCONFIGLIBRARYDEPENDENCIESINC "${LLVM_BINARY_DIR}/tools/llvm-config/LibraryDependencies.inc")
+ 
 diff --git a/llvm/lib/CodeGen/ValueTypes.cpp b/llvm/lib/CodeGen/ValueTypes.cpp
 index 2c80eee7c..3e9758ec8 100644
 --- a/llvm/lib/CodeGen/ValueTypes.cpp
