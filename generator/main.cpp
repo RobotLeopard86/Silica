@@ -87,9 +87,12 @@ int main(int argc, char* argv[]) {
 	std::filesystem::create_directories(out);
 	VERBOSE_LOG("Prepped output directory " << out)
 
-	//Spinner to make the wait bearable (WHY IS IT SO SLOW)
+	//Spinner to make the wait bearable
 	std::unique_ptr<jms::Spinner> spinner;
 	if(!quiet) {
+#ifdef _DEBUG
+		std::cout << "Warning: You are running a debug build. Source file parsing will be very slow." << std::endl;
+#endif
 		spinner = std::make_unique<jms::Spinner>("Parsing source files...", jms::dots);
 		spinner->start();
 	}
