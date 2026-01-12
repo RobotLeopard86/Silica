@@ -17,7 +17,6 @@ class Files {
 	static constexpr char deliminator = '/';
 
 	std::string executable_name();
-	void correct_path(std::string* path);
 
 	//change path to a directory to paths to files inside
 	void complete_files(std::vector<std::string>* paths);

@@ -97,29 +97,12 @@ inline std::string Files::executable_name() {
 #endif
 }
 
-void Files::correct_path(std::string* path) {
-	if(!is_absolute(*path)) {
-		path->insert(0, root);
-	}
-
-	if(path->back() != deliminator) {
-#ifdef _WIN32
-		std::filesystem::path fs_p(from_utf8(path->data(), path->size()));
-#else
-		std::filesystem::path fs_p(*path);
-#endif
-		if(std::filesystem::is_directory(fs_p)) {
-			*path += deliminator;
-		}
-	}
-}
-
 void Files::complete_files(std::vector<std::string>* paths) {
 	auto old = *paths;
 	paths->clear();
 
 	for(auto path : old) {
-		correct_path(&path);
+		path = std::filesystem::canonical(path);
 
 #ifdef _WIN32
 		std::filesystem::path fs_path(from_utf8(path.data(), path.size()));

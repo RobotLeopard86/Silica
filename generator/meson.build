@@ -105,7 +105,6 @@ llvm_frontendoffloading_dep = llvm.dependency('LLVMFrontendOffloading')
 llvm_frontendopenmp_dep = llvm.dependency('LLVMFrontendOpenMP')
 llvm_irreader_dep = llvm.dependency('LLVMIRReader')
 llvm_mc_dep = llvm.dependency('LLVMMC')
-llvm_mca_dep = llvm.dependency('LLVMMCA')
 llvm_mcparser_dep = llvm.dependency('LLVMMCParser')
 llvm_object_dep = llvm.dependency('LLVMObject')
 llvm_option_dep = llvm.dependency('LLVMOption')
@@ -122,7 +121,7 @@ llvm_windowsdriver_dep = llvm.dependency('LLVMWindowsDriver')
 deps = [
 	cli11_dep, inja_dep, spinners_dep, clang_analysis_dep, clang_apinotes_dep, clang_ast_dep, clang_astmatchers_dep, clang_basic_dep, clang_driver_dep, clang_edit_dep, clang_frontend_dep, clang_lex_dep, clang_parse_dep,
 	clang_sema_dep, clang_serialization_dep, clang_support_dep, clang_tooling_dep, libclang_dep, llvm_analysis_dep, llvm_asmparser_dep, llvm_binaryformat_dep, llvm_bitreader_dep, llvm_bitstreamreader_dep,
-	llvm_core_dep, llvm_debuginfodwarf_dep, llvm_demangle_dep, llvm_frontendatomic_dep, llvm_frontendoffloading_dep, llvm_frontendopenmp_dep, llvm_irreader_dep, llvm_mc_dep, llvm_mca_dep, llvm_mcparser_dep,
+	llvm_core_dep, llvm_debuginfodwarf_dep, llvm_demangle_dep, llvm_frontendatomic_dep, llvm_frontendoffloading_dep, llvm_frontendopenmp_dep, llvm_irreader_dep, llvm_mc_dep, llvm_mcparser_dep,
 	llvm_object_dep, llvm_option_dep, llvm_profiledata_dep, llvm_remarks_dep, llvm_scalaropts_dep, llvm_support_dep, llvm_supportblake3_dep, llvm_targetparser_dep, llvm_textapi_dep, llvm_transformutils_dep,
 	llvm_windowsdriver_dep]
 

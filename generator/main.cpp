@@ -6,7 +6,7 @@
 #include "flag.hpp"
 
 #include "CLI11.hpp"
-#include "inja/inja.hpp"
+#include "inja/inja.hpp"// IWYU pragma: keep
 #include "nlohmann/json.hpp"
 #include "spinners.hpp"
 
@@ -64,7 +64,7 @@ int main(int argc, char* argv[]) {
 		fallbackIsMsvc = lower.find("++") == std::string::npos && (lower.find("cl.exe") != std::string::npos || lower.find("cl") == 0);
 	};
 	app.add_option_function<std::string>("--fallback-compiler,-C", fallbackOptFunc, "Fallback compiler to use for system include searching if the compiler in the database is not supported (if it isn't cl.exe, a GCC-like command line is assumed)");
-	bool quiet;
+	bool quiet = false;
 	app.add_flag("--quiet,-q", quiet, "Suppress output");
 	app.set_version_flag("--version,-v", []() { return PROJECT_VER; }, "Display version and exit");
 
@@ -73,15 +73,16 @@ int main(int argc, char* argv[]) {
 
 	//Correct paths
 	Files files;
-	files.correct_path(&compDbPath);
-	files.correct_path(&outDir);
+	compDbPath = std::filesystem::canonical(compDbPath);
+	outDir = std::filesystem::canonical(outDir);
 	files.complete_files(&input);
 
-	//If the output directory doesn't exist, we need to make it, or if it exists we need to empty it
-	//We do this by deleting it if it exists, then remaking the directory
+	//If the output directory doesn't exist, we need to make it, or if it exists we need to remove old Silica contents
 	std::filesystem::path out(outDir);
 	if(std::filesystem::exists(out)) {
-		std::filesystem::remove_all(out);
+		if(std::filesystem::exists(out / "silica_types")) std::filesystem::remove_all(out / "silica_types");
+		std::filesystem::remove(out / (project + ".silica.hpp"));
+		std::filesystem::remove(out / (project + ".silica.cpp"));
 	}
 	std::filesystem::create_directories(out);
 	VERBOSE_LOG("Prepped output directory " << out)

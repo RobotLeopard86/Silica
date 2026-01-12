@@ -121,13 +121,33 @@ void Parser::find_sys_includes(const std::string& sample, const std::string& fal
 	std::string lower = compiler;
 	for(char& c : lower) c = (char)tolower(c);
 
+	//Split to find program and first argument (for ccache)
+	std::string program, arg1;
+	bool progDone = false;
+	for(char c : lower) {
+		if(c == ' ') {
+			if(progDone) break;
+			progDone = true;
+			continue;
+		}
+		if(!progDone)
+			program += c;
+		else
+			arg1 += c;
+	}
+
+	//ccache check
+	if(program.find("ccache") != std::string::npos) {
+		program = arg1;
+	}
+
 #ifdef _WIN32
 	//MSVC check
-	if(lower.find("++") == std::string::npos && (lower.find("cl.exe") != std::string::npos || lower.find("cl") == 0)) ctp = CompilerType::MSVC;
+	if(program.find("++") == std::string::npos && (lower.find("cl.exe") != std::string::npos || lower.find("cl") == 0)) ctp = CompilerType::MSVC;
 #endif
 
 	//GCC/Clang check
-	if(lower.find("clang") != std::string::npos || lower.find("gcc") != std::string::npos) ctp = CompilerType::GCCLike;
+	if(program.find("clang") != std::string::npos || program.find("gcc") != std::string::npos || program.find("g++") != std::string::npos || program.find("c++") != std::string::npos) ctp = CompilerType::GCCLike;
 
 	//Fallback
 	if(ctp == CompilerType::Bad) {
