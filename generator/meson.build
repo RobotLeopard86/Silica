@@ -135,9 +135,9 @@ endif
 # Define sources
 generator_sources = [
 	'main.cpp',
-	'tools' / 'files.cpp',
-	'parser' / 'parser.cpp',
-	'parser' / 'sysinclude.cpp'
+	'files.cpp',
+	'parser.cpp',
+	'sysinclude.cpp'
 ]
 
 # Executable

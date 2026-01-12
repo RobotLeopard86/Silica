@@ -1,10 +1,7 @@
 #pragma once
 
-#include <ios>
-#include <iostream>
 #include <stdexcept>
 #include <string>
-#include <type_traits>
 #include <unordered_set>
 
 #include "clang/AST/Type.h"

@@ -1,8 +1,8 @@
 #include "templates.hpp"
 
-#include "tools/files.hpp"
-#include "parser/parser.hpp"
-#include "tools/to_filename.hpp"
+#include "files.hpp"
+#include "parser.hpp"
+#include "to_filename.hpp"
 #include "flag.hpp"
 
 #include "CLI11.hpp"

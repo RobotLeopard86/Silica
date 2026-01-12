@@ -1,7 +1,6 @@
 #include "parser.hpp"
 
 #include <cstddef>
-#include <sstream>
 #include <stdexcept>
 
 #include "action.hpp"
@@ -65,7 +64,7 @@ std::optional<std::unordered_map<std::string, nlohmann::json>> Parser::parse(con
 			adjArgs.push_back(std::string("-isystem") + include_dir);
 			used.insert(include_dir);
 		}
-		for(int i = 1; i < args.size(); i++) {
+		for(unsigned int i = 1; i < args.size(); i++) {
 			adjArgs.push_back(args[i]);
 		}
 		return adjArgs;
