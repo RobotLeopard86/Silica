@@ -102,7 +102,7 @@ void Files::complete_files(std::vector<std::string>* paths) {
 	paths->clear();
 
 	for(auto path : old) {
-		path = std::filesystem::canonical(path);
+		path = std::filesystem::canonical(path).string();
 
 #ifdef _WIN32
 		std::filesystem::path fs_path(from_utf8(path.data(), path.size()));

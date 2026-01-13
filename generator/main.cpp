@@ -73,8 +73,8 @@ int main(int argc, char* argv[]) {
 
 	//Correct paths
 	Files files;
-	compDbPath = std::filesystem::canonical(compDbPath);
-	outDir = std::filesystem::canonical(outDir);
+	compDbPath = std::filesystem::canonical(compDbPath).string();
+	outDir = std::filesystem::canonical(outDir).string();
 	files.complete_files(&input);
 
 	//If the output directory doesn't exist, we need to make it, or if it exists we need to remove old Silica contents
