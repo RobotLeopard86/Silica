@@ -3,6 +3,7 @@
 
 > [!IMPORTANT]  
 > Silica is undergoing a rebranding and rebuilding transition. All development will continue in the [new Astra repo](https://github.com/RobotLeopard86/Astra) and Silica will receive no further updates.
+> The Silica repo, however, will remain available (though archived) and all existing links will continue to work.
 >   
 > The reason for this is that, since the original purpose of the fork was to use Meson and a newer LLVM version, I never put much time into understanding the codebase or making significant improvement.
 > Because of this, the repo contains a large amount of code that is difficult for me to maintain or understand.
@@ -37,4 +38,5 @@ Configure the build directory with `meson setup build --native-file native.ini`,
 ## Licensing
 The Silica library and generator are licensed under the Apache License 2.0, which can be found in the root directory. All third-party licenses are present in the `licenses` folder, including that of the original `easy_reflection_cpp` library.
 Any third-party code used by these libraries should have their licenses located within the appropriate project directory (these may not be downloaded until configure-time by Meson).
+
 
